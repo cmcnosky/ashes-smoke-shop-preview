@@ -1,0 +1,950 @@
+{
+  "version": 1,
+  "checked_at": "2026-11-12",
+  "status": "competitor_reference_demo",
+  "boundary": "Reference products and prices from local retailer listings. Not Ashes stock or prices. No transactions.",
+  "sources": [
+    {
+      "id": "roll-and-smoke-allen",
+      "retailer": "Roll & Smoke Shop",
+      "source_url": "https://rollandsmoke.shop/",
+      "address": "806 S Allen Heights Dr, Suite 100, Allen, TX 75002",
+      "local_connection": "DFW retailer in Allen, Texas",
+      "availability_limit": "Availability is the retailer's online listing state and was not verified by purchase or in-store inspection."
+    },
+    {
+      "id": "smoke-maven-denton-teasley",
+      "retailer": "Smoke Maven — Denton Teasley Ln",
+      "source_url": "https://smokemaven.com/denton-teasley-ln/",
+      "address": "3969 Teasley Ln, Suite 400, Denton, TX 76210",
+      "local_connection": "Denton retailer storefront and store-specific online catalog",
+      "availability_limit": "Availability is the product-page state and was not verified by purchase or in-store inspection.",
+      "name": "Smoke Maven — Denton Teasley Ln",
+      "area": "Denton",
+      "address_proof": "The Denton Teasley storefront footer states: Address: 3969 Teasley Ln Suite 400, Denton, TX 76210. The related Vapor Maven location page independently gives the same street address and suite.",
+      "address_source_url": "https://smokemaven.com/denton-teasley-ln/product-category/dry-herb/grinders/",
+      "secondary_location_source_url": "https://vapormaven.com/home/vapor-maven-vape-shop-locations/denton-texas-76210/",
+      "catalog_source_urls": [
+        "https://smokemaven.com/denton-teasley-ln/wp-json/wc/store/v1/products?category=257&per_page=100",
+        "https://smokemaven.com/denton-teasley-ln/wp-json/wc/store/v1/products?category=46&per_page=100"
+      ]
+    },
+    {
+      "id": "klowdz-dfw",
+      "retailer": "KLOWDZ Vapor & Smokeshop",
+      "source_url": "https://www.klowdzvapor.com/contact-us/",
+      "addresses": [
+        "1930 Parkwood Blvd, Suite 102, Frisco, TX 75034",
+        "5180 Eldorado Pkwy, Suite 201, McKinney, TX 75070"
+      ],
+      "local_connection": "DFW retailer with Frisco and McKinney locations",
+      "availability_limit": "KLOWDZ states that availability may vary by store. Product-page stock is an online snapshot and is not branch-specific physical-stock evidence."
+    },
+    {
+      "id": "puff-n-stuff-dfw",
+      "name": "Puff n Stuff",
+      "area": "Dallas / Garland / The Colony",
+      "addresses": [
+        "4815 Columbia Ave, Dallas, TX 75226",
+        "13015 Jupiter Rd, Ste 304, Dallas, TX 75238",
+        "4916 Main St, The Colony, TX 75056",
+        "18110 Midway Rd, Ste 170, Dallas, TX 75287"
+      ],
+      "address_proof": "Puff n Stuff's own store locator identifies four DFW storefronts at the addresses listed here. Its catalog page describes the collection as functional glass art offered through its North Dallas/Plano, East Dallas, Garland, and The Colony locations.",
+      "address_source_url": "https://puffnstuffsmokeshop.com/pages/store-locator",
+      "catalog_source_url": "https://puffnstuffsmokeshop.com/collections/all/products.json?limit=250"
+    },
+    {
+      "id": "mandos-spot-dallas",
+      "name": "Mando's Spot",
+      "area": "Dallas / Oak Cliff",
+      "addresses": [
+        "512 W Jefferson Blvd, Suite 100, Dallas, TX 75208",
+        "2231 W Ledbetter Dr #250, Dallas, TX 75224"
+      ],
+      "address_proof": "Mando's Spot's collection page includes structured LocalBusiness records and visible footer addresses for its Jefferson and Ledbetter stores in Dallas.",
+      "address_source_url": "https://mandosspot.com/collections/hand-pipes-water-pipes",
+      "catalog_source_url": "https://mandosspot.com/collections/hand-pipes-water-pipes/products.json?limit=250"
+    }
+  ],
+  "products": [
+    {
+      "id": "raw-large-rolling-tray",
+      "name": "RAW Large Rolling Tray",
+      "source_name": "RAW Large Rolling Tray",
+      "brand": "RAW",
+      "category": "trays",
+      "description": "RAW large-format rolling tray.",
+      "image": "assets/products/raw-large-rolling-tray.webp",
+      "source_image_url": "https://rollandsmoke.shop/api/storage/objects/uploads/0dbc2d22-3004-40ec-bc67-adf406730a61?w=640",
+      "options": [
+        {
+          "id": "large",
+          "label": "Large",
+          "amount_minor": 1724
+        }
+      ],
+      "source": {
+        "url": "https://rollandsmoke.shop/shop/446662-raw-large-rolling-tray",
+        "retailer": "Roll & Smoke Shop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "In stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "pns-9033796878548-medicali-14-beaker",
+      "name": "Medicali 14\" Beaker",
+      "source_name": "Medicali 14\" Beaker",
+      "brand": "Medicali",
+      "category": "glass",
+      "description": "A 14-inch glass beaker by Medicali.",
+      "image": "assets/products/pns-9033796878548-medicali-14-beaker.webp",
+      "source_image_url": "https://cdn.shopify.com/s/files/1/0804/9003/7460/files/download_d36e13b7-9d2d-45eb-a0a6-d8f23b8bd258.jpg?v=1767718380",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 21999
+        }
+      ],
+      "source": {
+        "url": "https://puffnstuffsmokeshop.com/products/medicali-14-beaker",
+        "retailer": "Puff n Stuff",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Available in public Shopify product data"
+      },
+      "source_note": "14-inch is part of the exact product title, not a selectable option."
+    },
+    {
+      "id": "grav-2-piece-grinder",
+      "name": "GRAV 2-Piece Grinder",
+      "source_name": "GRAV 2-Piece Grinder",
+      "brand": "GRAV",
+      "category": "grinders",
+      "description": "GRAV two-piece grinder.",
+      "image": "assets/products/grav-2-piece-grinder.webp",
+      "source_image_url": "https://rollandsmoke.shop/api/storage/objects/uploads/96e0d87a-4cd2-441c-95d6-adbc639bde0e?w=640",
+      "options": [
+        {
+          "id": "2-piece",
+          "label": "2-piece",
+          "amount_minor": 999
+        }
+      ],
+      "source": {
+        "url": "https://rollandsmoke.shop/shop/447071-grav-2-piece-grinder",
+        "retailer": "Roll & Smoke Shop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "In stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "raw-black-classic-cones-1-25-6ct",
+      "name": "RAW Black Classic Cones 1¼ 6ct",
+      "source_name": "RAW Black Classic Cones 1¼ 6ct",
+      "brand": "RAW",
+      "category": "papers",
+      "description": "Six-count 1¼-size RAW Black Classic cone pack.",
+      "image": "assets/products/raw-black-classic-cones-1-25-6ct.webp",
+      "source_image_url": "https://rollandsmoke.shop/api/storage/objects/uploads/d3f1771b-99ed-4713-a6dd-4282a66f3f27?w=640",
+      "options": [
+        {
+          "id": "1-size-6-count",
+          "label": "1¼ size; 6 count",
+          "amount_minor": 375
+        }
+      ],
+      "source": {
+        "url": "https://rollandsmoke.shop/shop/448033-raw-black-classic-cones-1-6ct",
+        "retailer": "Roll & Smoke Shop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "In stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "sm-50914-waxmaid-silicone-traveler-waterpipe",
+      "name": "Waxmaid Silicone Traveler Waterpipe",
+      "source_name": "Waxmaid Silicone Traveler Waterpipe",
+      "brand": "Waxmaid",
+      "category": "glass",
+      "description": "Waxmaid Traveler water pipe with a silicone body.",
+      "image": "assets/products/sm-50914-waxmaid-silicone-traveler-waterpipe.webp",
+      "source_image_url": "https://smokemaven.com/denton-teasley-ln/wp-content/uploads/sites/9/2026/07/vvjbec6pfnhp48sybln3-rotated.jpg",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 1599
+        }
+      ],
+      "source": {
+        "url": "https://smokemaven.com/denton-teasley-ln/product/waxmaid-silicone-traveler-waterpipe/",
+        "retailer": "Smoke Maven — Denton Teasley Ln",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "In stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "mj-arsenal-phoenix-baton-silver",
+      "name": "MJ Arsenal Phoenix Baton – Silver",
+      "source_name": "MJ Arsenal Phoenix Baton – Silver",
+      "brand": "MJ Arsenal",
+      "category": "lighters",
+      "description": "MJ Arsenal Phoenix Baton lighter in Silver.",
+      "image": "assets/products/mj-arsenal-phoenix-baton-silver.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/09/1a477d9f-cde6-426c-b9fa-7ed2140ee821.webp",
+      "options": [
+        {
+          "id": "silver",
+          "label": "Silver",
+          "amount_minor": 1995
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/mj-arsenal-phoenix-baton-silver/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Add to cart shown; 5 in stock on the online page"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "blazy-susan-color-combo-cones-1-25-50ct",
+      "name": "Blazy Susan – Color Combo Cones 1¼ Size (50 Count Jar)",
+      "source_name": "Blazy Susan – Color Combo Cones 1¼ Size (50 Count Jar)",
+      "brand": "Blazy Susan",
+      "category": "papers",
+      "description": "Fifty-count jar of Blazy Susan 1¼-size color-combo empty cones.",
+      "image": "assets/products/blazy-susan-color-combo-cones-1-25-50ct.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/08/0aba4d7b-55d4-4315-882c-88b10a28b520.webp",
+      "options": [
+        {
+          "id": "1-size-50-count-jar-empty-cones",
+          "label": "1¼ size; 50-count jar; empty cones",
+          "amount_minor": 2199
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/blazy-susan-color-combo-cones-1-%c2%bc-size-50-count-jar/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Add to cart shown; 8 in stock on the online page"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "mj-arsenal-4-piece-grinder",
+      "name": "MJ Arsenal 4 Piece Grinder",
+      "source_name": "MJ Arsenal 4 Piece Grinder",
+      "brand": "MJ Arsenal",
+      "category": "grinders",
+      "description": "MJ Arsenal four-piece grinder with four color options.",
+      "image": "assets/products/mj-arsenal-4-piece-grinder.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/6f08a319-2ab8-430c-872f-f431d912b67b-1024x1024.webp",
+      "options": [
+        {
+          "id": "black",
+          "label": "Black",
+          "amount_minor": 3002,
+          "image": "assets/products/mj-arsenal-4-piece-grinder-black.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/a5e93e6e-0c79-42de-a5da-64ce657b91f4.webp",
+          "source_variation_id": 119645
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "amount_minor": 3002,
+          "image": "assets/products/mj-arsenal-4-piece-grinder-blue.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/7a8a5c13-a4f8-40fb-901e-c39ea6472c70.webp",
+          "source_variation_id": 119647
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "amount_minor": 3002,
+          "image": "assets/products/mj-arsenal-4-piece-grinder-green.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/82c24586-bd9e-44fc-9fce-f51244797e0a.webp",
+          "source_variation_id": 119649
+        },
+        {
+          "id": "purple",
+          "label": "Purple",
+          "amount_minor": 3002,
+          "image": "assets/products/mj-arsenal-4-piece-grinder-purple.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/bb4b7877-d291-4d06-b8e6-27743a1a9b7d.webp",
+          "source_variation_id": 119651
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/mj-arsenal-4-piece-grinder/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Variant selector and add-to-cart control shown; aggregate quantity not shown"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "formula-420-original-glass-pipe-cleaner-12oz",
+      "name": "Formula 420 Original Glass Pipe Cleaner 12 oz",
+      "source_name": "Formula 420 Original Glass Pipe Cleaner 12 oz",
+      "brand": "Formula 420",
+      "category": "cleaning",
+      "description": "Twelve-ounce Formula 420 cleaner for glass pipes.",
+      "image": "assets/products/formula-420-original-glass-pipe-cleaner-12oz.webp",
+      "source_image_url": "https://rollandsmoke.shop/api/storage/objects/uploads/dca9af36-e1eb-45a8-bc38-9f3b98578716?w=640",
+      "options": [
+        {
+          "id": "12-oz",
+          "label": "12 oz",
+          "amount_minor": 1299
+        }
+      ],
+      "source": {
+        "url": "https://rollandsmoke.shop/shop/448640-formula-420-original-glass-pipe-cleaner-12-oz",
+        "retailer": "Roll & Smoke Shop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Limited availability"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "raw-smell-proof-cozy-jar-6oz",
+      "name": "RAW Smell-Proof Cozy Jar 6oz",
+      "source_name": "RAW Smell-Proof Cozy Jar 6oz",
+      "brand": "RAW",
+      "category": "storage",
+      "description": "RAW 6 oz smell-proof cozy jar.",
+      "image": "assets/products/raw-smell-proof-cozy-jar-6oz.webp",
+      "source_image_url": "https://rollandsmoke.shop/api/storage/objects/uploads/ad8f76a8-c9d7-4b07-a996-8ef2eaf1b00b?w=640",
+      "options": [
+        {
+          "id": "6-oz",
+          "label": "6 oz",
+          "amount_minor": 3524
+        }
+      ],
+      "source": {
+        "url": "https://rollandsmoke.shop/shop/445968-raw-smell-proof-cozy-jar-6oz",
+        "retailer": "Roll & Smoke Shop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Limited availability"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "sm-48748-ooze-steamboat-silicone-bubbler",
+      "name": "Ooze Steamboat Silicone Bubbler",
+      "source_name": "Silicone- Ooze – Steamboat Silicone Bubbler – assorted colors",
+      "brand": "Ooze",
+      "category": "glass",
+      "description": "Steamboat-shaped silicone bubbler by Ooze. Assorted colors; this demo does not offer a specific color selection.",
+      "image": "assets/products/sm-48748-ooze-steamboat-silicone-bubbler.webp",
+      "source_image_url": "https://smokemaven.com/denton-teasley-ln/wp-content/uploads/sites/9/2026/07/jta6xvc4vwpocp3flkox.jpg",
+      "options": [
+        {
+          "id": "assorted-colors",
+          "label": "Assorted colors",
+          "amount_minor": 4499
+        }
+      ],
+      "source": {
+        "url": "https://smokemaven.com/denton-teasley-ln/product/silicone-ooze-steamboat-silicone-bubbler-assorted-colors/",
+        "retailer": "Smoke Maven — Denton Teasley Ln",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Only 2 left in stock"
+      },
+      "source_note": "The title says assorted colors, but the public product record exposes no selectable color options; no color choice should be promised."
+    },
+    {
+      "id": "smoke-odor-candle-havana-nights",
+      "name": "Smoke Odor Exterminator Candle – Havana Nights",
+      "source_name": "Smoke Odor Exterminator Candle – Havana Nights",
+      "brand": "Smoke Odor Exterminator",
+      "category": "scents",
+      "description": "Smoke Odor Exterminator candle in the Havana Nights scent.",
+      "image": "assets/products/smoke-odor-candle-havana-nights.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2024/03/17235f58-1e2c-4105-b38a-b96d5a86dd11-jpeg.webp",
+      "options": [
+        {
+          "id": "havana-nights",
+          "label": "Havana Nights",
+          "amount_minor": 1299
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/smoke-odor-exterminator-candle-havana-nights/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Add to cart shown; 2 in stock on the online page"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "raw-bamboo-rolling-mat",
+      "name": "RAW Bamboo Rolling Mat",
+      "source_name": "RAW Bamboo Rolling Mat",
+      "brand": "RAW",
+      "category": "papers",
+      "description": "RAW-branded bamboo rolling mat.",
+      "image": "assets/products/raw-bamboo-rolling-mat.webp",
+      "source_image_url": "https://rollandsmoke.shop/api/storage/objects/uploads/93e92691-8e8c-4c48-98c4-a1f1b7d524b3?w=640",
+      "options": [
+        {
+          "id": "bamboo-rolling-mat",
+          "label": "Bamboo rolling mat",
+          "amount_minor": 424
+        }
+      ],
+      "source": {
+        "url": "https://rollandsmoke.shop/shop/447697-raw-bamboo-rolling-mat",
+        "retailer": "Roll & Smoke Shop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "In stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "smoke-odor-candle-creamy-vanilla",
+      "name": "Smoke Odor Exterminator Candle Creamy Vanilla",
+      "source_name": "Smoke Odor Exterminator Candle Creamy Vanilla",
+      "brand": "Smoke Odor Exterminator",
+      "category": "scents",
+      "description": "Smoke Odor Exterminator candle in the Creamy Vanilla scent.",
+      "image": "assets/products/smoke-odor-candle-creamy-vanilla.webp",
+      "source_image_url": "https://rollandsmoke.shop/api/storage/objects/uploads/2de055d2-080d-4e69-a7dc-a7f6560b08a4?w=640",
+      "options": [
+        {
+          "id": "creamy-vanilla",
+          "label": "Creamy Vanilla",
+          "amount_minor": 1498
+        }
+      ],
+      "source": {
+        "url": "https://rollandsmoke.shop/shop/448269-smoke-odor-exterminator-candle-creamy-vanilla",
+        "retailer": "Roll & Smoke Shop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Limited availability"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "wild-berry-incense-large",
+      "name": "Wild Berry Incense Large",
+      "source_name": "Wild Berry Incense Large",
+      "brand": "Wild Berry",
+      "category": "scents",
+      "description": "Wild Berry incense in the Large option.",
+      "image": "assets/products/wild-berry-incense-large.webp",
+      "source_image_url": "https://rollandsmoke.shop/api/storage/objects/uploads/9e4731a3-eb16-4d46-977d-a62bd5bfcb5e?w=640",
+      "options": [
+        {
+          "id": "large",
+          "label": "Large",
+          "amount_minor": 45
+        }
+      ],
+      "source": {
+        "url": "https://rollandsmoke.shop/shop/447174-wild-berry-incense-large",
+        "retailer": "Roll & Smoke Shop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "In stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "zippo-lighter-gambling-design",
+      "name": "Zippo Lighter – Gambling Design",
+      "source_name": "Zippo Lighter – Gambling Design",
+      "brand": "Zippo",
+      "category": "lighters",
+      "description": "Black matte Zippo with a laser-engraved gambling design. Fuel sold separately.",
+      "image": "assets/products/zippo-lighter-gambling-design.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/05/8ead517f-95e2-4329-9b35-87fba101921c.jpeg",
+      "options": [
+        {
+          "id": "black-matte-laser-engraved-gambling-design",
+          "label": "Black matte; laser-engraved gambling design",
+          "amount_minor": 3194
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/zippo-lighter-gambling-design/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Add to cart shown; 4 in stock on the online page"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "blazy-susan-pink-cotton-buds-300",
+      "name": "Blazy Susan Pink Cotton Buds – 300 Count",
+      "source_name": "Blazy Susan Pink Cotton Buds – 300 Count",
+      "brand": "Blazy Susan",
+      "category": "cleaning",
+      "description": "Three-hundred-count package of Blazy Susan pink cotton buds.",
+      "image": "assets/products/blazy-susan-pink-cotton-buds-300.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/11/831fe066-e3f6-4189-8519-8f03b7ed8a32.webp",
+      "options": [
+        {
+          "id": "pink-300-count",
+          "label": "Pink; 300 count",
+          "amount_minor": 998
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/blazy-susan-pink-cotton-buds-300-count/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Add to cart shown; 2 in stock on the online page"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "piece-water-super-solution-25ml",
+      "name": "Piece Water Super Solution – 0.85 fl. oz. (25ml)",
+      "source_name": "Piece Water Super Solution – 0.85 fl. oz. (25ml)",
+      "brand": "Piece Water",
+      "category": "cleaning",
+      "description": "Travel-size 0.85 fl oz / 25 ml Piece Water Super Solution.",
+      "image": "assets/products/piece-water-super-solution-25ml.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/10/2fc25c09-5bf3-415e-9dac-d113b4d9d98b.webp",
+      "options": [
+        {
+          "id": "0-85-fl-oz-25-ml",
+          "label": "0.85 fl oz / 25 ml",
+          "amount_minor": 499
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/piece-water-super-solution-0-85-fl-oz-25ml/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Add to cart shown; 24 in stock on the online page"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "randys-cleaning-kit",
+      "name": "Randy’s Cleaning Kit",
+      "source_name": "Randy’s Cleaning Kit",
+      "brand": "Randy’s",
+      "category": "cleaning",
+      "description": "Nine-product cleaning assortment, including cleaner, wipes, pipe cleaners, brushes, mesh screens and stickers.",
+      "image": "assets/products/randys-cleaning-kit.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/05/cc6b9507-2e97-4d5b-bf8e-27799e2030b4.jpeg",
+      "options": [
+        {
+          "id": "nine-product-assortment",
+          "label": "Nine-product assortment",
+          "amount_minor": 3497
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/randys-cleaning-kit/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Add to cart shown; 4 in stock on the online page"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "yocan-veke-electronic-grinder",
+      "name": "Yocan Veke Electronic Grinder",
+      "source_name": "Yocan Veke Electronic Grinder",
+      "brand": "Yocan",
+      "category": "grinders",
+      "description": "Yocan Veke electronic grinder with five color options.",
+      "image": "assets/products/yocan-veke-electronic-grinder.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/b5c2d0f5-a344-495d-a258-6ed74c9aad92.jpeg",
+      "options": [
+        {
+          "id": "black",
+          "label": "Black",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-black.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/132593f2-61a1-4d55-8b83-b4749e860a58.jpeg",
+          "source_variation_id": 124360
+        },
+        {
+          "id": "emerald-green",
+          "label": "Emerald Green",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-emerald-green.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/7b1257fe-ecd1-457a-948f-5f346d767bdc.jpeg",
+          "source_variation_id": 124361
+        },
+        {
+          "id": "ivory",
+          "label": "Ivory",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-ivory.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/d6473e26-ad39-46ed-b117-ed0398cef47e.jpeg",
+          "source_variation_id": 124362
+        },
+        {
+          "id": "sakura-pink",
+          "label": "Sakura Pink",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-sakura-pink.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/7e76e648-0dae-4cfb-bcc8-5bfb626121e4.jpeg",
+          "source_variation_id": 124363
+        },
+        {
+          "id": "sky-blue",
+          "label": "Sky Blue",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-sky-blue.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/bee36b5b-7c5a-4491-bcad-5e668dfb0da2.jpeg",
+          "source_variation_id": 124364
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/yocan-veke-electronic-grinder/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Variant selector and add-to-cart control shown; aggregate quantity not shown"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "raw-classic-rolling-tray-mini",
+      "name": "RAW Classic Rolling Tray – Mini",
+      "source_name": "RAW Classic Rolling Tray – Mini",
+      "brand": "RAW",
+      "category": "trays",
+      "description": "Mini-size RAW Classic rolling tray.",
+      "image": "assets/products/raw-classic-rolling-tray-mini.webp",
+      "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/01/2b9f26b2-f295-4962-b007-df2100c38190.png",
+      "options": [
+        {
+          "id": "mini",
+          "label": "Mini",
+          "amount_minor": 1501
+        }
+      ],
+      "source": {
+        "url": "https://www.klowdzvapor.com/product/raw-classic-rolling-tray-mini/",
+        "retailer": "KLOWDZ Vapor & Smokeshop",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Add to cart shown; 3 in stock on the online page"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "smoke-maven-dabit-card-grinder",
+      "name": "V Syndicate Dabit Card Grinder",
+      "source_name": "Grinder – V Syndicate – VAPOR MAVEN Dabit Card Grinder",
+      "brand": "V Syndicate",
+      "category": "grinders",
+      "description": "Card-format grinder with V Syndicate / Vapor Maven branding.",
+      "image": "assets/products/smoke-maven-dabit-card-grinder.webp",
+      "source_image_url": "https://smokemaven.com/denton-teasley-ln/wp-content/uploads/sites/9/2026/07/bjef1ub7c23joix20rgb-rotated.jpg",
+      "options": [
+        {
+          "id": "card-grinder",
+          "label": "Card grinder",
+          "amount_minor": 999
+        }
+      ],
+      "source": {
+        "url": "https://smokemaven.com/denton-teasley-ln/product/grinder-v-syndicate-vapor-maven-dabit-card-grinder/",
+        "retailer": "Smoke Maven — Denton Teasley Ln",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "In stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "smoke-maven-keychain-grinder",
+      "name": "V Syndicate Keychain Grinder",
+      "source_name": "Grinder – V Syndicate – VAPOR MAVEN Keychain Grinder",
+      "brand": "V Syndicate",
+      "category": "grinders",
+      "description": "Keychain-format grinder with V Syndicate / Vapor Maven branding.",
+      "image": "assets/products/smoke-maven-keychain-grinder.webp",
+      "source_image_url": "https://smokemaven.com/denton-teasley-ln/wp-content/uploads/sites/9/2026/07/gyeesdz37ajc8ygik1xr-rotated.jpg",
+      "options": [
+        {
+          "id": "keychain-grinder",
+          "label": "Keychain grinder",
+          "amount_minor": 499
+        }
+      ],
+      "source": {
+        "url": "https://smokemaven.com/denton-teasley-ln/product/grinder-v-syndicate-vapor-maven-keychain-grinder/",
+        "retailer": "Smoke Maven — Denton Teasley Ln",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "In stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "sm-52814-honeybee-fb10-blue-flower-bowl",
+      "name": "Honeybee FB10 Blue Glass Flower Bowl 14mm Male",
+      "source_name": "Honeybee FB10 Blue Glass Flower Bowl 14mm Male",
+      "brand": "Honeybee Herb",
+      "category": "glass",
+      "description": "Honeybee FB10 blue glass bowl with a 14 mm male joint.",
+      "image": "assets/products/sm-52814-honeybee-fb10-blue-flower-bowl.webp",
+      "source_image_url": "https://smokemaven.com/denton-teasley-ln/wp-content/uploads/sites/9/2026/09/p6yi0cadbf9olggwcibh-rotated.jpg",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 1799
+        }
+      ],
+      "source": {
+        "url": "https://smokemaven.com/denton-teasley-ln/product/honeybee-fb10-blue-glass-flower-bowl-14mm-male/",
+        "retailer": "Smoke Maven — Denton Teasley Ln",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Only 1 left in stock"
+      },
+      "source_note": "Blue and 14mm male are part of this exact product title, not customer-selectable options in the public record."
+    },
+    {
+      "id": "sm-48746-ooze-stack-pipe-silicone-bubbler",
+      "name": "Ooze Stack Pipe Silicone Bubbler",
+      "source_name": "Silicone- Ooze – Stack Pipe Silicone Bubbler – assorted colors 5 options",
+      "brand": "Ooze",
+      "category": "glass",
+      "description": "Ooze Stack Pipe silicone bubbler. Assorted colors; this demo does not offer a specific color selection.",
+      "image": "assets/products/sm-48746-ooze-stack-pipe-silicone-bubbler.webp",
+      "source_image_url": "https://smokemaven.com/denton-teasley-ln/wp-content/uploads/sites/9/2026/07/zygwofgvkhjjknsh3reg-rotated.jpg",
+      "options": [
+        {
+          "id": "assorted-colors",
+          "label": "Assorted colors",
+          "amount_minor": 4499
+        }
+      ],
+      "source": {
+        "url": "https://smokemaven.com/denton-teasley-ln/product/silicone-ooze-stack-pipe-silicone-bubbler-assorted-colors-5-options/",
+        "retailer": "Smoke Maven — Denton Teasley Ln",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Only 1 left in stock"
+      },
+      "source_note": "Although the title says assorted colors and 5 options, the public product record has has_options=false and exposes no attributes or variations; no color choice should be promised."
+    },
+    {
+      "id": "sm-45332-waxmaid-miss-water-pipe",
+      "name": "Waxmaid Miss Silicone Water Pipe",
+      "source_name": "Waxmaid – Miss Silicone Water Pipe with Bowl",
+      "brand": "Waxmaid",
+      "category": "glass",
+      "description": "Waxmaid Miss silicone water pipe with a bowl.",
+      "image": "assets/products/sm-45332-waxmaid-miss-water-pipe.webp",
+      "source_image_url": "https://smokemaven.com/denton-teasley-ln/wp-content/uploads/sites/9/2026/07/ht1rhkylegun11qwz30e.jpg",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 1999
+        }
+      ],
+      "source": {
+        "url": "https://smokemaven.com/denton-teasley-ln/product/waxmaid-miss-silicone-water-pipe-with-bowl/",
+        "retailer": "Smoke Maven — Denton Teasley Ln",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Only 1 left in stock"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "sm-37266-white-rhino-glass-slider-gs1001",
+      "name": "White Rhino Glass Slider Blunt GS1001",
+      "source_name": "White Rhino Glass Slider Blunt GS1001",
+      "brand": "White Rhino",
+      "category": "glass",
+      "description": "White Rhino glass slider, model GS1001.",
+      "image": "assets/products/sm-37266-white-rhino-glass-slider-gs1001.webp",
+      "source_image_url": "https://smokemaven.com/denton-teasley-ln/wp-content/uploads/sites/9/2026/07/cfkhv9vwogftkzlqpmsr-rotated.jpg",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 699
+        }
+      ],
+      "source": {
+        "url": "https://smokemaven.com/denton-teasley-ln/product/white-rhino-glass-slider-blunt-gs1001/",
+        "retailer": "Smoke Maven — Denton Teasley Ln",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Only 1 left in stock"
+      },
+      "source_note": "GS1001 is the model identifier in the title, not a selectable option."
+    },
+    {
+      "id": "pns-9033798484180-ben-wilson-beaker",
+      "name": "Ben Wilson Beaker",
+      "source_name": "Ben Wilson Beaker",
+      "brand": "Ben Wilson",
+      "category": "glass",
+      "description": "Beaker-style functional glass by Ben Wilson.",
+      "image": "assets/products/pns-9033798484180-ben-wilson-beaker.webp",
+      "source_image_url": "https://cdn.shopify.com/s/files/1/0804/9003/7460/files/download_cdbfded3-fd72-4be7-92fc-2d91a0f4c252.jpg?v=1767718401",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 21999
+        }
+      ],
+      "source": {
+        "url": "https://puffnstuffsmokeshop.com/products/ben-wilson-beaker",
+        "retailer": "Puff n Stuff",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Available in public Shopify product data"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "pns-9033799762132-leisure-double-bubb",
+      "name": "Leisure Double Bubb",
+      "source_name": "Leisure Double Bubb",
+      "brand": "Leisure",
+      "category": "glass",
+      "description": "Leisure Double Bubb glass bubbler.",
+      "image": "assets/products/pns-9033799762132-leisure-double-bubb.webp",
+      "source_image_url": "https://cdn.shopify.com/s/files/1/0804/9003/7460/files/download_d395a4a2-bdb8-40a6-b74f-12e1e91f585f.jpg?v=1767718529",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 52999
+        }
+      ],
+      "source": {
+        "url": "https://puffnstuffsmokeshop.com/products/leisure-double-bubb",
+        "retailer": "Puff n Stuff",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Available in public Shopify product data"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "pns-9033795338452-mobius-ion-matrix-vi",
+      "name": "Mobius Ion Matrix VI",
+      "source_name": "Mobius Ion Matrix VI",
+      "brand": "Mobius",
+      "category": "glass",
+      "description": "Mobius Ion Matrix VI functional-glass piece.",
+      "image": "assets/products/pns-9033795338452-mobius-ion-matrix-vi.webp",
+      "source_image_url": "https://cdn.shopify.com/s/files/1/0804/9003/7460/files/download_5cf39b14-7324-4aae-8205-a39a4ad002c3.jpg?v=1767718350",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 48499
+        }
+      ],
+      "source": {
+        "url": "https://puffnstuffsmokeshop.com/products/mobius-ion-matrix-vi",
+        "retailer": "Puff n Stuff",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Available in public Shopify product data"
+      },
+      "source_note": "Ion Matrix VI is part of the exact product title, not a selectable option."
+    },
+    {
+      "id": "pns-9033795305684-mobius-nuc-matrix",
+      "name": "Mobius NUC Matrix",
+      "source_name": "Mobius NUC Matrix",
+      "brand": "Mobius",
+      "category": "glass",
+      "description": "Mobius NUC Matrix functional-glass piece.",
+      "image": "assets/products/pns-9033795305684-mobius-nuc-matrix.webp",
+      "source_image_url": "https://cdn.shopify.com/s/files/1/0804/9003/7460/files/download_54591c5a-0b9d-44b7-8f2a-8975be5f07bb.jpg?v=1767718350",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 42999
+        }
+      ],
+      "source": {
+        "url": "https://puffnstuffsmokeshop.com/products/mobius-nuc-matrix",
+        "retailer": "Puff n Stuff",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Available in public Shopify product data"
+      },
+      "source_note": "NUC Matrix is part of the exact product title, not a selectable option."
+    },
+    {
+      "id": "pns-9033796485332-sheldon-black-sixer-bubbler",
+      "name": "Sheldon Black Sixer Bubbler",
+      "source_name": "Sheldon Black Sixer Bubbler",
+      "brand": "Sheldon Black",
+      "category": "glass",
+      "description": "Sheldon Black Sixer glass bubbler.",
+      "image": "assets/products/pns-9033796485332-sheldon-black-sixer-bubbler.webp",
+      "source_image_url": "https://cdn.shopify.com/s/files/1/0804/9003/7460/files/download_573a7a6c-fa86-46d9-9f28-fec7f909aef7.jpg?v=1767718366",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 51999
+        }
+      ],
+      "source": {
+        "url": "https://puffnstuffsmokeshop.com/products/sheldon-black-sixer-bubbler",
+        "retailer": "Puff n Stuff",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Available in public Shopify product data"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "mandos-8046690140340-darth-vader-novelty-mug",
+      "name": "Darth Vader 2-in-1 Ceramic Mug",
+      "source_name": "Darth Vader Novelty Ceramic Mug | 2-in-1 Mug",
+      "brand": "SmokeTokes",
+      "category": "glass",
+      "description": "Darth Vader-themed ceramic two-in-one novelty mug.",
+      "image": "assets/products/mandos-8046690140340-darth-vader-novelty-mug.webp",
+      "source_image_url": "https://cdn.shopify.com/s/files/1/0089/5051/3724/files/darth-vader-pipe-mug.jpg?v=1777489378",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 4999
+        }
+      ],
+      "source": {
+        "url": "https://mandosspot.com/products/darth-vader-novelty-ceramic-pipe-mug-2-in-1-mug-pipe",
+        "retailer": "Mando's Spot",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Available in public Shopify product data"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    },
+    {
+      "id": "mandos-8046473216180-hulk-fist-novelty-mug",
+      "name": "Hulk Fist Novelty Mug",
+      "source_name": "Wake & Smash — Hulk Fist Novelty Mug",
+      "brand": "SmokeTokes",
+      "category": "glass",
+      "description": "Hulk-fist-shaped ceramic novelty mug.",
+      "image": "assets/products/mandos-8046473216180-hulk-fist-novelty-mug.webp",
+      "source_image_url": "https://cdn.shopify.com/s/files/1/0089/5051/3724/files/hulk-fist-mug-1.jpg?v=1777327064",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 4999
+        }
+      ],
+      "source": {
+        "url": "https://mandosspot.com/products/wake-smash-hulk-fist-novelty-pipe-mug",
+        "retailer": "Mando's Spot",
+        "checked_at": "2026-11-12",
+        "availability_as_listed": "Available in public Shopify product data"
+      },
+      "source_note": "The product page is a reference for this demo, not a confirmation of Ashes inventory or a completed purchase."
+    }
+  ]
+}

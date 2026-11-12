@@ -1,5 +1,7 @@
+"""Focused verifier for the 2026-11-12 competitor-reference storefront."""
+
 from html.parser import HTMLParser
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from urllib.parse import urlsplit
 import json
 import re
@@ -8,295 +10,239 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-DATA_PATH = ROOT / "catalog.json"
-RESULT_PATH = Path(__file__).with_name("catalog-verification.json")
-
-ALLOWED_STATUSES = {
-    "current_published",
-    "manufacturer_listed",
-    "dated_feature",
-    "undated_profile",
-    "undated_photo",
-    "historical",
-    "promotional_only",
-}
-ALLOWED_LOCATIONS = {"denton", "lewisville"}
-FORBIDDEN_CATEGORY_IDS = {
-    "hemp-cbd",
-    "vapes",
-    "nicotine",
-    "tobacco",
-    "cigars",
-    "kratom",
-    "detox",
-}
-FORBIDDEN_RECORD_IDS = {
-    "wild-revival",
-    "diamond-shruumz",
-    "puff-bar",
-    "puff-plus",
-    "pop-bars",
-    "pod-king-max",
-    "uno-mas",
-    "drag-beast",
-}
-FORBIDDEN_FIELDS = {
-    "price",
-    "price_cents",
-    "inventory",
-    "stock",
-    "stock_count",
-    "sku",
-    "cart",
-    "checkout",
-    "buy_url",
-    "payment_url",
-}
-ASSERTIVE_COMMERCE = re.compile(
-    r"(?:available\s+now|in\s+stock|shop\s+now|buy\s+now|add\s+to\s+cart|"
-    r"proceed\s+to\s+checkout|order\s+now|for\s+sale|\$\s*\d)",
-    re.I,
-)
+DATE = "2026-11-12"
+EXPECTED = {"sources": 5, "products": 34, "options": 41, "images": 43}
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+LOCAL_IMAGE = re.compile(r"^assets/products/[a-z0-9][a-z0-9_.-]*\.webp$")
+ALLOWED_CATEGORIES = {"glass", "grinders", "papers", "trays", "lighters", "storage", "cleaning", "scents"}
+REGULATED = re.compile(r"\b(?:thca|thc|delta[- ]?[89]|cbd|cannabis|hemp|nicotine|tobacco|kratom|vapes?|e[- ]?liquids?)\b", re.I)
+OLD_IDS = {
+    "ashes-beanies", "ashes-event-apparel", "ashes-gift-card", "ashes-logo-apparel",
+    "berning-glass-rig", "cookies-backpacks-product-family", "diamond-grind-grinders",
+    "dynavap-devices", "flytlab-accessory-display", "grav-hand-pipes",
+    "job-organic-hemp-paper", "ocb-event-giveaways", "ocb-virgin-paper",
+    "raw-paper-merchandising", "roor-glass", "santa-cruz-shredder-grinders",
+    "toker-poker-accessories", "wildberry-incense-holders", "zig-zag-palm-rolls",
+    "zig-zag-pre-rolled-cones", "zig-zag-rolling-papers",
+}
 
 
-class Document(HTMLParser):
+class Page(HTMLParser):
     def __init__(self):
         super().__init__()
         self.h1 = 0
         self.links = []
-        self.ids = []
         self.images = []
-        self.forms = []
-        self.aria_live = []
+        self.ids = []
+        self.elements = []
         self.text_parts = []
+        self.hidden_depth = 0
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
-        if tag == "h1":
-            self.h1 += 1
+        self.elements.append((tag, values))
+        self.h1 += tag == "h1"
         if tag == "a":
             self.links.append(values.get("href", ""))
-        if "id" in values:
-            self.ids.append(values["id"])
         if tag == "img":
             self.images.append(values)
-        if tag == "form":
-            self.forms.append(values)
-        if "aria-live" in values:
-            self.aria_live.append(values["aria-live"])
+        if "id" in values:
+            self.ids.append(values["id"])
+        if tag in {"script", "style"}:
+            self.hidden_depth += 1
+
+    def handle_endtag(self, tag):
+        if tag in {"script", "style"} and self.hidden_depth:
+            self.hidden_depth -= 1
 
     def handle_data(self, data):
-        self.text_parts.append(data)
+        if not self.hidden_depth:
+            self.text_parts.append(data)
 
     @property
     def text(self):
         return " ".join(" ".join(self.text_parts).split())
 
+    def marked(self, tag, attribute):
+        return [attrs for current, attrs in self.elements if current == tag and attribute in attrs]
+
 
 errors = []
-checks = {}
-
-
-def fail(*parts):
-    errors.append(" | ".join(str(part) for part in parts))
 
 
 def require(condition, *parts):
     if not condition:
-        fail(*parts)
+        errors.append(" | ".join(str(part) for part in parts))
 
 
-require(DATA_PATH.exists(), "missing catalog data", DATA_PATH)
-if not DATA_PATH.exists():
-    RESULT_PATH.write_text(json.dumps({"errors": errors}, indent=2) + "\n")
+def https(value):
+    if not isinstance(value, str):
+        return False
+    parsed = urlsplit(value)
+    return parsed.scheme == "https" and bool(parsed.netloc)
+
+
+def image_path(value):
+    if not isinstance(value, str) or not LOCAL_IMAGE.fullmatch(value):
+        return None
+    relative = PurePosixPath(value)
+    if relative.is_absolute() or ".." in relative.parts:
+        return None
+    return DOCS.joinpath(*relative.parts)
+
+
+def valid_webp(path):
+    if not path or not path.is_file() or path.stat().st_size < 1024:
+        return False
+    header = path.read_bytes()[:12]
+    return header[:4] == b"RIFF" and header[8:12] == b"WEBP"
+
+
+inventory = json.loads((ROOT / "inventory.json").read_text())
+commerce = json.loads((ROOT / "commerce.json").read_text())
+sources = inventory.get("sources", [])
+products = inventory.get("products", [])
+items = commerce.get("items", [])
+source_ids = [source.get("id") for source in sources]
+product_ids = [product.get("id") for product in products]
+item_ids = [item.get("id") for item in items]
+
+require(inventory.get("version") == 1, "inventory version", inventory.get("version"))
+require(inventory.get("checked_at") == DATE, "inventory date", inventory.get("checked_at"))
+require(inventory.get("status") == "competitor_reference_demo", "inventory status", inventory.get("status"))
+boundary = inventory.get("boundary", "").lower()
+require("not ashes stock or prices" in boundary and "no transactions" in boundary, "inventory boundary is incomplete")
+require(len(sources) == EXPECTED["sources"], "source count", len(sources))
+require(len(products) == EXPECTED["products"], "product count", len(products))
+require(len(source_ids) == len(set(source_ids)), "duplicate source IDs", source_ids)
+require(len(product_ids) == len(set(product_ids)), "duplicate product IDs")
+require(not (set(product_ids) & OLD_IDS), "retired products in inventory", sorted(set(product_ids) & OLD_IDS))
+
+source_names = set()
+for source in sources:
+    source_id = source.get("id")
+    name = source.get("retailer") or source.get("name")
+    source_names.add(name)
+    require(isinstance(source_id, str) and SLUG.fullmatch(source_id), "source ID", source_id)
+    require(isinstance(name, str) and name.strip(), "source retailer", source_id)
+    addresses = [source.get("address")] if source.get("address") else source.get("addresses", [])
+    require(isinstance(addresses, list) and addresses and all(isinstance(value, str) and value.strip() for value in addresses), "source address", source_id)
+    urls = [source.get(key) for key in ("source_url", "address_source_url", "secondary_location_source_url", "catalog_source_url") if source.get(key)]
+    urls += source.get("catalog_source_urls", [])
+    require(urls and all(https(value) for value in urls), "source HTTPS evidence", source_id, urls)
+
+local_images = set()
+option_count = 0
+for product in products:
+    product_id = product.get("id")
+    required = {"id", "name", "source_name", "brand", "category", "description", "image", "source_image_url", "options", "source", "source_note"}
+    require(isinstance(product_id, str) and SLUG.fullmatch(product_id), "product ID", product_id)
+    require(required <= set(product), "product fields", product_id, sorted(required - set(product)))
+    require(product.get("category") in ALLOWED_CATEGORIES, "product category", product_id, product.get("category"))
+    identity = " ".join(str(product.get(key, "")) for key in ("id", "name", "source_name", "brand", "category", "description"))
+    require(not REGULATED.search(identity), "regulated product in ordinary inventory", product_id)
+    for key in ("name", "source_name", "brand", "description", "source_note"):
+        require(isinstance(product.get(key), str) and product[key].strip(), "empty product field", product_id, key)
+
+    path = image_path(product.get("image"))
+    require(valid_webp(path), "product image", product_id, product.get("image"))
+    require(https(product.get("source_image_url")), "product source image URL", product_id)
+    local_images.add(product.get("image"))
+
+    options = product.get("options", [])
+    option_count += len(options)
+    require(isinstance(options, list) and options, "product options", product_id)
+    option_ids = []
+    for option in options:
+        option_id = option.get("id") if isinstance(option, dict) else None
+        option_ids.append(option_id)
+        require(isinstance(option_id, str) and SLUG.fullmatch(option_id), "option ID", product_id, option_id)
+        require(isinstance(option.get("label"), str) and option["label"].strip(), "option label", product_id, option_id)
+        amount = option.get("amount_minor")
+        require(isinstance(amount, int) and not isinstance(amount, bool) and 0 < amount <= 10_000_000, "option price", product_id, option_id, amount)
+        if option.get("image") is not None:
+            option_path = image_path(option["image"])
+            require(valid_webp(option_path), "option image", product_id, option_id, option.get("image"))
+            require(https(option.get("source_image_url")), "option source image URL", product_id, option_id)
+            variation_id = option.get("source_variation_id")
+            require(isinstance(variation_id, int) and not isinstance(variation_id, bool) and variation_id > 0, "option source variation ID", product_id, option_id)
+            local_images.add(option["image"])
+    require(len(option_ids) == len(set(option_ids)), "duplicate option IDs", product_id)
+    if len(options) > 1:
+        require(product.get("category") == "grinders", "multi-option non-grinder", product_id)
+        require(all(option.get("image") for option in options), "multi-option grinder lacks color images", product_id)
+
+    evidence = product.get("source", {})
+    require(https(evidence.get("url")), "product source URL", product_id, evidence.get("url"))
+    require(evidence.get("retailer") in source_names, "product source retailer", product_id, evidence.get("retailer"))
+    require(evidence.get("checked_at") == DATE, "product source date", product_id, evidence.get("checked_at"))
+    require(isinstance(evidence.get("availability_as_listed"), str) and evidence["availability_as_listed"].strip(), "product availability wording", product_id)
+
+require(option_count == EXPECTED["options"], "option count", option_count)
+require(len(local_images) == EXPECTED["images"], "inventory image count", len(local_images))
+expected_files = {str(DOCS / value) for value in local_images}
+actual_files = {str(path) for path in (DOCS / "assets/products").glob("*") if path.is_file()}
+require(actual_files == expected_files, "local image set mismatch", {"missing": sorted(expected_files - actual_files), "extra": sorted(actual_files - expected_files)})
+
+require(commerce.get("version") == 1 and commerce.get("mode") == "demo" and commerce.get("currency") == "USD", "commerce mode/version/currency")
+require(commerce.get("checkout") == {"endpoint": None, "allowed_hosts": []}, "commerce connection must remain unplugged")
+require(len(items) == EXPECTED["products"] and len(item_ids) == len(set(item_ids)), "commerce item count or duplicate IDs", len(items))
+require(set(item_ids) == set(product_ids), "inventory/commerce IDs differ", {"inventory_only": sorted(set(product_ids) - set(item_ids)), "commerce_only": sorted(set(item_ids) - set(product_ids))})
+require(not (set(item_ids) & OLD_IDS), "retired products in commerce", sorted(set(item_ids) & OLD_IDS))
+items_by_id = {item["id"]: item for item in items}
+for product in products:
+    expected = {"id": product["id"], "name": product["name"], "href": f"product-{product['id']}.html", "image": product["image"], "cart_enabled": True, "availability_status": "demo", "options": product["options"]}
+    require(items_by_id.get(product["id"]) == expected, "commerce projection mismatch", product["id"])
+
+expected_pages = {"index.html", "explore.html", "merchandise.html", "brands.html", "cart.html", "checkout.html", "catalog-about.html", *(f"product-{value}.html" for value in product_ids)}
+for old_id in OLD_IDS:
+    require(not (DOCS / f"product-{old_id}.html").exists(), "retired product page remains", old_id)
+
+pages = {}
+for page_name in sorted(expected_pages):
+    file = DOCS / page_name
+    require(file.is_file(), "missing storefront page", page_name)
+    if not file.is_file():
+        continue
+    raw = file.read_text()
+    parser = Page()
+    parser.feed(raw)
+    pages[page_name] = parser
+    require(parser.h1 == 1, "page h1 count", page_name, parser.h1)
+    require(len(parser.ids) == len(set(parser.ids)), "duplicate HTML IDs", page_name)
+    require(all(image.get("alt") for image in parser.images), "page image lacks alt", page_name)
+    match = re.search(r'<script id="store-config" type="application/json">(.*?)</script>', raw, re.S)
+    require(match is not None, "page lacks store config", page_name)
+    if match:
+        require(json.loads(match.group(1)) == commerce, "embedded commerce differs", page_name)
+
+for page_name in ("index.html", "explore.html", "merchandise.html"):
+    page = pages.get(page_name)
+    if not page:
+        continue
+    cards = page.marked("article", "data-retail-item")
+    card_ids = [card.get("data-id") for card in cards]
+    buttons = [button.get("data-cart-add") for button in page.marked("button", "data-cart-add")]
+    require(len(cards) == EXPECTED["products"] and set(card_ids) == set(product_ids), "collection cards", page_name, len(cards))
+    require(set(buttons) == set(product_ids), "collection cart controls", page_name)
+
+for product in products:
+    page = pages.get(f"product-{product['id']}.html")
+    if not page:
+        continue
+    require(product["name"] in page.text and product["brand"] in page.text, "product identity missing from page", product["id"])
+    require(product["source"]["retailer"] in page.text and DATE in page.text, "product evidence missing from page", product["id"])
+    require(product["source"]["url"] in page.links, "product source link missing", product["id"])
+    require(product["id"] in [button.get("data-cart-add") for button in page.marked("button", "data-cart-add")], "product cart control missing", product["id"])
+    if len(product["options"]) > 1:
+        require(product["id"] in [node.get("data-product-options") for node in page.marked("div", "data-product-options")], "product option target missing", product["id"])
+
+for script_name in ("store.js", "retail.js"):
+    script = DOCS / "assets" / script_name
+    result = subprocess.run(["node", "--check", str(script)], capture_output=True, text=True)
+    require(result.returncode == 0, "JavaScript syntax", script_name, result.stderr.strip())
+
+report = {**EXPECTED, "actual_sources": len(sources), "actual_products": len(products), "actual_options": option_count, "actual_images": len(local_images), "product_pages": sum((DOCS / f"product-{value}.html").is_file() for value in product_ids), "errors": errors}
+print(json.dumps(report, indent=2))
+if errors:
     raise SystemExit(1)
-
-data = json.loads(DATA_PATH.read_text())
-categories = data.get("categories", [])
-sources = data.get("sources", {})
-brands = data.get("brands", [])
-products = data.get("products", [])
-category_ids = {item.get("id") for item in categories}
-brand_ids = {item.get("id") for item in brands}
-product_ids = {item.get("id") for item in products}
-
-checks.update(
-    {
-        "categories": len(categories),
-        "sources": len(sources),
-        "brands": len(brands),
-        "products": len(products),
-    }
-)
-
-require(data.get("checked_at") == "2026-11-12", "unexpected evidence date", data.get("checked_at"))
-require(set(data.get("status_definitions", {})) == ALLOWED_STATUSES, "status definition mismatch")
-require(len(category_ids) == len(categories), "duplicate category IDs")
-require(len(brand_ids) == len(brands), "duplicate brand IDs")
-require(len(product_ids) == len(products), "duplicate product IDs")
-require(not (category_ids & FORBIDDEN_CATEGORY_IDS), "regulated catalog categories", sorted(category_ids & FORBIDDEN_CATEGORY_IDS))
-require(not (brand_ids & FORBIDDEN_RECORD_IDS), "excluded brand records present", sorted(brand_ids & FORBIDDEN_RECORD_IDS))
-require(not (product_ids & FORBIDDEN_RECORD_IDS), "excluded product records present", sorted(product_ids & FORBIDDEN_RECORD_IDS))
-
-for source_id, source in sources.items():
-    require(re.fullmatch(r"S\d{2}", source_id) is not None, "invalid source ID", source_id)
-    require(source.get("title") and source.get("date"), "incomplete source", source_id)
-    source_url = source.get("url", "")
-    parsed = urlsplit(source_url)
-    require(parsed.scheme == "https" and bool(parsed.netloc), "source is not HTTPS", source_id, source_url)
-
-for group_name, records in (("brand", brands), ("product", products)):
-    for record in records:
-        record_id = record.get("id")
-        require(isinstance(record_id, str) and SLUG.fullmatch(record_id), "invalid slug", group_name, record_id)
-        required = {
-            "id",
-            "name",
-            "summary",
-            "evidence_status",
-            "evidence_label",
-            "evidence_date",
-            "locations",
-            "source_ids",
-        }
-        require(required <= set(record), "missing required fields", group_name, record_id, sorted(required - set(record)))
-        require(not (set(record) & FORBIDDEN_FIELDS), "commerce or invented inventory field", group_name, record_id, sorted(set(record) & FORBIDDEN_FIELDS))
-        require(record.get("evidence_status") in ALLOWED_STATUSES, "invalid evidence status", group_name, record_id, record.get("evidence_status"))
-        require(set(record.get("locations", [])) <= ALLOWED_LOCATIONS, "invalid location", group_name, record_id, record.get("locations"))
-        require(bool(record.get("source_ids")), "record has no source", group_name, record_id)
-        require(set(record.get("source_ids", [])) <= set(sources), "unknown record source", group_name, record_id, sorted(set(record.get("source_ids", [])) - set(sources)))
-        require(not ASSERTIVE_COMMERCE.search(json.dumps(record, ensure_ascii=False)), "assertive commerce language", group_name, record_id)
-        image = record.get("image")
-        if image:
-            image_src = image.get("src", "") if isinstance(image, dict) else image
-            require(not urlsplit(image_src).scheme, "catalog image must be local", group_name, record_id, image_src)
-            require((DOCS / image_src).exists(), "missing catalog image", group_name, record_id, image_src)
-            if isinstance(image, dict):
-                require(bool(image.get("alt")) and bool(image.get("caption")), "catalog image lacks alt or evidence caption", group_name, record_id)
-                require(image.get("source_id") in record.get("source_ids", []), "catalog image source is not attached to record", group_name, record_id, image.get("source_id"))
-
-for brand in brands:
-    require(bool(brand.get("category_ids")), "brand has no category", brand.get("id"))
-    require(set(brand.get("category_ids", [])) <= category_ids, "brand has unknown category", brand.get("id"))
-
-for product in products:
-    require(product.get("brand_id") in brand_ids, "product has unknown brand", product.get("id"), product.get("brand_id"))
-    require(product.get("category_id") in category_ids, "product has unknown category", product.get("id"), product.get("category_id"))
-    matching_brand = next((brand for brand in brands if brand["id"] == product.get("brand_id")), None)
-    if matching_brand:
-        require(product.get("category_id") in matching_brand.get("category_ids", []), "product category absent from brand", product.get("id"))
-
-# These narrowly supported location scopes are easy to accidentally broaden in UI copy.
-expected_brand_locations = {
-    "santa-cruz-shredder": {"denton", "lewisville"},
-    "diamond-grind": {"denton", "lewisville"},
-    "ashes": {"denton", "lewisville"},
-    "dynavap": {"denton"},
-    "zig-zag": {"denton"},
-    "berning-glass": {"lewisville"},
-}
-expected_product_locations = {
-    "santa-cruz-shredder-grinders": {"denton", "lewisville"},
-    "diamond-grind-grinders": {"denton", "lewisville"},
-    "ashes-logo-apparel": {"denton", "lewisville"},
-    "dynavap-devices": {"denton"},
-    "berning-glass-rig": {"lewisville"},
-    "zig-zag-rolling-papers": {"denton"},
-    "zig-zag-pre-rolled-cones": {"denton"},
-    "zig-zag-palm-rolls": {"denton"},
-}
-for record_id, expected in expected_brand_locations.items():
-    record = next((item for item in brands if item["id"] == record_id), None)
-    require(record is not None, "missing required brand", record_id)
-    if record:
-        require(set(record["locations"]) == expected, "brand location scope changed", record_id, record["locations"])
-for record_id, expected in expected_product_locations.items():
-    record = next((item for item in products if item["id"] == record_id), None)
-    require(record is not None, "missing required product", record_id)
-    if record:
-        require(set(record["locations"]) == expected, "product location scope changed", record_id, record["locations"])
-
-expected_pages = {
-    "explore.html",
-    "brands.html",
-    "categories.html",
-    *(f"brand-{record_id}.html" for record_id in brand_ids),
-    *(f"product-{record_id}.html" for record_id in product_ids),
-}
-missing_pages = sorted(page for page in expected_pages if not (DOCS / page).exists())
-require(not missing_pages, "missing catalog pages", missing_pages)
-
-parsed_docs = {}
-for page_name in sorted(expected_pages - set(missing_pages)):
-    parser = Document()
-    parser.feed((DOCS / page_name).read_text())
-    parsed_docs[page_name] = parser
-    require(parser.h1 == 1, "catalog page h1 count", page_name, parser.h1)
-    require(len(parser.ids) == len(set(parser.ids)), "duplicate IDs", page_name)
-    for image in parser.images:
-        require(bool(image.get("alt")), "missing image alt", page_name, image.get("src"))
-    for form in parser.forms:
-        require(form.get("method", "get").lower() != "post", "catalog form posts data", page_name)
-
-if "brands.html" in parsed_docs:
-    brand_links = set(parsed_docs["brands.html"].links)
-    for brand in brands:
-        require(f"brand-{brand['id']}.html" in brand_links, "brand directory missing direct link", brand["id"])
-if "categories.html" in parsed_docs:
-    legacy_category_anchors = {"hemp-cbd", "vapes", "glass", "papers-tobacco", "accessories", "hookah", "kratom", "scents-merch"}
-    require(legacy_category_anchors <= set(parsed_docs["categories.html"].ids), "category guide lost legacy anchors", sorted(legacy_category_anchors - set(parsed_docs["categories.html"].ids)))
-if "explore.html" in parsed_docs:
-    catalog = parsed_docs["explore.html"]
-    product_links = set(catalog.links)
-    for product in products:
-        require(f"product-{product['id']}.html" in product_links, "catalog missing static product link", product["id"])
-        require(product.get("display_name", product["name"]) in catalog.text, "catalog missing static product text", product["id"])
-    require(bool(catalog.aria_live), "catalog lacks live result-status region")
-
-for brand in brands:
-    page_name = f"brand-{brand['id']}.html"
-    if page_name not in parsed_docs:
-        continue
-    page = parsed_docs[page_name]
-    require(brand["name"] in page.text, "brand detail lacks brand name", brand["id"])
-    require(brand["evidence_label"] in page.text, "brand detail lacks evidence label", brand["id"])
-    require(brand["evidence_date"] in page.text, "brand detail lacks evidence date", brand["id"])
-    require("brands.html" in page.links, "brand detail lacks directory backlink", brand["id"])
-    for product in products:
-        if product["brand_id"] == brand["id"]:
-            require(f"product-{product['id']}.html" in page.links, "brand detail lacks documented product link", brand["id"], product["id"])
-    for source_id in brand["source_ids"]:
-        require(sources[source_id]["url"] in page.links, "brand detail lacks source link", brand["id"], source_id)
-
-for product in products:
-    page_name = f"product-{product['id']}.html"
-    if page_name not in parsed_docs:
-        continue
-    page = parsed_docs[page_name]
-    require(product["name"] in page.text, "product detail lacks product name", product["id"])
-    require(product["evidence_label"] in page.text, "product detail lacks evidence label", product["id"])
-    require(product["evidence_date"] in page.text, "product detail lacks evidence date", product["id"])
-    require("explore.html" in page.links, "product detail lacks catalog backlink", product["id"])
-    require(f"brand-{product['brand_id']}.html" in page.links, "product detail lacks brand link", product["id"])
-    for source_id in product["source_ids"]:
-        require(sources[source_id]["url"] in page.links, "product detail lacks source link", product["id"], source_id)
-
-catalog_js = DOCS / "assets" / "catalog.js"
-require(catalog_js.exists(), "missing catalog JavaScript")
-if catalog_js.exists():
-    js = catalog_js.read_text()
-    for parameter in ("q", "category", "brand", "collection", "location", "sort", "saved"):
-        require(re.search(rf"[\"']{parameter}[\"']", js) is not None, "catalog JS lacks URL parameter", parameter)
-    require("URLSearchParams" in js, "catalog JS does not initialize URL parameters")
-    require("replaceState" in js, "catalog JS does not persist filter URL")
-    require("categories.html#" in js, "catalog JS does not preserve legacy category links")
-    syntax = subprocess.run(["node", "--check", str(catalog_js)], capture_output=True, text=True)
-    require(syntax.returncode == 0, "catalog JavaScript syntax", syntax.stderr.strip())
-
-checks["detail_pages"] = len(expected_pages) - 3
-checks["expected_pages"] = len(expected_pages)
-checks["errors"] = errors
-RESULT_PATH.write_text(json.dumps(checks, indent=2) + "\n")
-print(json.dumps(checks, indent=2))
-assert not errors

@@ -25,11 +25,12 @@
         if (typeof option.label !== 'string' || !option.label.trim() || option.label.trim().length > 120) continue;
         if (!Number.isSafeInteger(option.amount_minor) || option.amount_minor <= 0 || option.amount_minor > 10000000) continue;
         optionIds.add(option.id);
-        options.push({id: option.id, label: option.label.trim(), amount_minor: option.amount_minor});
+        options.push({id: option.id, label: option.label.trim(), amount_minor: option.amount_minor, image: typeof option.image === 'string' && /^assets\/[a-z0-9_./-]+\.(?:webp|jpg|jpeg|png)$/i.test(option.image) ? option.image : null});
       }
       if (!options.length) continue;
       seen.add(source.id);
       items.push({id: source.id, name: source.name.trim(), href: safePage(source.href, 'merchandise.html'),
+        image: typeof source.image === 'string' && /^assets\/[a-z0-9_./-]+\.(?:webp|jpg|jpeg|png)$/i.test(source.image) ? source.image : null,
         availability_status: source.availability_status === 'verified' ? 'verified' : 'demo', options});
     }
     const checkout = raw.checkout && typeof raw.checkout === 'object' ? raw.checkout : {};
@@ -146,7 +147,7 @@
       doc.querySelectorAll('[data-product-price]').forEach(target => {
         const item = products.get(target.dataset.productPrice); if (!item) return;
         const amounts = item.options.map(option => option.amount_minor), low = Math.min(...amounts), high = Math.max(...amounts);
-        target.textContent = `${low === high ? '' : 'From '}${money(low, config.currency)} · sample price`;
+        target.textContent = `${low === high ? '' : 'From '}${money(low, config.currency)}`;
       });
     }
     function selectedOption(button, item) {
@@ -163,13 +164,14 @@
         const choose = Boolean(item && item.options.length > 1 && !hasSelector);
         button.hidden = false; button.disabled = !item; button.setAttribute('aria-disabled', String(!item));
         button.dataset.cartChoose = choose ? '1' : '0';
-        if (item) button.textContent = choose ? 'Choose options →' : 'Add to cart';
+        if (item) { button.textContent = choose ? 'Choose options →' : 'Add to cart'; button.setAttribute('aria-label', choose ? `Choose options for ${item.name}` : `Add ${item.name} to cart`); }
       });
     }
     function lineNode(line, controls) {
       const item = products.get(line.id), option = getOption(config, line.id, line.option_id), row = make('li', 'cart-line'), copy = make('div', 'cart-line-copy');
+      if (option.image || item.image) { const photo = make('img', 'cart-line-image'); photo.src=option.image || item.image; photo.alt=item.name; photo.width=75; photo.height=75; row.append(photo); }
       copy.append(makeLink(item.href, 'cart-line-name', item.name), make('span', 'cart-line-option', option.label),
-        make('span', 'cart-line-price', `${money(option.amount_minor, config.currency)} · sample price`), make('span', 'cart-line-quantity', `Quantity ${line.quantity}`)); row.append(copy);
+        make('span', 'cart-line-price', `${money(option.amount_minor, config.currency)}`), make('span', 'cart-line-quantity', `Quantity ${line.quantity}`)); row.append(copy);
       if (controls) {
         const actions = make('div', 'cart-line-actions');
         for (const [action, text, label] of [['decrease', '−', 'Decrease'], ['increase', '+', 'Increase']]) {
@@ -188,7 +190,7 @@
       labels.forEach(([label, amount], index) => { const row = make('p', index === 3 ? 'cart-total-row cart-grand-total' : 'cart-total-row'); row.append(make(index === 3 ? 'strong' : 'span', '', label), make(index === 3 ? 'strong' : 'span', '', money(amount, config.currency))); panel.append(row); });
       return panel;
     }
-    function emptyNode(text) { const box = make('section', 'cart-empty'); box.append(make('h2', '', text), makeLink(config.shop_url, 'button dark', 'Browse merchandise →')); return box; }
+    function emptyNode(text) { const box = make('section', 'cart-empty'); box.append(make('h2', '', text), makeLink(config.shop_url, 'button dark', 'Shop accessories →')); return box; }
     function renderCart() {
       const rootNode = doc.querySelector('[data-cart-root]'); if (!rootNode) return; rootNode.replaceChildren(); if (!cart.length) { rootNode.append(emptyNode('Your cart is empty.')); return; }
       const layout = make('div', 'cart-layout'), list = make('ul', 'cart-lines'), aside = make('section', 'cart-summary'); cart.forEach(line => list.append(lineNode(line, true)));
@@ -224,7 +226,7 @@
       form.addEventListener('submit', event => { event.preventDefault(); if (!form.reportValidity()) return; const method = new FormData(form).get('fulfillment'), bytes = new Uint8Array(4); if (win.crypto?.getRandomValues) win.crypto.getRandomValues(bytes); else bytes.set([Date.now() & 255, Date.now() >> 8 & 255, 31, 79]); const token = [...bytes].map(value => value.toString(16).padStart(2, '0')).join('').toUpperCase(), receipt = createDemoReceipt(cart, method, config, Date.now(), token); if (!receipt) { announce('The demo order could not be completed. Your cart is still saved.'); return; } try { win.sessionStorage.setItem(config.demo.receipt_storage_key, JSON.stringify(receipt)); } catch (_) {} cart = []; persist(); sync(); renderReceipt(rootNode, receipt); announce('Demo order complete. Nothing was sent or charged.'); rootNode.scrollIntoView({behavior: 'smooth', block: 'start'}); });
     }
     function render() { sync(); renderCart(); renderCheckout(); }
-    doc.addEventListener('change', event => { const select = event.target.closest('[data-product-option]'); if (!select) return; const item = products.get(select.dataset.productOption), option = item?.options.find(value => value.id === select.value), scope = select.closest('[data-product-purchase], .catalog-card, .catalog-detail-copy') || doc, price = [...scope.querySelectorAll('[data-product-price]')].find(node => node.dataset.productPrice === item?.id); if (price && option) price.textContent = `${money(option.amount_minor, config.currency)} · sample price`; });
+    doc.addEventListener('change', event => { const select = event.target.closest('[data-product-option]'); if (!select) return; const item = products.get(select.dataset.productOption), option = item?.options.find(value => value.id === select.value), scope = select.closest('[data-product-purchase], .catalog-card, .catalog-detail-copy') || doc, price = [...scope.querySelectorAll('[data-product-price]')].find(node => node.dataset.productPrice === item?.id); if (price && option) price.textContent = `${money(option.amount_minor, config.currency)}`; const photo=doc.querySelector(`[data-detail-image="${item?.id}"]`); if(photo && option?.image) { photo.src=option.image; photo.alt=`${item.name}, ${option.label}`; } });
     doc.addEventListener('click', event => {
       const restart = event.target.closest('[data-demo-restart]'); if (restart) { clearReceipt(); renderCheckout(); return; }
       const add = event.target.closest('[data-cart-add]'); if (add) { const item = products.get(add.dataset.cartAdd); if (!item) return; if (add.dataset.cartChoose === '1') { win.location.assign(item.href); return; } const option = selectedOption(add, item); cart = addItem(cart, item.id, option.id, config); persist(); clearReceipt(); render(); announce(`${item.name}, ${option.label}, added to your cart.${storageWorks ? '' : ' Browser storage is unavailable, so this cart lasts only on this page.'}`); return; }

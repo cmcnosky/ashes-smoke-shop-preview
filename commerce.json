@@ -2,66 +2,591 @@
   "version": 1,
   "mode": "demo",
   "currency": "USD",
-  "storage_key": "ashes.store.cart.v2",
+  "storage_key": "ashes.store.cart.local-inventory.v1",
   "max_quantity_per_item": 10,
-  "shop_url": "merchandise.html",
+  "shop_url": "explore.html",
   "cart_url": "cart.html",
   "checkout_url": "checkout.html",
   "demo": {
     "shipping_minor": 500,
     "tax_rate": 0.0825,
-    "receipt_storage_key": "ashes.store.demo-receipt.v1"
+    "receipt_storage_key": "ashes.store.demo-receipt.local-inventory.v1"
   },
-  "checkout": {"endpoint": null, "allowed_hosts": []},
+  "checkout": {
+    "endpoint": null,
+    "allowed_hosts": []
+  },
   "items": [
     {
-      "id": "ashes-logo-apparel", "name": "Ashes logo apparel & hoodies", "href": "product-ashes-logo-apparel.html",
-      "cart_enabled": true, "availability_status": "demo",
+      "id": "raw-large-rolling-tray",
+      "name": "RAW Large Rolling Tray",
+      "href": "product-raw-large-rolling-tray.html",
+      "image": "assets/products/raw-large-rolling-tray.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
       "options": [
-        {"id": "tee-small", "label": "Logo T-shirt · Small", "amount_minor": 2500},
-        {"id": "tee-medium", "label": "Logo T-shirt · Medium", "amount_minor": 2500},
-        {"id": "tee-large", "label": "Logo T-shirt · Large", "amount_minor": 2500},
-        {"id": "tee-xl", "label": "Logo T-shirt · XL", "amount_minor": 2500},
-        {"id": "hoodie-small", "label": "Logo hoodie · Small", "amount_minor": 4500},
-        {"id": "hoodie-medium", "label": "Logo hoodie · Medium", "amount_minor": 4500},
-        {"id": "hoodie-large", "label": "Logo hoodie · Large", "amount_minor": 4500},
-        {"id": "hoodie-xl", "label": "Logo hoodie · XL", "amount_minor": 4500}
+        {
+          "id": "large",
+          "label": "Large",
+          "amount_minor": 1724
+        }
       ]
     },
     {
-      "id": "ashes-beanies", "name": "Ashes beanies", "href": "product-ashes-beanies.html",
-      "cart_enabled": true, "availability_status": "demo",
+      "id": "pns-9033796878548-medicali-14-beaker",
+      "name": "Medicali 14\" Beaker",
+      "href": "product-pns-9033796878548-medicali-14-beaker.html",
+      "image": "assets/products/pns-9033796878548-medicali-14-beaker.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
       "options": [
-        {"id": "black", "label": "Black", "amount_minor": 1800},
-        {"id": "cream", "label": "Cream", "amount_minor": 1800}
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 21999
+        }
       ]
     },
     {
-      "id": "ashes-event-apparel", "name": "Ashes tees, tanks & koozies", "href": "product-ashes-event-apparel.html",
-      "cart_enabled": true, "availability_status": "demo",
+      "id": "grav-2-piece-grinder",
+      "name": "GRAV 2-Piece Grinder",
+      "href": "product-grav-2-piece-grinder.html",
+      "image": "assets/products/grav-2-piece-grinder.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
       "options": [
-        {"id": "event-tee-small", "label": "Event T-shirt · Small", "amount_minor": 2000},
-        {"id": "event-tee-medium", "label": "Event T-shirt · Medium", "amount_minor": 2000},
-        {"id": "event-tee-large", "label": "Event T-shirt · Large", "amount_minor": 2000},
-        {"id": "event-tee-xl", "label": "Event T-shirt · XL", "amount_minor": 2000},
-        {"id": "event-tank-small", "label": "Event tank · Small", "amount_minor": 2000},
-        {"id": "event-tank-medium", "label": "Event tank · Medium", "amount_minor": 2000},
-        {"id": "event-tank-large", "label": "Event tank · Large", "amount_minor": 2000},
-        {"id": "event-tank-xl", "label": "Event tank · XL", "amount_minor": 2000},
-        {"id": "can-cooler", "label": "Can cooler", "amount_minor": 500}
+        {
+          "id": "2-piece",
+          "label": "2-piece",
+          "amount_minor": 999
+        }
       ]
     },
     {
-      "id": "cookies-backpacks-product-family", "name": "Cookies backpacks", "href": "product-cookies-backpacks-product-family.html",
-      "cart_enabled": true, "availability_status": "demo",
-      "options": [{"id": "standard-backpack", "label": "Standard backpack", "amount_minor": 4500}]
+      "id": "raw-black-classic-cones-1-25-6ct",
+      "name": "RAW Black Classic Cones 1¼ 6ct",
+      "href": "product-raw-black-classic-cones-1-25-6ct.html",
+      "image": "assets/products/raw-black-classic-cones-1-25-6ct.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "1-size-6-count",
+          "label": "1¼ size; 6 count",
+          "amount_minor": 375
+        }
+      ]
     },
     {
-      "id": "wildberry-incense-holders", "name": "Wildberry incense holders", "href": "product-wildberry-incense-holders.html",
-      "cart_enabled": true, "availability_status": "demo",
+      "id": "sm-50914-waxmaid-silicone-traveler-waterpipe",
+      "name": "Waxmaid Silicone Traveler Waterpipe",
+      "href": "product-sm-50914-waxmaid-silicone-traveler-waterpipe.html",
+      "image": "assets/products/sm-50914-waxmaid-silicone-traveler-waterpipe.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
       "options": [
-        {"id": "stick-holder", "label": "Stick incense holder", "amount_minor": 1200},
-        {"id": "cone-holder", "label": "Cone incense holder", "amount_minor": 1200}
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 1599
+        }
+      ]
+    },
+    {
+      "id": "mj-arsenal-phoenix-baton-silver",
+      "name": "MJ Arsenal Phoenix Baton – Silver",
+      "href": "product-mj-arsenal-phoenix-baton-silver.html",
+      "image": "assets/products/mj-arsenal-phoenix-baton-silver.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "silver",
+          "label": "Silver",
+          "amount_minor": 1995
+        }
+      ]
+    },
+    {
+      "id": "blazy-susan-color-combo-cones-1-25-50ct",
+      "name": "Blazy Susan – Color Combo Cones 1¼ Size (50 Count Jar)",
+      "href": "product-blazy-susan-color-combo-cones-1-25-50ct.html",
+      "image": "assets/products/blazy-susan-color-combo-cones-1-25-50ct.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "1-size-50-count-jar-empty-cones",
+          "label": "1¼ size; 50-count jar; empty cones",
+          "amount_minor": 2199
+        }
+      ]
+    },
+    {
+      "id": "mj-arsenal-4-piece-grinder",
+      "name": "MJ Arsenal 4 Piece Grinder",
+      "href": "product-mj-arsenal-4-piece-grinder.html",
+      "image": "assets/products/mj-arsenal-4-piece-grinder.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "black",
+          "label": "Black",
+          "amount_minor": 3002,
+          "image": "assets/products/mj-arsenal-4-piece-grinder-black.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/a5e93e6e-0c79-42de-a5da-64ce657b91f4.webp",
+          "source_variation_id": 119645
+        },
+        {
+          "id": "blue",
+          "label": "Blue",
+          "amount_minor": 3002,
+          "image": "assets/products/mj-arsenal-4-piece-grinder-blue.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/7a8a5c13-a4f8-40fb-901e-c39ea6472c70.webp",
+          "source_variation_id": 119647
+        },
+        {
+          "id": "green",
+          "label": "Green",
+          "amount_minor": 3002,
+          "image": "assets/products/mj-arsenal-4-piece-grinder-green.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/82c24586-bd9e-44fc-9fce-f51244797e0a.webp",
+          "source_variation_id": 119649
+        },
+        {
+          "id": "purple",
+          "label": "Purple",
+          "amount_minor": 3002,
+          "image": "assets/products/mj-arsenal-4-piece-grinder-purple.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2025/08/bb4b7877-d291-4d06-b8e6-27743a1a9b7d.webp",
+          "source_variation_id": 119651
+        }
+      ]
+    },
+    {
+      "id": "formula-420-original-glass-pipe-cleaner-12oz",
+      "name": "Formula 420 Original Glass Pipe Cleaner 12 oz",
+      "href": "product-formula-420-original-glass-pipe-cleaner-12oz.html",
+      "image": "assets/products/formula-420-original-glass-pipe-cleaner-12oz.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "12-oz",
+          "label": "12 oz",
+          "amount_minor": 1299
+        }
+      ]
+    },
+    {
+      "id": "raw-smell-proof-cozy-jar-6oz",
+      "name": "RAW Smell-Proof Cozy Jar 6oz",
+      "href": "product-raw-smell-proof-cozy-jar-6oz.html",
+      "image": "assets/products/raw-smell-proof-cozy-jar-6oz.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "6-oz",
+          "label": "6 oz",
+          "amount_minor": 3524
+        }
+      ]
+    },
+    {
+      "id": "sm-48748-ooze-steamboat-silicone-bubbler",
+      "name": "Ooze Steamboat Silicone Bubbler",
+      "href": "product-sm-48748-ooze-steamboat-silicone-bubbler.html",
+      "image": "assets/products/sm-48748-ooze-steamboat-silicone-bubbler.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "assorted-colors",
+          "label": "Assorted colors",
+          "amount_minor": 4499
+        }
+      ]
+    },
+    {
+      "id": "smoke-odor-candle-havana-nights",
+      "name": "Smoke Odor Exterminator Candle – Havana Nights",
+      "href": "product-smoke-odor-candle-havana-nights.html",
+      "image": "assets/products/smoke-odor-candle-havana-nights.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "havana-nights",
+          "label": "Havana Nights",
+          "amount_minor": 1299
+        }
+      ]
+    },
+    {
+      "id": "raw-bamboo-rolling-mat",
+      "name": "RAW Bamboo Rolling Mat",
+      "href": "product-raw-bamboo-rolling-mat.html",
+      "image": "assets/products/raw-bamboo-rolling-mat.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "bamboo-rolling-mat",
+          "label": "Bamboo rolling mat",
+          "amount_minor": 424
+        }
+      ]
+    },
+    {
+      "id": "smoke-odor-candle-creamy-vanilla",
+      "name": "Smoke Odor Exterminator Candle Creamy Vanilla",
+      "href": "product-smoke-odor-candle-creamy-vanilla.html",
+      "image": "assets/products/smoke-odor-candle-creamy-vanilla.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "creamy-vanilla",
+          "label": "Creamy Vanilla",
+          "amount_minor": 1498
+        }
+      ]
+    },
+    {
+      "id": "wild-berry-incense-large",
+      "name": "Wild Berry Incense Large",
+      "href": "product-wild-berry-incense-large.html",
+      "image": "assets/products/wild-berry-incense-large.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "large",
+          "label": "Large",
+          "amount_minor": 45
+        }
+      ]
+    },
+    {
+      "id": "zippo-lighter-gambling-design",
+      "name": "Zippo Lighter – Gambling Design",
+      "href": "product-zippo-lighter-gambling-design.html",
+      "image": "assets/products/zippo-lighter-gambling-design.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "black-matte-laser-engraved-gambling-design",
+          "label": "Black matte; laser-engraved gambling design",
+          "amount_minor": 3194
+        }
+      ]
+    },
+    {
+      "id": "blazy-susan-pink-cotton-buds-300",
+      "name": "Blazy Susan Pink Cotton Buds – 300 Count",
+      "href": "product-blazy-susan-pink-cotton-buds-300.html",
+      "image": "assets/products/blazy-susan-pink-cotton-buds-300.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "pink-300-count",
+          "label": "Pink; 300 count",
+          "amount_minor": 998
+        }
+      ]
+    },
+    {
+      "id": "piece-water-super-solution-25ml",
+      "name": "Piece Water Super Solution – 0.85 fl. oz. (25ml)",
+      "href": "product-piece-water-super-solution-25ml.html",
+      "image": "assets/products/piece-water-super-solution-25ml.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "0-85-fl-oz-25-ml",
+          "label": "0.85 fl oz / 25 ml",
+          "amount_minor": 499
+        }
+      ]
+    },
+    {
+      "id": "randys-cleaning-kit",
+      "name": "Randy’s Cleaning Kit",
+      "href": "product-randys-cleaning-kit.html",
+      "image": "assets/products/randys-cleaning-kit.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "nine-product-assortment",
+          "label": "Nine-product assortment",
+          "amount_minor": 3497
+        }
+      ]
+    },
+    {
+      "id": "yocan-veke-electronic-grinder",
+      "name": "Yocan Veke Electronic Grinder",
+      "href": "product-yocan-veke-electronic-grinder.html",
+      "image": "assets/products/yocan-veke-electronic-grinder.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "black",
+          "label": "Black",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-black.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/132593f2-61a1-4d55-8b83-b4749e860a58.jpeg",
+          "source_variation_id": 124360
+        },
+        {
+          "id": "emerald-green",
+          "label": "Emerald Green",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-emerald-green.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/7b1257fe-ecd1-457a-948f-5f346d767bdc.jpeg",
+          "source_variation_id": 124361
+        },
+        {
+          "id": "ivory",
+          "label": "Ivory",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-ivory.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/d6473e26-ad39-46ed-b117-ed0398cef47e.jpeg",
+          "source_variation_id": 124362
+        },
+        {
+          "id": "sakura-pink",
+          "label": "Sakura Pink",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-sakura-pink.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/7e76e648-0dae-4cfb-bcc8-5bfb626121e4.jpeg",
+          "source_variation_id": 124363
+        },
+        {
+          "id": "sky-blue",
+          "label": "Sky Blue",
+          "amount_minor": 2499,
+          "image": "assets/products/yocan-veke-electronic-grinder-sky-blue.webp",
+          "source_image_url": "https://www.klowdzvapor.com/wp-content/uploads/2026/03/bee36b5b-7c5a-4491-bcad-5e668dfb0da2.jpeg",
+          "source_variation_id": 124364
+        }
+      ]
+    },
+    {
+      "id": "raw-classic-rolling-tray-mini",
+      "name": "RAW Classic Rolling Tray – Mini",
+      "href": "product-raw-classic-rolling-tray-mini.html",
+      "image": "assets/products/raw-classic-rolling-tray-mini.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "mini",
+          "label": "Mini",
+          "amount_minor": 1501
+        }
+      ]
+    },
+    {
+      "id": "smoke-maven-dabit-card-grinder",
+      "name": "V Syndicate Dabit Card Grinder",
+      "href": "product-smoke-maven-dabit-card-grinder.html",
+      "image": "assets/products/smoke-maven-dabit-card-grinder.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "card-grinder",
+          "label": "Card grinder",
+          "amount_minor": 999
+        }
+      ]
+    },
+    {
+      "id": "smoke-maven-keychain-grinder",
+      "name": "V Syndicate Keychain Grinder",
+      "href": "product-smoke-maven-keychain-grinder.html",
+      "image": "assets/products/smoke-maven-keychain-grinder.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "keychain-grinder",
+          "label": "Keychain grinder",
+          "amount_minor": 499
+        }
+      ]
+    },
+    {
+      "id": "sm-52814-honeybee-fb10-blue-flower-bowl",
+      "name": "Honeybee FB10 Blue Glass Flower Bowl 14mm Male",
+      "href": "product-sm-52814-honeybee-fb10-blue-flower-bowl.html",
+      "image": "assets/products/sm-52814-honeybee-fb10-blue-flower-bowl.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 1799
+        }
+      ]
+    },
+    {
+      "id": "sm-48746-ooze-stack-pipe-silicone-bubbler",
+      "name": "Ooze Stack Pipe Silicone Bubbler",
+      "href": "product-sm-48746-ooze-stack-pipe-silicone-bubbler.html",
+      "image": "assets/products/sm-48746-ooze-stack-pipe-silicone-bubbler.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "assorted-colors",
+          "label": "Assorted colors",
+          "amount_minor": 4499
+        }
+      ]
+    },
+    {
+      "id": "sm-45332-waxmaid-miss-water-pipe",
+      "name": "Waxmaid Miss Silicone Water Pipe",
+      "href": "product-sm-45332-waxmaid-miss-water-pipe.html",
+      "image": "assets/products/sm-45332-waxmaid-miss-water-pipe.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 1999
+        }
+      ]
+    },
+    {
+      "id": "sm-37266-white-rhino-glass-slider-gs1001",
+      "name": "White Rhino Glass Slider Blunt GS1001",
+      "href": "product-sm-37266-white-rhino-glass-slider-gs1001.html",
+      "image": "assets/products/sm-37266-white-rhino-glass-slider-gs1001.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 699
+        }
+      ]
+    },
+    {
+      "id": "pns-9033798484180-ben-wilson-beaker",
+      "name": "Ben Wilson Beaker",
+      "href": "product-pns-9033798484180-ben-wilson-beaker.html",
+      "image": "assets/products/pns-9033798484180-ben-wilson-beaker.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 21999
+        }
+      ]
+    },
+    {
+      "id": "pns-9033799762132-leisure-double-bubb",
+      "name": "Leisure Double Bubb",
+      "href": "product-pns-9033799762132-leisure-double-bubb.html",
+      "image": "assets/products/pns-9033799762132-leisure-double-bubb.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 52999
+        }
+      ]
+    },
+    {
+      "id": "pns-9033795338452-mobius-ion-matrix-vi",
+      "name": "Mobius Ion Matrix VI",
+      "href": "product-pns-9033795338452-mobius-ion-matrix-vi.html",
+      "image": "assets/products/pns-9033795338452-mobius-ion-matrix-vi.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 48499
+        }
+      ]
+    },
+    {
+      "id": "pns-9033795305684-mobius-nuc-matrix",
+      "name": "Mobius NUC Matrix",
+      "href": "product-pns-9033795305684-mobius-nuc-matrix.html",
+      "image": "assets/products/pns-9033795305684-mobius-nuc-matrix.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 42999
+        }
+      ]
+    },
+    {
+      "id": "pns-9033796485332-sheldon-black-sixer-bubbler",
+      "name": "Sheldon Black Sixer Bubbler",
+      "href": "product-pns-9033796485332-sheldon-black-sixer-bubbler.html",
+      "image": "assets/products/pns-9033796485332-sheldon-black-sixer-bubbler.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 51999
+        }
+      ]
+    },
+    {
+      "id": "mandos-8046690140340-darth-vader-novelty-mug",
+      "name": "Darth Vader 2-in-1 Ceramic Mug",
+      "href": "product-mandos-8046690140340-darth-vader-novelty-mug.html",
+      "image": "assets/products/mandos-8046690140340-darth-vader-novelty-mug.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 4999
+        }
+      ]
+    },
+    {
+      "id": "mandos-8046473216180-hulk-fist-novelty-mug",
+      "name": "Hulk Fist Novelty Mug",
+      "href": "product-mandos-8046473216180-hulk-fist-novelty-mug.html",
+      "image": "assets/products/mandos-8046473216180-hulk-fist-novelty-mug.webp",
+      "cart_enabled": true,
+      "availability_status": "demo",
+      "options": [
+        {
+          "id": "single-item",
+          "label": "Single item",
+          "amount_minor": 4999
+        }
       ]
     }
   ]

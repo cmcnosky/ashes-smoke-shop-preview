@@ -1,20 +1,22 @@
-# Ashes Smoke Shop storefront preview
+# Ashes — local accessory storefront demo
 
-[Open the store](https://cmcnosky.github.io/ashes-smoke-shop-preview/merchandise.html)
+[Open the storefront](https://cmcnosky.github.io/ashes-smoke-shop-preview/)
 
-A working, disconnected storefront preview hosted on GitHub Pages. Ordinary merchandise has example options/prices, a persistent cart, quantity controls, pickup/shipping choices, checkout validation, demo totals, and an in-browser confirmation. No payment is taken and no order is sent to Ashes.
+A working, disconnected retail demo for Ashes Smoke Shop. The 34 products are actual ordinary accessories referenced from five DFW/Denton retailers, with 41 published product options, 22 brands, dated sources, and locally stored product photos. They are not an Ashes inventory export or confirmation of its stock, prices, or supplier relationships.
 
-The global preview banner and price labels distinguish sample merchandise data from business information. Other product categories remain browsing-only. Background evidence is retained inside collapsed product-detail sections. Historical-only non-merchandise records are tucked behind the collection filter.
+The assortment replaces the former hypothetical apparel and merchandise options. The product-first homepage, eight categories, brand/price filters, search, sorting, product details, variant photos, cart, quantity controls, and demonstration checkout support an owner presentation. No payment is collected, order transmitted, or inventory reserved.
 
-## Source and build
+## Data and implementation
 
-- `content.json`: store addresses, hours, and business copy.
-- `catalog.json`: researched brand/product background plus customer-facing names and summaries.
-- `commerce.json`: isolated, clearly marked sample merchandise options/prices and disconnected checkout settings.
-- `build.py` and `catalog_builder.py`: generated page layouts.
-- `docs/assets/catalog.js` and `catalog.css`: search, filters, saved items, and presentation.
-- `docs/assets/store.js` and `store.css`: demo cart and checkout.
-- `docs/`: public GitHub Pages output.
+- `inventory.json`: exact source titles, concise customer names, retailer-reference prices, verified options, image references, source URLs, and November 12, 2026 checks.
+- `commerce.json`: matching demo cart records; no payment endpoint or merchant connection.
+- `content.json`: Ashes business information and location copy.
+- `retail_builder.py`: customer-facing product, brand, catalog, cart, checkout, and reference pages.
+- `build.py`: shared site frame and business pages; invokes the retail generator.
+- `docs/assets/retail.css` and `retail.js`: compact responsive layout, search, filters, sorting.
+- `docs/assets/store.js` and `store.css`: cart, variant selection, example checkout totals, confirmation.
+- `docs/`: generated GitHub Pages output. The main branch /docs directory is the publishing source.
+- `catalog.json` and `catalog_builder.py`: preserved earlier brand research and prior generator; not used by the current build.
 
 ```sh
 python3 build.py
@@ -23,14 +25,16 @@ python3 scripts/verify_catalog.py
 node scripts/verify_store.mjs
 ```
 
-GitHub Pages publishes the main branch /docs directory. Keep the existing URL. Wait for deployment, compare public bytes, and verify the revision in Chrome.
+Publish to the existing GitHub Pages repository. Wait for Pages deployment, compare public bytes against the committed files, and inspect the new public revision in Chrome.
 
-## Connecting real commerce later
+## Demonstration behavior
 
-This release is intentionally in `demo` mode. Do not remove the preview labels or enable real ordering merely by changing a URL. Replace sample prices/options with Ashes-approved product records and availability; connect an Ashes-owned merchant and server-side checkout endpoint; configure shipping, tax, return policies, and order fulfillment; and verify the payment webhook/order handling end to end. Secrets belong only on a backend, never in GitHub Pages or commerce.json. Customer-provided prices must never be trusted by a payment backend.
+The browser stores product/option IDs and quantities for the cart. A demo receipt is held in session storage without checkout contact or address details. Selecting pickup or shipping shows example calculations; $5 shipping and 8.25% tax are demonstration settings, not shipping quotes or tax determinations. The checkout accepts fictional example details and collects no card information.
 
-Browser storage contains cart item IDs, option IDs, and quantities. Demo receipt storage must exclude contact/address information. The demo checkout does not collect card numbers. It creates no real transaction, inventory reservation, delivery commitment, or message.
+All displayed product records are nonconsumable accessories. Regulated consumable products and vape devices are not in the demo cart catalog. The separate business category guide describes Ashes's published categories without exposing a purchasing flow for those categories.
 
-## Artwork and background
+## Before production commerce
 
-The V4 artwork is retained. Product category illustrations are illustrative; undated shop photographs keep their date context on detail pages. Source dates, source URLs, and shop-specific evidence remain in catalog.json and collapsed product-background sections. Sample commerce options are a prototype, not a recovered inventory export.
+Replace the competitor-reference assortment with Ashes-approved products, prices, stock, options and fulfillment rules. Obtain permission for continued use of competitor photographs or replace them with Ashes-owned, licensed, or supplier-authorized images. Public availability, attribution and noindex do not establish reuse permission.
+
+Connect Ashes's own merchant and order systems with server-side pricing, stock validation and payment confirmation. Configure actual tax, shipping restrictions, pickup instructions, policies, order notifications, and fulfillment. Never place payment secrets in GitHub Pages. Changing demo mode or adding a URL alone does not make this a production payment integration.
