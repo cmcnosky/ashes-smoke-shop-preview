@@ -13,6 +13,7 @@ The assortment replaces the former hypothetical apparel and merchandise options.
 - `content.json`: Ashes business information and location copy.
 - `retail_builder.py`: customer-facing product, brand, catalog, cart, checkout, and reference pages.
 - `build.py`: shared site frame and business pages; invokes the retail generator.
+- `docs/assets/theme.css`: shared parchment background, colorful interior pages, readable mobile controls and panels.
 - `docs/assets/home.css`: the illustrated homepage, category shortcuts, featured products, and location layout.
 - `docs/assets/retail.css` and `retail.js`: compact responsive shop layout, search, filters, sorting.
 - `docs/assets/store.js` and `store.css`: cart, variant selection, example checkout totals, confirmation.

@@ -99,6 +99,15 @@ let cart = core.sanitizeCart({items: [
   {id: singleItem.id, option_id: singleOption.id, quantity: Number.NaN}
 ]}, config);
 assert.deepEqual(cart, [{id: grinder.id, option_id: firstVariant.id, quantity: config.max_quantity_per_item}]);
+assert.deepEqual(core.sanitizeCart({items: [
+  {id: grinder.id, option_id: firstVariant.id, quantity: '2items'},
+  {id: grinder.id, option_id: firstVariant.id, quantity: '2.5'},
+  {id: grinder.id, option_id: firstVariant.id, quantity: '02'}
+]}, config), [], 'Malformed and non-canonical quantities must not be partially parsed');
+
+const malformedNumberConfig = core.normalizeConfig({...commerce, max_quantity_per_item: '2items', demo: {...commerce.demo, shipping_minor: '500items'}});
+assert.equal(malformedNumberConfig.max_quantity_per_item, 10, 'Malformed maximum quantity must use the safe default');
+assert.equal(malformedNumberConfig.demo.shipping_minor, 0, 'Malformed shipping amount must use the safe default');
 
 cart = core.addItem([], grinder.id, firstVariant.id, config);
 assert.deepEqual(cart, [{id: grinder.id, option_id: firstVariant.id, quantity: 1}]);
@@ -106,6 +115,16 @@ cart = core.addItem(cart, grinder.id, secondVariant.id, config);
 assert.equal(cart.length, 2, 'Different grinder variants must remain separate cart lines');
 assert.deepEqual(core.addItem([], 'ashes-logo-apparel', 'tee-small', config), [], 'Retired products cannot enter the cart');
 assert.deepEqual(core.addItem([], grinder.id, 'missing', config), [], 'Unknown variants cannot enter the cart');
+const orderedCart = [
+  {id: grinder.id, option_id: firstVariant.id, quantity: 1},
+  {id: singleItem.id, option_id: singleOption.id, quantity: 1},
+  {id: grinder.id, option_id: secondVariant.id, quantity: 1}
+];
+assert.deepEqual(core.updateQuantity(orderedCart, grinder.id, firstVariant.id, 2, config), [
+  {id: grinder.id, option_id: firstVariant.id, quantity: 2},
+  {id: singleItem.id, option_id: singleOption.id, quantity: 1},
+  {id: grinder.id, option_id: secondVariant.id, quantity: 1}
+], 'Updating a quantity must preserve the cart line position');
 assert.deepEqual(core.updateQuantity(cart, grinder.id, firstVariant.id, 0, config), [
   {id: grinder.id, option_id: secondVariant.id, quantity: 1}
 ]);
@@ -160,6 +179,10 @@ assert(source.includes('Nothing was sent, reserved, or charged.'));
 assert(source.includes('does not send or store these details'));
 assert(source.includes('Lewisville pickup'));
 assert(source.includes('Choose options'));
+assert(source.includes('is already at the demo limit of'));
+assert(source.includes("win.location.assign(config.shop_url)"), 'Starting another demo order must return to the shop');
+assert(source.includes('Enter a value that is not only spaces.'), 'Required checkout text fields must reject whitespace-only values');
+assert(source.includes('if (!focusTarget || focusTarget.disabled)'), 'Cart quantity rerenders must retain a usable keyboard focus target');
 
 console.log(JSON.stringify({
   mode: config.mode,
@@ -169,6 +192,8 @@ console.log(JSON.stringify({
   multi_option_grinder: grinder.id,
   variant_images: grinder.options.map(option => option.image),
   cart_sanitization: 'passed',
+  cart_line_order: 'preserved',
+  strict_quantity_parsing: 'passed',
   rounding: 'passed',
   demo_checkout_totals: 'passed',
   pii_persistence: 'none',

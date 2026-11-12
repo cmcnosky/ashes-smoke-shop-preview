@@ -8,7 +8,12 @@
   'use strict';
   const ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
   const PAGE = /^[a-z0-9][a-z0-9-]*\.html(?:[?#][^\s]*)?$/;
-  const integer = value => Number.isSafeInteger(value) ? value : Number.parseInt(value, 10);
+  const integer = value => {
+    if (Number.isSafeInteger(value)) return value;
+    if (typeof value !== 'string' || !/^(?:0|[1-9][0-9]*)$/.test(value.trim())) return Number.NaN;
+    const parsed = Number(value.trim());
+    return Number.isSafeInteger(parsed) ? parsed : Number.NaN;
+  };
   const safePage = (value, fallback) => typeof value === 'string' && PAGE.test(value) ? value : fallback;
   const money = (amount, currency) => new Intl.NumberFormat('en-US', {style: 'currency', currency}).format(amount / 100);
 
@@ -70,10 +75,18 @@
     return [...merged.values()];
   }
   function updateQuantity(cart, id, optionId, quantity, config) {
-    if (!getOption(config, id, optionId)) return sanitizeCart(cart, config);
-    const next = sanitizeCart(cart, config).filter(line => line.id !== id || line.option_id !== optionId);
+    const next = sanitizeCart(cart, config);
+    if (!getOption(config, id, optionId)) return next;
+    const index = next.findIndex(line => line.id === id && line.option_id === optionId);
     const parsed = integer(quantity);
-    if (Number.isSafeInteger(parsed) && parsed > 0) next.push({id, option_id: optionId, quantity: Math.min(config.max_quantity_per_item, parsed)});
+    if (!Number.isSafeInteger(parsed)) return next;
+    if (parsed < 1) {
+      if (index >= 0) next.splice(index, 1);
+      return next;
+    }
+    const line = {id, option_id: optionId, quantity: Math.min(config.max_quantity_per_item, parsed)};
+    if (index >= 0) next[index] = line;
+    else next.push(line);
     return sanitizeCart(next, config);
   }
   function addItem(cart, id, optionId, config) {
@@ -126,7 +139,7 @@
     const make = (tag, className, text) => { const node = doc.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; };
     const makeLink = (href, className, text) => { const node = make('a', className, text); node.href = href; return node; };
     const persist = () => { try { win.localStorage.setItem(config.storage_key, JSON.stringify({version: 1, items: cart})); } catch (_) { storageWorks = false; } };
-    function load() { try { const raw = win.localStorage.getItem(config.storage_key); cart = sanitizeCart(raw ? JSON.parse(raw) : [], config); } catch (_) { cart = []; storageWorks = false; } }
+    function load() { try { const raw = win.localStorage.getItem(config.storage_key); cart = sanitizeCart(raw ? JSON.parse(raw) : [], config); } catch (_) { cart = sanitizeCart(cart, config); storageWorks = false; } }
     function readReceipt() { try { const raw = win.sessionStorage.getItem(config.demo.receipt_storage_key); return raw ? normalizeReceipt(JSON.parse(raw), config) : null; } catch (_) { return null; } }
     const clearReceipt = () => { try { win.sessionStorage.removeItem(config.demo.receipt_storage_key); } catch (_) {} };
     function announce(message) {
@@ -211,30 +224,38 @@
       rootNode.replaceChildren(); if (!cart.length) { rootNode.append(emptyNode('There’s nothing to review yet.')); return; }
       const form = make('form', 'checkout-form'), layout = make('div', 'checkout-layout'), details = make('div', 'checkout-details'); form.dataset.demoCheckout = '1'; form.autocomplete = 'off';
       const contact = make('section', 'checkout-panel'); contact.append(make('h2', '', 'Contact'), make('p', 'checkout-privacy-note', 'This demo does not send or store these details. Your browser may still offer its own autofill.'));
-      const contactGrid = make('div', 'checkout-fields'), name = field('Full name', 'name', 'text', 'name'), email = field('Email', 'email', 'email', 'email'), phone = field('Phone', 'phone', 'tel', 'tel', false); contactGrid.append(name.label, email.label, phone.label); contact.append(contactGrid);
+      const contactGrid = make('div', 'checkout-fields'), name = field('Full name', 'name', 'text', 'name'), email = field('Email', 'email', 'email', 'email'), phone = field('Phone', 'phone', 'tel', 'tel', false); name.input.maxLength = 120; email.input.maxLength = 254; phone.input.maxLength = 30; contactGrid.append(name.label, email.label, phone.label); contact.append(contactGrid);
       const sample = make('button', 'plain-button checkout-sample-button', 'Use fictional sample details'); sample.type = 'button'; contact.append(sample);
       const delivery = make('section', 'checkout-panel'); delivery.append(make('h2', '', 'Delivery method')); const choices = make('fieldset', 'fulfillment-options'), legend = make('legend', 'visually-hidden', 'Choose delivery method'); choices.append(legend);
       [['pickup-denton', 'Pick up in Denton'], ['pickup-lewisville', 'Pick up in Lewisville'], ['shipping', `Sample shipping · ${money(config.demo.shipping_minor, config.currency)}`]].forEach(([value, text], index) => {
         const label = make('label', 'fulfillment-option'), input = make('input'); input.type = 'radio'; input.name = 'fulfillment'; input.value = value; input.required = true; input.checked = index === 0; label.append(input, make('span', '', text)); choices.append(label);
       }); delivery.append(choices);
       const address = make('div', 'shipping-address'); address.hidden = true; address.append(make('h3', '', 'Shipping address')); const addressGrid = make('div', 'checkout-fields'), street = field('Street address', 'address', 'text', 'street-address', false), city = field('City', 'city', 'text', 'address-level2', false), state = field('State', 'state', 'text', 'address-level1', false), postal = field('ZIP code', 'postal', 'text', 'postal-code', false); postal.input.inputMode = 'numeric'; postal.input.pattern = '[0-9]{5}(?:-[0-9]{4})?';
+      street.input.maxLength = 160; city.input.maxLength = 80; state.input.maxLength = 40; postal.input.maxLength = 10;
       const addressInputs = [street.input, city.input, state.input, postal.input]; addressInputs.forEach(input => input.disabled = true); addressGrid.append(street.label, city.label, state.label, postal.label); address.append(addressGrid); delivery.append(address); details.append(contact, delivery);
-      sample.addEventListener('click', () => { name.input.value = 'Alex Example'; email.input.value = 'alex@example.com'; phone.input.value = '940-555-0100'; const shippingChoice = form.querySelector('input[value=shipping]'); shippingChoice.checked = true; street.input.value = '123 Sample Street'; city.input.value = 'Denton'; state.input.value = 'TX'; postal.input.value = '76201'; updateDelivery(); announce('Fictional sample details filled in.'); });
+      const meaningfulInputs = [name.input, street.input, city.input, state.input];
+      meaningfulInputs.forEach(input => input.addEventListener('input', () => input.setCustomValidity('')));
+      sample.addEventListener('click', () => { name.input.value = 'Alex Example'; email.input.value = 'alex@example.com'; phone.input.value = '940-555-0100'; const shippingChoice = form.querySelector('input[value=shipping]'); shippingChoice.checked = true; street.input.value = '123 Sample Street'; city.input.value = 'Denton'; state.input.value = 'TX'; postal.input.value = '76201'; meaningfulInputs.forEach(input => input.setCustomValidity('')); updateDelivery(); announce('Fictional sample details filled in.'); });
       const review = make('aside', 'checkout-payment'); review.append(make('span', 'eyebrow', 'DEMO ORDER'), make('h2', '', 'Order review')); const list = make('ul', 'cart-lines checkout-lines'); cart.forEach(line => list.append(lineNode(line, false))); review.append(list); const totalsSlot = make('div', 'checkout-totals-slot'); review.append(totalsSlot); const submit = make('button', 'button dark checkout-button', 'Place demo order →'); submit.type = 'submit'; review.append(submit, make('p', 'checkout-demo-note', 'Preview only. No payment information is collected, and nothing is sent to Ashes.'), makeLink(config.cart_url, 'text-link', '← Edit cart')); layout.append(details, review); form.append(layout); rootNode.append(form);
       function updateDelivery() { const method = new FormData(form).get('fulfillment') || 'pickup-denton', shipping = method === 'shipping'; address.hidden = !shipping; addressInputs.forEach(input => { input.disabled = !shipping; input.required = shipping; }); totalsSlot.replaceChildren(totalsNode(calculateDemoTotals(cart, method, config), method)); }
       form.querySelectorAll('input[name=fulfillment]').forEach(input => input.addEventListener('change', updateDelivery)); updateDelivery();
-      form.addEventListener('submit', event => { event.preventDefault(); if (!form.reportValidity()) return; const method = new FormData(form).get('fulfillment'), bytes = new Uint8Array(4); if (win.crypto?.getRandomValues) win.crypto.getRandomValues(bytes); else bytes.set([Date.now() & 255, Date.now() >> 8 & 255, 31, 79]); const token = [...bytes].map(value => value.toString(16).padStart(2, '0')).join('').toUpperCase(), receipt = createDemoReceipt(cart, method, config, Date.now(), token); if (!receipt) { announce('The demo order could not be completed. Your cart is still saved.'); return; } try { win.sessionStorage.setItem(config.demo.receipt_storage_key, JSON.stringify(receipt)); } catch (_) {} cart = []; persist(); sync(); renderReceipt(rootNode, receipt); announce('Demo order complete. Nothing was sent or charged.'); rootNode.scrollIntoView({behavior: 'smooth', block: 'start'}); });
+      form.addEventListener('submit', event => { event.preventDefault(); meaningfulInputs.forEach(input => input.setCustomValidity(!input.disabled && input.required && !input.value.trim() ? 'Enter a value that is not only spaces.' : '')); if (!form.reportValidity()) return; const method = new FormData(form).get('fulfillment'), bytes = new Uint8Array(4); if (win.crypto?.getRandomValues) win.crypto.getRandomValues(bytes); else bytes.set([Date.now() & 255, Date.now() >> 8 & 255, 31, 79]); const token = [...bytes].map(value => value.toString(16).padStart(2, '0')).join('').toUpperCase(), receipt = createDemoReceipt(cart, method, config, Date.now(), token); if (!receipt) { announce('The demo order could not be completed. Your cart is still saved.'); return; } try { win.sessionStorage.setItem(config.demo.receipt_storage_key, JSON.stringify(receipt)); } catch (_) {} cart = []; persist(); sync(); renderReceipt(rootNode, receipt); announce('Demo order complete. Nothing was sent or charged.'); rootNode.scrollIntoView({behavior: 'smooth', block: 'start'}); });
     }
     function render() { sync(); renderCart(); renderCheckout(); }
     doc.addEventListener('change', event => { const select = event.target.closest('[data-product-option]'); if (!select) return; const item = products.get(select.dataset.productOption), option = item?.options.find(value => value.id === select.value), scope = select.closest('[data-product-purchase], .catalog-card, .catalog-detail-copy') || doc, price = [...scope.querySelectorAll('[data-product-price]')].find(node => node.dataset.productPrice === item?.id); if (price && option) price.textContent = `${money(option.amount_minor, config.currency)}`; const photo=doc.querySelector(`[data-detail-image="${item?.id}"]`); if(photo && option?.image) { photo.src=option.image; photo.alt=`${item.name}, ${option.label}`; } });
     doc.addEventListener('click', event => {
-      const restart = event.target.closest('[data-demo-restart]'); if (restart) { clearReceipt(); renderCheckout(); return; }
-      const add = event.target.closest('[data-cart-add]'); if (add) { const item = products.get(add.dataset.cartAdd); if (!item) return; if (add.dataset.cartChoose === '1') { win.location.assign(item.href); return; } const option = selectedOption(add, item); cart = addItem(cart, item.id, option.id, config); persist(); clearReceipt(); render(); announce(`${item.name}, ${option.label}, added to your cart.${storageWorks ? '' : ' Browser storage is unavailable, so this cart lasts only on this page.'}`); return; }
+      const restart = event.target.closest('[data-demo-restart]'); if (restart) { clearReceipt(); win.location.assign(config.shop_url); return; }
+      const add = event.target.closest('[data-cart-add]'); if (add) { const item = products.get(add.dataset.cartAdd); if (!item) return; if (add.dataset.cartChoose === '1') { win.location.assign(item.href); return; } const option = selectedOption(add, item), existing = cart.find(line => line.id === item.id && line.option_id === option.id); if (existing?.quantity >= config.max_quantity_per_item) { announce(`${item.name}, ${option.label}, is already at the demo limit of ${config.max_quantity_per_item}.`); return; } cart = addItem(cart, item.id, option.id, config); persist(); clearReceipt(); render(); announce(`${item.name}, ${option.label}, added to your cart.${storageWorks ? '' : ' Browser storage is unavailable, so this cart lasts only on this page.'}`); return; }
       const button = event.target.closest('[data-cart-action]'); if (!button) return; const item = products.get(button.dataset.cartId), option = getOption(config, button.dataset.cartId, button.dataset.cartOption), line = cart.find(value => value.id === item?.id && value.option_id === option?.id); if (!line) return;
       const actionName = button.dataset.cartAction;
       if (actionName === 'increase') cart = updateQuantity(cart, item.id, option.id, line.quantity + 1, config); if (actionName === 'decrease') cart = updateQuantity(cart, item.id, option.id, line.quantity - 1, config); if (actionName === 'remove') cart = updateQuantity(cart, item.id, option.id, 0, config); persist(); clearReceipt(); render();
       const stillPresent = cart.some(value => value.id === item.id && value.option_id === option.id);
-      if (stillPresent) doc.querySelector(`[data-cart-action="${actionName}"][data-cart-id="${item.id}"][data-cart-option="${option.id}"]`)?.focus();
+      if (stillPresent) {
+        const base = `[data-cart-id="${item.id}"][data-cart-option="${option.id}"]`;
+        let focusTarget = doc.querySelector(`[data-cart-action="${actionName}"]${base}`);
+        if (!focusTarget || focusTarget.disabled) focusTarget = doc.querySelector(`[data-cart-action="decrease"]${base}`);
+        focusTarget?.focus();
+      }
       else { const cartRoot = doc.querySelector('[data-cart-root]'); if (cartRoot) { cartRoot.tabIndex = -1; cartRoot.focus(); } }
       announce(actionName === 'remove' || !stillPresent ? `${item.name}, ${option.label}, removed from your cart.` : `${item.name}, ${option.label}, quantity updated.`);
     });
