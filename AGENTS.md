@@ -4,8 +4,9 @@
 - Repository: https://github.com/cmcnosky/ashes-smoke-shop-preview
 - Keep publishing subsequent revisions to this same GitHub Pages URL. Do not substitute a Sites/chatgpt.site preview unless the user explicitly requests it.
 - GitHub Pages serves the main branch /docs directory and automatically deploys pushes.
-- Build with `python3 build.py`, then check with `python3 scripts/verify_static.py` before committing and pushing.
-- Source facts are in content.json, layout is in build.py, and CSS/JS/assets are in docs/assets. Generated HTML is committed with each change.
+- Build with `python3 build.py`, then check with `python3 scripts/verify_static.py` and `python3 scripts/verify_catalog.py` before committing and pushing.
+- Business facts are in content.json; brand/product data and public sources are in catalog.json. Layouts are in build.py and catalog_builder.py. CSS/JS/assets are in docs/assets, including catalog.css and catalog.js. Generated HTML is committed with each change.
+- Preserve source dates and evidence labels in the informational catalog. Do not turn older carry lists, event associations, or manufacturer directories into live stock, prices, or unverified variants. Saved products are browser-local, not orders.
 - Preserve the V4 visual direction and conventional navigation unless the user requests changes.
 - Verify the Pages deployment and public file bytes. Use Chrome for visual/browser checks; do not use Safari.
 - Keep credentials, private audits, internal hosting metadata, and unrelated documents out of this public repository.

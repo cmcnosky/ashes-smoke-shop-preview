@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 scripts/static-verification.json
+
+scripts/catalog-verification.json

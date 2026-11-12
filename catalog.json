@@ -1,0 +1,1217 @@
+{
+  "version": "2026-11-12.1",
+  "checked_at": "2026-11-12",
+  "evidence_note": "This is an evidence-based brand and product-family guide, not live inventory. Dates, locations, and evidence labels describe what the cited public source establishes. Call the shop for current availability. No price, quantity, checkout, or fulfillment claim is made.",
+  "status_definitions": {
+    "current_published": "Named on Ashes's current location pages",
+    "manufacturer_listed": "Ashes appears in a current official manufacturer retailer source",
+    "dated_feature": "Shown or named in a dated Ashes product post",
+    "undated_profile": "Named in undated Ashes-authored profile copy",
+    "undated_photo": "Readable in a store photograph whose capture date is unavailable",
+    "historical": "Supported by dated older evidence",
+    "promotional_only": "Event, giveaway, or promotional relationship only"
+  },
+  "categories": [
+    {
+      "id": "grinders",
+      "name": "Grinders"
+    },
+    {
+      "id": "bags-storage",
+      "name": "Bags & storage"
+    },
+    {
+      "id": "glass",
+      "name": "Glass"
+    },
+    {
+      "id": "devices",
+      "name": "Devices & preparation"
+    },
+    {
+      "id": "papers-rolls",
+      "name": "Papers, cones & rolls"
+    },
+    {
+      "id": "incense-home",
+      "name": "Incense & home"
+    },
+    {
+      "id": "apparel-merch",
+      "name": "Ashes merchandise"
+    },
+    {
+      "id": "accessories-care",
+      "name": "Accessories & care"
+    }
+  ],
+  "sources": {
+    "S01": {
+      "title": "Ashes Denton: current store page",
+      "url": "https://www.ashestx.com/denton",
+      "date": "Observed Nov 12, 2026; copy undated"
+    },
+    "S02": {
+      "title": "Ashes Lewisville: current store page",
+      "url": "https://www.ashestx.com/lewisville",
+      "date": "Observed Nov 12, 2026; copy undated"
+    },
+    "S03": {
+      "title": "Ashes company profile: named carry list",
+      "url": "https://www.linkedin.com/company/ashes-smoke-shop-denton",
+      "date": "Observed Nov 12, 2026; update date unknown"
+    },
+    "S05": {
+      "title": "Berning Glass rig: Lewisville product post",
+      "url": "https://www.facebook.com/reel/2786796965021063/",
+      "date": "Feb 16, 2026; year corroborated by Meta oEmbed"
+    },
+    "S06": {
+      "title": "Wildberry incense holders: arrival post",
+      "url": "https://www.facebook.com/ashesdenton/posts/pfbid02vugS339NyoDfVT1FMgPwBPVQ9rY2b8TtopotYBNKdJ5mEnBwc4vNPbnHMjJpCogJl",
+      "date": "Aug 9, 2021"
+    },
+    "S07": {
+      "title": "Ashes beanie restock",
+      "url": "https://www.facebook.com/reel/1968405326672037/",
+      "date": "Mar 11, 2022"
+    },
+    "S09": {
+      "title": "DynaVap counter photo",
+      "url": "https://cdn.localdatacdn.com/tx/denton/5310659/original/hwqHU57lg1.jpg",
+      "date": "Undated image"
+    },
+    "S10": {
+      "title": "OCB / JOB paper-display photo",
+      "url": "https://cdn.localdatacdn.com/tx/denton/5310659/original/ZGs1vGzSX7.jpg",
+      "date": "Undated image"
+    },
+    "S11": {
+      "title": "FLYTLAB display photo",
+      "url": "https://cdn6.localdatacdn.com/tx/denton/5310659/original/Xc2fchPI4h.jpg",
+      "date": "Undated image"
+    },
+    "S13": {
+      "title": "GRAV-marked hand pipes: original gallery image",
+      "url": "https://static.wixstatic.com/media/5fe7db_918535afa9ec437bb91fa8c4ad475b92~mv2_d_3456_5184_s_4_2.jpg",
+      "date": "Apr 20, 2018 capture metadata"
+    },
+    "S14": {
+      "title": "RAW / Green Roads / ROOR / Pure Hemp: original store image",
+      "url": "https://static.wixstatic.com/media/5fe7db_16d41b7ce2764dc890478e181165f779~mv2_d_4912_3264_s_4_2.jpg",
+      "date": "Apr 20, 2018 capture metadata"
+    },
+    "S15": {
+      "title": "Ashes event apparel and koozies: original image",
+      "url": "https://static.wixstatic.com/media/5fe7db_802d66fb39d8456ca22dec16eaa3d90a~mv2_d_5184_3456_s_4_2.jpg",
+      "date": "Apr 20, 2018 capture metadata"
+    },
+    "S16": {
+      "title": "OCB event-giveaway acknowledgment",
+      "url": "https://www.instagram.com/ashes.tx/reel/DfntDqlxGL8/",
+      "date": "Nov 11, 2026"
+    },
+    "S20": {
+      "title": "ROOR custom-piece festival giveaway",
+      "url": "https://x.com/AshesDenton/status/1115370098464681984",
+      "date": "Apr 8, 2019"
+    },
+    "S21": {
+      "title": "Ashes apparel visible in recent post",
+      "url": "https://www.instagram.com/ashes.tx/reel/Dff-zMhRzsu/",
+      "date": "Nov 8, 2026"
+    },
+    "S23": {
+      "title": "Zig-Zag official retailer locator: Ashes Denton",
+      "url": "https://local.zigzag.com/texas/denton/420-s-carroll-blvd/",
+      "date": "Observed Nov 12, 2026; page update date unknown"
+    },
+    "S24": {
+      "title": "Ashes gift-card promotion",
+      "url": "https://x.com/AshesDenton/status/1334312785707196416",
+      "date": "Dec 3, 2020"
+    },
+    "S26": {
+      "title": "DynaVap official retailer map",
+      "url": "https://www.dynavap.com/pages/find-a-store",
+      "date": "Observed Nov 12, 2026; update date unknown"
+    },
+    "S27": {
+      "title": "Puffco official retailer locator",
+      "url": "https://www.puffco.com/pages/puffco-store-locator",
+      "date": "Observed Nov 12, 2026; no Ashes match in bounded check"
+    },
+    "S28": {
+      "title": "Dime Bags official retailer locator",
+      "url": "https://dimebags.com/pages/store-locator",
+      "date": "Observed Nov 12, 2026; no Ashes match in bounded local check"
+    },
+    "S29": {
+      "title": "GRAV official FAQ and policies",
+      "url": "https://grav.com/pages/faqs-and-policies",
+      "date": "Observed Nov 12, 2026"
+    },
+    "S30": {
+      "title": "ROOR U.S. dealer locator",
+      "url": "https://us.roor.com/storelocator/",
+      "date": "Observed Nov 12, 2026; endpoint returned empty"
+    },
+    "S31": {
+      "title": "Santa Cruz Shredder official contact page",
+      "url": "https://santacruzshredder.com/pages/contact-us",
+      "date": "Observed Nov 12, 2026"
+    },
+    "S32": {
+      "title": "Wild Berry official website",
+      "url": "https://wild-berry.com/",
+      "date": "Observed Nov 12, 2026"
+    }
+  },
+  "brands": [
+    {
+      "id": "santa-cruz-shredder",
+      "name": "Santa Cruz Shredder",
+      "category_ids": [
+        "grinders"
+      ],
+      "summary": "Grinder brand explicitly named on both current Ashes location pages.",
+      "evidence_status": "current_published",
+      "evidence_label": "Current Ashes carry statement",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton",
+        "lewisville"
+      ],
+      "source_ids": [
+        "S01",
+        "S02",
+        "S31"
+      ],
+      "notes": "No model, size, color, price, or live quantity is supplied. The bounded manufacturer search found no public Ashes-specific dealer confirmation."
+    },
+    {
+      "id": "diamond-grind",
+      "name": "Diamond Grind",
+      "category_ids": [
+        "grinders"
+      ],
+      "summary": "Grinder brand explicitly named on both current Ashes location pages.",
+      "evidence_status": "current_published",
+      "evidence_label": "Current Ashes carry statement",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton",
+        "lewisville"
+      ],
+      "source_ids": [
+        "S01",
+        "S02"
+      ],
+      "notes": "No individual variants or live stock count is published."
+    },
+    {
+      "id": "cali-crusher",
+      "name": "Cali Crusher",
+      "category_ids": [
+        "grinders"
+      ],
+      "summary": "Named with the grinder brands in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "Not repeated on the current location pages; current availability is unverified."
+    },
+    {
+      "id": "ryot",
+      "name": "RYOT",
+      "category_ids": [
+        "bags-storage",
+        "accessories-care"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile among bags and accessories entries.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "Specific product types, sizes, and current availability are not established."
+    },
+    {
+      "id": "cookies-backpacks",
+      "name": "Cookies Backpacks",
+      "category_ids": [
+        "bags-storage"
+      ],
+      "summary": "Backpack entry named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "No individual backpack, size, color, price, or current stock is supported."
+    },
+    {
+      "id": "dime-bags",
+      "name": "Dime Bags",
+      "category_ids": [
+        "bags-storage",
+        "accessories-care"
+      ],
+      "summary": "Accessories entry named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03",
+        "S28"
+      ],
+      "notes": "The current Dime Bags local locator did not list either Ashes store. That bounded non-match does not prove the brand is absent."
+    },
+    {
+      "id": "roor",
+      "name": "ROOR",
+      "category_ids": [
+        "glass"
+      ],
+      "summary": "Named in Ashes profile copy and supported historically by store signage and a custom-piece giveaway.",
+      "evidence_status": "historical",
+      "evidence_label": "Historical display and promotion",
+      "evidence_date": "2018–2019 evidence",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03",
+        "S14",
+        "S20",
+        "S30"
+      ],
+      "notes": "The official public dealer endpoint was unusable during the check. Current dealer status and current stock are unknown."
+    },
+    {
+      "id": "grav",
+      "name": "GRAV",
+      "category_ids": [
+        "glass"
+      ],
+      "summary": "Named in Ashes's undated profile and visible on multiple hand pipes in a dated 2018 Denton photograph.",
+      "evidence_status": "historical",
+      "evidence_label": "Dated historical product photo",
+      "evidence_date": "Apr 20, 2018",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03",
+        "S13",
+        "S29"
+      ],
+      "notes": "The photograph does not establish model names or current stock; GRAV routes authorization checks through private contact."
+    },
+    {
+      "id": "berning-glass",
+      "name": "Berning Glass",
+      "category_ids": [
+        "glass"
+      ],
+      "summary": "A dated Lewisville post featured a specific ocean-themed Berning Glass rig.",
+      "evidence_status": "dated_feature",
+      "evidence_label": "Dated Ashes product feature",
+      "evidence_date": "Feb 16, 2026",
+      "locations": [
+        "lewisville"
+      ],
+      "source_ids": [
+        "S05"
+      ],
+      "notes": "The post does not establish that the featured piece remains available or identify its official model name."
+    },
+    {
+      "id": "dynavap",
+      "name": "DynaVap",
+      "category_ids": [
+        "devices"
+      ],
+      "summary": "DynaVap's official retailer map lists the exact Ashes Denton location; branded packaged devices also appear in an undated shop photo.",
+      "evidence_status": "manufacturer_listed",
+      "evidence_label": "Official manufacturer retailer listing",
+      "evidence_date": "Verified Nov 12, 2026",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S09",
+        "S26"
+      ],
+      "notes": "No particular model, accessory, color, price, quantity, or Lewisville relationship is established.",
+      "image": {
+        "src": "assets/catalog-dynavap.jpg",
+        "alt": "DynaVap-branded devices in an undated Ashes Denton counter photograph",
+        "caption": "Denton shop photo · date unknown",
+        "source_id": "S09"
+      }
+    },
+    {
+      "id": "flytlab",
+      "name": "FLYTLAB",
+      "category_ids": [
+        "accessories-care"
+      ],
+      "summary": "Get Lifted / FLYTLAB marks are readable on an accessory display in an undated Denton photograph.",
+      "evidence_status": "undated_photo",
+      "evidence_label": "Undated Denton product photo",
+      "evidence_date": "Capture date unavailable",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03",
+        "S11"
+      ],
+      "notes": "The photographed objects are described by appearance; official model names and current availability are not established.",
+      "image": {
+        "src": "assets/catalog-flytlab.jpg",
+        "alt": "Get Lifted and FLYTLAB branded accessories in an undated Ashes Denton photograph",
+        "caption": "Denton shop photo · date unknown",
+        "source_id": "S11"
+      }
+    },
+    {
+      "id": "puffco",
+      "name": "Puffco",
+      "category_ids": [
+        "devices"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03",
+        "S27"
+      ],
+      "notes": "No Ashes match appeared in the current public Puffco locator dataset during the bounded check. That does not prove physical inventory is absent."
+    },
+    {
+      "id": "volcano",
+      "name": "Volcano",
+      "category_ids": [
+        "devices"
+      ],
+      "summary": "The product-family name Volcano appears in Ashes's undated Denton carry list.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "The source supplies the product-family name only; no manufacturer, model, or current inventory is inferred."
+    },
+    {
+      "id": "magical-butter",
+      "name": "Magical Butter",
+      "category_ids": [
+        "devices"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "No specific device or current availability is established."
+    },
+    {
+      "id": "raw",
+      "name": "RAW",
+      "category_ids": [
+        "papers-rolls"
+      ],
+      "summary": "Named in Ashes's profile and visible in a dated 2018 Denton merchandising photograph.",
+      "evidence_status": "historical",
+      "evidence_label": "Dated historical product display",
+      "evidence_date": "Apr 20, 2018",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03",
+        "S14"
+      ],
+      "notes": "Individual paper sizes and current availability are not established."
+    },
+    {
+      "id": "elements",
+      "name": "Elements",
+      "category_ids": [
+        "papers-rolls"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "No exact paper, size, count, or current stock is supported."
+    },
+    {
+      "id": "vibe",
+      "name": "Vibe",
+      "category_ids": [
+        "papers-rolls"
+      ],
+      "summary": "The exact term “Vibe” appears in Ashes's undated paper/incense list.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Unresolved spelling in undated profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "The source spelling is preserved. It is not silently normalized to another brand, and no product is assigned."
+    },
+    {
+      "id": "zig-zag",
+      "name": "Zig-Zag",
+      "category_ids": [
+        "papers-rolls"
+      ],
+      "summary": "Zig-Zag's official locator identifies Ashes Denton and expressly names rolling papers, pre-rolled cones, and palm rolls.",
+      "evidence_status": "manufacturer_listed",
+      "evidence_label": "Official manufacturer retailer listing",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S23"
+      ],
+      "notes": "The locator has no live inventory timestamp. Other products, flavors, or sizes marketed on the generic page are not treated as Ashes stock."
+    },
+    {
+      "id": "ocb",
+      "name": "OCB",
+      "category_ids": [
+        "papers-rolls"
+      ],
+      "summary": "OCB packaging and a Virgin Paper display are readable in an undated Denton photograph; OCB also supplied 2026 event giveaways.",
+      "evidence_status": "undated_photo",
+      "evidence_label": "Undated product display",
+      "evidence_date": "Capture date unavailable",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S10",
+        "S16"
+      ],
+      "notes": "The recent event source establishes promotional support, not ordinary stock. Exact paper size and count are unreadable.",
+      "image": {
+        "src": "assets/catalog-ocb-job.jpg",
+        "alt": "OCB Virgin Paper and JOB Organic Hemp displays in an undated Ashes Denton photograph",
+        "caption": "Denton shop photo · date unknown",
+        "source_id": "S10"
+      }
+    },
+    {
+      "id": "job",
+      "name": "JOB",
+      "category_ids": [
+        "papers-rolls"
+      ],
+      "summary": "A JOB Organic Hemp paper display is readable in an undated Denton photograph.",
+      "evidence_status": "undated_photo",
+      "evidence_label": "Undated product display",
+      "evidence_date": "Capture date unavailable",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S10"
+      ],
+      "notes": "Individual variants, pack counts, and current stock are unknown.",
+      "image": {
+        "src": "assets/catalog-ocb-job.jpg",
+        "alt": "JOB Organic Hemp and OCB Virgin Paper displays in an undated Ashes Denton photograph",
+        "caption": "Denton shop photo · date unknown",
+        "source_id": "S10"
+      }
+    },
+    {
+      "id": "wildberry-incense",
+      "name": "Wildberry Incense",
+      "category_ids": [
+        "incense-home"
+      ],
+      "summary": "Named in Ashes's profile; a dated Denton post documented an arrival of Wildberry incense holders.",
+      "evidence_status": "historical",
+      "evidence_label": "Dated historical arrival",
+      "evidence_date": "Aug 9, 2021",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03",
+        "S06",
+        "S32"
+      ],
+      "notes": "The dated post proves holders, not a current incense assortment. No current Ashes-specific manufacturer record was found."
+    },
+    {
+      "id": "toker-poker",
+      "name": "Toker Poker",
+      "category_ids": [
+        "accessories-care"
+      ],
+      "summary": "Readable branded accessory packaging appears behind the DynaVap display in an undated Denton photograph.",
+      "evidence_status": "undated_photo",
+      "evidence_label": "Undated Denton product photo",
+      "evidence_date": "Capture date unavailable",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S09"
+      ],
+      "notes": "The exact accessory variant and current stock are not established."
+    },
+    {
+      "id": "pure-hemp",
+      "name": "Pure Hemp",
+      "category_ids": [
+        "papers-rolls"
+      ],
+      "summary": "Pure Hemp signage is visible in both undated and dated historical Denton store photographs.",
+      "evidence_status": "historical",
+      "evidence_label": "Historical store signage",
+      "evidence_date": "Apr 20, 2018; separate undated image",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S09",
+        "S14"
+      ],
+      "notes": "Signage supports a brand association, not a particular product or current stock."
+    },
+    {
+      "id": "ashes",
+      "name": "Ashes",
+      "category_ids": [
+        "apparel-merch"
+      ],
+      "summary": "Both current location pages publish Ashes logo apparel, hoodies, and merchandise as a category.",
+      "evidence_status": "current_published",
+      "evidence_label": "Current Ashes category statement",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton",
+        "lewisville"
+      ],
+      "source_ids": [
+        "S01",
+        "S02",
+        "S07",
+        "S15",
+        "S21",
+        "S24"
+      ],
+      "notes": "Historical photos and posts support specific merchandise types. Current sizes, colors, prices, and quantities are not published."
+    },
+    {
+      "id": "ozium",
+      "name": "Ozium",
+      "category_ids": [
+        "accessories-care"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "Brand name only; no product, package size, or current availability is established."
+    },
+    {
+      "id": "smokebuddy",
+      "name": "SmokeBuddy",
+      "category_ids": [
+        "accessories-care"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "Brand name only; no exact product or current availability is established."
+    },
+    {
+      "id": "zippo",
+      "name": "Zippo",
+      "category_ids": [
+        "accessories-care"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "Brand name only; no exact product or current availability is established."
+    },
+    {
+      "id": "randys",
+      "name": "Randy's",
+      "category_ids": [
+        "accessories-care"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "Brand name only; no exact product or current availability is established."
+    },
+    {
+      "id": "ooze",
+      "name": "Ooze",
+      "category_ids": [
+        "accessories-care",
+        "devices"
+      ],
+      "summary": "Named in Ashes's undated Denton company profile.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "notes": "Brand name only; no exact device, accessory, or current availability is established."
+    }
+  ],
+  "products": [
+    {
+      "id": "santa-cruz-shredder-grinders",
+      "name": "Santa Cruz Shredder grinders",
+      "brand_id": "santa-cruz-shredder",
+      "category_id": "grinders",
+      "summary": "Santa Cruz Shredder grinders listed by both Ashes shops.",
+      "evidence_status": "current_published",
+      "evidence_label": "Current Ashes carry statement",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton",
+        "lewisville"
+      ],
+      "source_ids": [
+        "S01",
+        "S02"
+      ],
+      "details": [
+        "Exact models unresolved",
+        "Sizes and colors unresolved",
+        "Call for current selection"
+      ]
+    },
+    {
+      "id": "diamond-grind-grinders",
+      "name": "Diamond Grind grinders",
+      "brand_id": "diamond-grind",
+      "category_id": "grinders",
+      "summary": "Diamond Grind grinders listed by both Ashes shops.",
+      "evidence_status": "current_published",
+      "evidence_label": "Current Ashes carry statement",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton",
+        "lewisville"
+      ],
+      "source_ids": [
+        "S01",
+        "S02"
+      ],
+      "details": [
+        "Exact variants unresolved",
+        "No published live stock count",
+        "Call for current selection"
+      ]
+    },
+    {
+      "id": "cookies-backpacks-product-family",
+      "name": "Cookies backpacks",
+      "brand_id": "cookies-backpacks",
+      "category_id": "bags-storage",
+      "summary": "Cookies-branded backpacks named in Ashes's Denton assortment.",
+      "evidence_status": "undated_profile",
+      "evidence_label": "Undated Ashes profile",
+      "evidence_date": "Update date unknown",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S03"
+      ],
+      "details": [
+        "No model or size recovered",
+        "Current availability unverified"
+      ]
+    },
+    {
+      "id": "roor-glass",
+      "name": "ROOR glass",
+      "brand_id": "roor",
+      "category_id": "glass",
+      "summary": "ROOR glass represented in Ashes's historical Denton displays and promotions.",
+      "evidence_status": "historical",
+      "evidence_label": "Historical display and promotion",
+      "evidence_date": "2018–2019 evidence",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S14",
+        "S20"
+      ],
+      "details": [
+        "No model inferred",
+        "Current dealer status unknown",
+        "Current availability unverified"
+      ]
+    },
+    {
+      "id": "grav-hand-pipes",
+      "name": "GRAV-marked hand pipes",
+      "brand_id": "grav",
+      "category_id": "glass",
+      "summary": "GRAV-marked hand pipes photographed in the Denton display case.",
+      "evidence_status": "historical",
+      "evidence_label": "Dated historical product photo",
+      "evidence_date": "Apr 20, 2018",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S13"
+      ],
+      "details": [
+        "Multiple pieces visible",
+        "Model names unresolved",
+        "Current availability unverified"
+      ]
+    },
+    {
+      "id": "berning-glass-rig",
+      "name": "Ocean-themed Berning Glass rig",
+      "brand_id": "berning-glass",
+      "category_id": "glass",
+      "summary": "An ocean-themed Berning Glass rig featured by Ashes Lewisville.",
+      "evidence_status": "dated_feature",
+      "evidence_label": "Dated Ashes product feature",
+      "evidence_date": "Feb 16, 2026",
+      "locations": [
+        "lewisville"
+      ],
+      "source_ids": [
+        "S05"
+      ],
+      "details": [
+        "Official model name unresolved",
+        "One pictured piece",
+        "Continued availability unverified"
+      ]
+    },
+    {
+      "id": "dynavap-devices",
+      "name": "DynaVap devices",
+      "brand_id": "dynavap",
+      "category_id": "devices",
+      "summary": "DynaVap devices associated with the officially listed Denton retailer location.",
+      "evidence_status": "manufacturer_listed",
+      "evidence_label": "Official manufacturer retailer listing",
+      "evidence_date": "Verified Nov 12, 2026",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S09",
+        "S26"
+      ],
+      "details": [
+        "Exact models unresolved",
+        "Lewisville not listed",
+        "Call for current selection"
+      ],
+      "image": {
+        "src": "assets/catalog-dynavap.jpg",
+        "alt": "DynaVap-branded devices in an undated Ashes Denton counter photograph",
+        "caption": "Denton shop photo · date unknown",
+        "source_id": "S09"
+      }
+    },
+    {
+      "id": "flytlab-accessory-display",
+      "name": "FLYTLAB / Get Lifted accessories",
+      "brand_id": "flytlab",
+      "category_id": "accessories-care",
+      "summary": "FLYTLAB / Get Lifted trays, a mat or pad, and packaged accessories pictured at Denton.",
+      "evidence_status": "undated_photo",
+      "evidence_label": "Undated Denton product photo",
+      "evidence_date": "Capture date unavailable",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S11"
+      ],
+      "details": [
+        "Objects described by appearance",
+        "Official model names unresolved",
+        "Current availability unverified"
+      ],
+      "image": {
+        "src": "assets/catalog-flytlab.jpg",
+        "alt": "Get Lifted and FLYTLAB branded accessories in an undated Ashes Denton photograph",
+        "caption": "Denton shop photo · date unknown",
+        "source_id": "S11"
+      }
+    },
+    {
+      "id": "ocb-virgin-paper",
+      "name": "OCB Virgin Paper",
+      "brand_id": "ocb",
+      "category_id": "papers-rolls",
+      "summary": "An OCB Virgin Paper display photographed at Ashes Denton.",
+      "evidence_status": "undated_photo",
+      "evidence_label": "Undated product display",
+      "evidence_date": "Capture date unavailable",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S10"
+      ],
+      "details": [
+        "Paper line readable",
+        "Size and count unresolved",
+        "Current availability unverified"
+      ],
+      "image": {
+        "src": "assets/catalog-ocb-job.jpg",
+        "alt": "OCB Virgin Paper and JOB Organic Hemp displays in an undated Ashes Denton photograph",
+        "caption": "Denton shop photo · date unknown",
+        "source_id": "S10"
+      }
+    },
+    {
+      "id": "job-organic-hemp-paper",
+      "name": "JOB Organic Hemp paper",
+      "brand_id": "job",
+      "category_id": "papers-rolls",
+      "summary": "A JOB Organic Hemp paper display photographed at Ashes Denton.",
+      "evidence_status": "undated_photo",
+      "evidence_label": "Undated product display",
+      "evidence_date": "Capture date unavailable",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S10"
+      ],
+      "details": [
+        "Paper line readable",
+        "Variant and count unresolved",
+        "Current availability unverified"
+      ],
+      "image": {
+        "src": "assets/catalog-ocb-job.jpg",
+        "alt": "JOB Organic Hemp and OCB Virgin Paper displays in an undated Ashes Denton photograph",
+        "caption": "Denton shop photo · date unknown",
+        "source_id": "S10"
+      }
+    },
+    {
+      "id": "zig-zag-rolling-papers",
+      "name": "Zig-Zag rolling papers",
+      "brand_id": "zig-zag",
+      "category_id": "papers-rolls",
+      "summary": "Zig-Zag rolling papers listed for Ashes Denton by the manufacturer.",
+      "evidence_status": "manufacturer_listed",
+      "evidence_label": "Official manufacturer retailer listing",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S23"
+      ],
+      "details": [
+        "No paper line inferred",
+        "Size and count unresolved",
+        "Call for current selection"
+      ]
+    },
+    {
+      "id": "zig-zag-pre-rolled-cones",
+      "name": "Zig-Zag pre-rolled cones",
+      "brand_id": "zig-zag",
+      "category_id": "papers-rolls",
+      "summary": "Zig-Zag pre-rolled cones listed for Ashes Denton by the manufacturer.",
+      "evidence_status": "manufacturer_listed",
+      "evidence_label": "Official manufacturer retailer listing",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S23"
+      ],
+      "details": [
+        "No line, size, or pack count inferred",
+        "Call for current selection"
+      ]
+    },
+    {
+      "id": "zig-zag-palm-rolls",
+      "name": "Zig-Zag palm rolls",
+      "brand_id": "zig-zag",
+      "category_id": "papers-rolls",
+      "summary": "Zig-Zag palm rolls listed for Ashes Denton by the manufacturer.",
+      "evidence_status": "manufacturer_listed",
+      "evidence_label": "Official manufacturer retailer listing",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S23"
+      ],
+      "details": [
+        "No flavor or pack size inferred",
+        "Call for current selection"
+      ]
+    },
+    {
+      "id": "raw-paper-merchandising",
+      "name": "RAW rolling-paper merchandising",
+      "brand_id": "raw",
+      "category_id": "papers-rolls",
+      "summary": "RAW rolling-paper merchandise photographed in the Denton shop.",
+      "evidence_status": "historical",
+      "evidence_label": "Dated historical product display",
+      "evidence_date": "Apr 20, 2018",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S14"
+      ],
+      "details": [
+        "Brand and paper category supported",
+        "Individual variants unresolved",
+        "Current availability unverified"
+      ]
+    },
+    {
+      "id": "wildberry-incense-holders",
+      "name": "Wildberry incense holders",
+      "brand_id": "wildberry-incense",
+      "category_id": "incense-home",
+      "summary": "Wildberry holders designed for stick or cone incense.",
+      "evidence_status": "historical",
+      "evidence_label": "Dated historical arrival",
+      "evidence_date": "Aug 9, 2021",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S06"
+      ],
+      "details": [
+        "Stick and cone holder formats named",
+        "Pictured designs are not official SKU names",
+        "Current availability unverified"
+      ]
+    },
+    {
+      "id": "toker-poker-accessories",
+      "name": "Toker Poker accessories",
+      "brand_id": "toker-poker",
+      "category_id": "accessories-care",
+      "summary": "Toker Poker accessory packaging photographed at Ashes Denton.",
+      "evidence_status": "undated_photo",
+      "evidence_label": "Undated Denton product photo",
+      "evidence_date": "Capture date unavailable",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S09"
+      ],
+      "details": [
+        "Brand and accessory packaging supported",
+        "Exact variant unresolved",
+        "Current availability unverified"
+      ]
+    },
+    {
+      "id": "ashes-logo-apparel",
+      "name": "Ashes logo apparel & hoodies",
+      "brand_id": "ashes",
+      "category_id": "apparel-merch",
+      "summary": "Ashes logo apparel, hoodies, and shop merchandise.",
+      "evidence_status": "current_published",
+      "evidence_label": "Current Ashes category statement",
+      "evidence_date": "Observed Nov 12, 2026",
+      "locations": [
+        "denton",
+        "lewisville"
+      ],
+      "source_ids": [
+        "S01",
+        "S02",
+        "S21"
+      ],
+      "details": [
+        "Exact garments unresolved",
+        "Sizes and colors unresolved",
+        "Call for current selection"
+      ]
+    },
+    {
+      "id": "ashes-beanies",
+      "name": "Ashes beanies",
+      "brand_id": "ashes",
+      "category_id": "apparel-merch",
+      "summary": "Ashes-branded beanies documented in a Denton restock post.",
+      "evidence_status": "historical",
+      "evidence_label": "Dated historical restock",
+      "evidence_date": "Mar 11, 2022",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S07"
+      ],
+      "details": [
+        "Restock expressly stated",
+        "Producer credit is not a separate retail brand",
+        "Current availability unverified"
+      ]
+    },
+    {
+      "id": "ashes-event-apparel",
+      "name": "Ashes event tees, tanks & koozies",
+      "brand_id": "ashes",
+      "category_id": "apparel-merch",
+      "summary": "Ashes event tees, tanks, and koozies from the Denton archive.",
+      "evidence_status": "historical",
+      "evidence_label": "Dated historical event merchandise",
+      "evidence_date": "Apr 20, 2018",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S15"
+      ],
+      "details": [
+        "Merchandise types visible",
+        "Historical pictured price is not reused",
+        "Current availability unverified"
+      ]
+    },
+    {
+      "id": "ashes-gift-card",
+      "name": "Ashes gift card",
+      "brand_id": "ashes",
+      "category_id": "apparel-merch",
+      "summary": "An Ashes gift card documented in a historical shop promotion.",
+      "evidence_status": "historical",
+      "evidence_label": "Historical promotion",
+      "evidence_date": "Dec 3, 2020",
+      "locations": [],
+      "source_ids": [
+        "S24"
+      ],
+      "details": [
+        "Historical offer only",
+        "Current purchase and redemption terms unknown",
+        "Supported branches unresolved"
+      ]
+    },
+    {
+      "id": "ocb-event-giveaways",
+      "name": "OCB event giveaways",
+      "brand_id": "ocb",
+      "category_id": "papers-rolls",
+      "summary": "OCB-supported giveaways for Ashes's November 2026 Denton event.",
+      "evidence_status": "promotional_only",
+      "evidence_label": "Event relationship only",
+      "evidence_date": "Nov 11, 2026 post",
+      "locations": [
+        "denton"
+      ],
+      "source_ids": [
+        "S16"
+      ],
+      "details": [
+        "Giveaway support established",
+        "Specific giveaway SKUs unresolved",
+        "Not ordinary retail-stock proof"
+      ]
+    }
+  ]
+}
