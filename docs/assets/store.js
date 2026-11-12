@@ -121,7 +121,7 @@
     let config;
     try { config = normalizeConfig(JSON.parse(configNode?.textContent || '{}')); } catch (_) { config = normalizeConfig({}); }
     const products = productMap(config);
-    let cart = [], storageWorks = true, fallbackStatus;
+    let cart = [], storageWorks = true, fallbackStatus, statusTimer;
     const make = (tag, className, text) => { const node = doc.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; };
     const makeLink = (href, className, text) => { const node = make('a', className, text); node.href = href; return node; };
     const persist = () => { try { win.localStorage.setItem(config.storage_key, JSON.stringify({version: 1, items: cart})); } catch (_) { storageWorks = false; } };
@@ -131,7 +131,9 @@
     function announce(message) {
       const nodes = [...doc.querySelectorAll('[data-cart-status]')];
       if (!nodes.length) { fallbackStatus ||= make('div', 'cart-toast'); fallbackStatus.setAttribute('role', 'status'); fallbackStatus.setAttribute('aria-live', 'polite'); doc.body.append(fallbackStatus); nodes.push(fallbackStatus); }
-      nodes.forEach(node => { node.textContent = message; });
+      nodes.forEach(node => { node.textContent = message; node.hidden = false; });
+      win.clearTimeout(statusTimer);
+      statusTimer = win.setTimeout(() => { if (fallbackStatus) fallbackStatus.hidden = true; }, 4000);
     }
     function renderProductControls() {
       doc.querySelectorAll('[data-product-options]').forEach(target => {
@@ -195,7 +197,7 @@
         makeLink(config.checkout_url, 'button dark cart-review-link', 'Review demo checkout →'),
         makeLink(config.shop_url, 'text-link cart-continue-link', '← Continue shopping')); layout.append(list, aside); rootNode.append(layout);
     }
-    function field(labelText, name, type, autocomplete, required = true) { const label = make('label', 'checkout-field', labelText), input = make('input'); input.name = name; input.type = type; input.autocomplete = autocomplete; input.required = required; label.append(input); return {label, input}; }
+    function field(labelText, name, type, autocomplete, required = true) { const label = make('label', 'checkout-field', labelText), input = make('input'); input.name = name; input.type = type; input.autocomplete = config.mode === 'demo' ? 'off' : autocomplete; input.required = required; label.append(input); return {label, input}; }
     function renderReceipt(rootNode, receipt) {
       rootNode.replaceChildren(); const box = make('section', 'demo-confirmation'); box.append(make('span', 'eyebrow', 'STORE PREVIEW COMPLETE'), make('h2', '', 'Demo order complete.'),
         make('p', '', 'Nothing was sent, reserved, or charged. This confirmation exists only in this browser tab.'), make('p', 'demo-order-id', `Preview reference ${receipt.order_id}`));
