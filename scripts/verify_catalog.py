@@ -2,7 +2,7 @@
 
 from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 import json
 import re
 import subprocess
@@ -216,7 +216,7 @@ for page_name in sorted(expected_pages):
     if match:
         require(json.loads(match.group(1)) == commerce, "embedded commerce differs", page_name)
 
-for page_name in ("index.html", "explore.html", "merchandise.html"):
+for page_name in ("explore.html", "merchandise.html"):
     page = pages.get(page_name)
     if not page:
         continue
@@ -225,6 +225,35 @@ for page_name in ("index.html", "explore.html", "merchandise.html"):
     buttons = [button.get("data-cart-add") for button in page.marked("button", "data-cart-add")]
     require(len(cards) == EXPECTED["products"] and set(card_ids) == set(product_ids), "collection cards", page_name, len(cards))
     require(set(buttons) == set(product_ids), "collection cart controls", page_name)
+
+home = pages.get("index.html")
+if home:
+    home_file = DOCS / "index.html"
+    home_raw = home_file.read_text()
+    skeleton_images = [image for image in home.images if image.get("src") == "assets/ashes-v4-hero.webp"]
+    require(len(skeleton_images) == 1, "homepage skeleton hero image", len(skeleton_images))
+    if skeleton_images:
+        require("skeleton" in skeleton_images[0].get("alt", "").lower(), "homepage skeleton image alt", skeleton_images[0].get("alt"))
+
+    require("explore.html" in home.links, "homepage lacks direct shop entry")
+    home_categories = set()
+    for link in home.links:
+        parsed = urlsplit(link)
+        if parsed.path != "explore.html":
+            continue
+        values = parse_qs(parsed.query).get("category", [])
+        home_categories.update(value for value in values if value in ALLOWED_CATEGORIES)
+    require(home_categories == ALLOWED_CATEGORIES, "homepage category links", {"missing": sorted(ALLOWED_CATEGORIES - home_categories), "extra": sorted(home_categories - ALLOWED_CATEGORIES)})
+
+    cards = home.marked("article", "data-retail-item")
+    card_ids = [card.get("data-id") for card in cards]
+    buttons = [button.get("data-cart-add") for button in home.marked("button", "data-cart-add")]
+    require(bool(card_ids), "homepage has no featured inventory")
+    require(len(card_ids) == len(set(card_ids)), "duplicate homepage featured products", card_ids)
+    require(set(card_ids) <= set(product_ids), "homepage featured products outside inventory", sorted(set(card_ids) - set(product_ids)))
+    require(set(buttons) == set(card_ids), "homepage featured cart controls", {"cards": card_ids, "buttons": buttons})
+    require(not (set(card_ids) & OLD_IDS), "retired homepage featured products", sorted(set(card_ids) & OLD_IDS))
+    require(not any(old_id in home_raw for old_id in OLD_IDS), "retired product reference remains on homepage")
 
 for product in products:
     page = pages.get(f"product-{product['id']}.html")

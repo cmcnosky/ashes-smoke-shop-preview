@@ -1,0 +1,43 @@
+/* The Ashes front door: familiar artwork, clear routes into the working shop. */
+.welcome-hero{display:grid;grid-template-columns:1fr 1fr;background:var(--yellow);border-bottom:2px solid var(--ink);overflow:hidden}
+.welcome-copy{padding:40px 4vw;align-self:center;position:relative;z-index:1}
+.welcome-eyebrow{display:block;font-size:13px;font-weight:700;letter-spacing:.08em;line-height:1.5;margin-bottom:16px}
+.welcome-copy h1{font:400 clamp(42px,4.5vw,68px)/1.12 var(--display);letter-spacing:-.025em;margin:0 0 22px}
+.welcome-copy h1 em{font-style:normal;color:#8e273f}
+.welcome-copy>p{font-size:17px;line-height:1.65;max-width:430px}
+.welcome-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.welcome-actions .button{font-size:16px;min-height:48px;padding:12px 18px;gap:20px}
+.welcome-guide{display:inline-block;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:4px;margin-top:19px;padding-block:5px}
+.welcome-art{margin:0;border-left:2px solid var(--ink);background:#f9b912;aspect-ratio:1.03;max-height:610px;min-height:460px;position:relative;overflow:hidden}
+.welcome-art img{width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0}
+.home-shop-section,.home-featured,.home-visit{padding:35px 4vw;max-width:1600px;margin:auto}
+.home-section-heading{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:22px}
+.home-section-heading h2{font:400 32px/1.2 var(--display);letter-spacing:-.025em;margin:0 0 8px}
+.home-section-heading p{font-size:16px;line-height:1.5;margin:0}
+.home-section-heading>.text-link{font-size:15px;flex-shrink:0}
+.home-category-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.home-shop-category{display:flex;gap:13px;align-items:center;position:relative;padding:19px 16px;min-height:103px;border:1.5px solid var(--ink);border-radius:6px;background:#dceadf;transition:transform .15s,box-shadow .15s}
+.home-shop-category:nth-child(4n+2){background:#e6dcf0}.home-shop-category:nth-child(4n+3){background:#f9d5bb}.home-shop-category:nth-child(4n+4){background:#f8df83}
+.home-shop-category:hover{transform:translateY(-2px);box-shadow:3px 3px 0 var(--ink)}
+.home-category-icon{width:38px;flex-shrink:0}.home-category-icon svg{width:100%;height:auto}
+.home-shop-category strong{font-size:18px;line-height:1.25;display:block;letter-spacing:-.025em;padding-right:10px}
+.home-shop-category small{display:block;font-size:13px;line-height:1.45;margin-top:5px}
+.home-category-arrow{position:absolute;right:10px;top:8px;font-size:16px}
+.home-featured{padding-top:27px;border-top:1px solid var(--retail-border)}
+.home-featured .retail-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.home-featured .retail-product-image{aspect-ratio:1.25}.home-featured .retail-card h2{font:700 17px/1.35 var(--body)}
+.home-visit{padding-top:30px;padding-bottom:40px;border-top:1px solid var(--retail-border)}
+.home-visit .welcome-eyebrow{font-size:12px;margin-bottom:9px;color:#72526b}
+.home-visit .store-card{padding:25px}.home-visit .store-heading{margin-bottom:15px}.home-visit .store-heading h3{font-size:34px}
+.home-visit .store-heading .eyebrow{font-size:13px}.home-visit .store-hours{font-size:15px}.home-visit .store-hours strong{font-size:16px}
+.home-visit .address{font-size:16px}.home-visit .store-phone{font-size:23px}.home-visit .store-actions{margin-top:19px}
+.home-visit .small-link,.home-visit .small-note{font-size:14px}.home-visit .small-note{margin-top:17px}
+.home-help{background:var(--lavender);border-top:1.5px solid var(--ink);padding:25px 4vw;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.home-help>div{display:flex;align-items:center;gap:18px}.home-help>div>span{font-size:39px;color:#8e273f;line-height:1}
+.home-help h2{font:700 23px/1.3 var(--body);letter-spacing:-.025em}.home-help .button{font-size:16px;flex-shrink:0}
+@media(min-width:1600px){.welcome-copy{padding-left:max(4vw,calc((100vw - 1480px)/2))}}
+@media(max-width:1100px){.welcome-copy{padding:30px 4vw}.welcome-copy h1{font-size:47px}.welcome-copy>p{font-size:16px}.welcome-eyebrow{font-size:12px}.welcome-actions{gap:10px}.welcome-actions .button{font-size:14px;padding:12px 14px}.welcome-art{min-height:470px}.home-category-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.home-shop-category{align-items:flex-start;flex-direction:column;gap:10px;padding:16px;min-height:145px}.home-shop-category strong{font-size:17px}.home-category-icon{width:33px}}
+@media(max-width:800px){.welcome-copy{padding:27px 4vw}.welcome-copy h1{font-size:39px}.welcome-copy>p{font-size:16px}.welcome-eyebrow{font-size:11px;letter-spacing:.05em}.welcome-art{min-height:450px}.welcome-actions{flex-direction:column;align-items:stretch}.welcome-actions .button{font-size:15px;min-height:46px}.welcome-guide{font-size:13px}.home-shop-section,.home-featured,.home-visit{padding:28px 4vw}.home-section-heading h2{font-size:28px}.home-section-heading p{font-size:15px}.home-section-heading>.text-link{font-size:14px}.home-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-shop-category{flex-direction:row;align-items:center;min-height:98px;gap:14px}.home-category-icon{width:35px}.home-shop-category strong{font-size:18px}.home-shop-category small{font-size:13px}.home-featured .retail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-visit .store-grid{grid-template-columns:1fr 1fr}.home-visit .store-card{padding:21px}.home-visit .store-heading h3{font-size:31px}.home-visit .store-heading .eyebrow{font-size:12px}.home-visit .store-actions{flex-direction:column}.home-visit .store-actions .button{font-size:15px}.home-visit .address{font-size:15px}.home-help h2{font-size:21px}}
+@media(max-width:550px){.welcome-hero{display:flex;flex-direction:column}.welcome-copy{padding:25px 5vw 26px}.welcome-copy h1{font-size:clamp(36px,9vw,46px);line-height:1.13;margin-bottom:17px}.welcome-copy h1 br:first-of-type{display:none}.welcome-eyebrow{font-size:12px;margin-bottom:12px}.welcome-copy>p{font-size:16px;line-height:1.6;max-width:370px}.welcome-actions{flex-direction:row;margin-top:21px;gap:10px}.welcome-actions .button{font-size:14px;padding:11px 12px;gap:10px;flex:1;white-space:nowrap}.welcome-guide{font-size:14px;margin-top:12px}.welcome-art{border-left:0;border-top:1.5px solid var(--ink);min-height:0;max-height:none;height:auto;aspect-ratio:1.18}.welcome-art img{object-position:center 46%}.home-section-heading{align-items:flex-start;gap:12px;flex-direction:column;margin-bottom:18px}.home-section-heading h2{font-size:29px}.home-section-heading p{font-size:16px}.home-section-heading>.text-link{font-size:15px;padding-block:4px;min-height:32px}.home-shop-section,.home-featured,.home-visit{padding:27px 4vw}.home-category-grid{gap:11px}.home-shop-category{align-items:flex-start;flex-direction:column;min-height:145px;padding:16px 13px;gap:10px}.home-shop-category strong{font-size:18px}.home-shop-category small{font-size:13px}.home-featured .retail-card h2{font-size:16px}.home-featured .retail-product-image{aspect-ratio:1.08}.home-visit .store-grid{grid-template-columns:1fr;gap:17px}.home-visit .store-card{padding:23px}.home-visit .store-heading h3{font-size:35px}.home-visit .store-actions{flex-direction:row;gap:10px}.home-visit .store-actions .button{font-size:14px;padding:11px 13px}.home-visit .address{font-size:16px}.home-visit .small-note{font-size:14px}.home-help{align-items:flex-start;flex-direction:column;padding:24px 5vw;gap:18px}.home-help>div{gap:12px}.home-help h2{font-size:22px}.home-help>div>span{font-size:33px}.home-help .button{min-height:46px}}
+@media(max-width:370px){.welcome-actions{flex-direction:column}.welcome-copy h1{font-size:36px}.home-shop-category{min-height:153px}.home-shop-category strong{font-size:17px}.home-visit .store-actions{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.home-shop-category{transition:none}}

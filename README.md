@@ -4,7 +4,7 @@
 
 A working, disconnected retail demo for Ashes Smoke Shop. The 34 products are actual ordinary accessories referenced from five DFW/Denton retailers, with 41 published product options, 22 brands, dated sources, and locally stored product photos. They are not an Ashes inventory export or confirmation of its stock, prices, or supplier relationships.
 
-The assortment replaces the former hypothetical apparel and merchandise options. The product-first homepage, eight categories, brand/price filters, search, sorting, product details, variant photos, cart, quantity controls, and demonstration checkout support an owner presentation. No payment is collected, order transmitted, or inventory reserved.
+The assortment replaces the former hypothetical apparel and merchandise options. The colorful skeleton homepage introduces the shop, with eight category links, four featured products, and both locations. The separate catalog retains brand/price filters, search, sorting, product details, variant photos, cart, quantity controls, and demonstration checkout. No payment is collected, order transmitted, or inventory reserved.
 
 ## Data and implementation
 
@@ -13,7 +13,8 @@ The assortment replaces the former hypothetical apparel and merchandise options.
 - `content.json`: Ashes business information and location copy.
 - `retail_builder.py`: customer-facing product, brand, catalog, cart, checkout, and reference pages.
 - `build.py`: shared site frame and business pages; invokes the retail generator.
-- `docs/assets/retail.css` and `retail.js`: compact responsive layout, search, filters, sorting.
+- `docs/assets/home.css`: the illustrated homepage, category shortcuts, featured products, and location layout.
+- `docs/assets/retail.css` and `retail.js`: compact responsive shop layout, search, filters, sorting.
 - `docs/assets/store.js` and `store.css`: cart, variant selection, example checkout totals, confirmation.
 - `docs/`: generated GitHub Pages output. The main branch /docs directory is the publishing source.
 - `catalog.json` and `catalog_builder.py`: preserved earlier brand research and prior generator; not used by the current build.
