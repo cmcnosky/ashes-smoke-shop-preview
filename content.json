@@ -1,0 +1,166 @@
+{
+  "stores": [
+    {
+      "id": "denton",
+      "name": "Denton",
+      "label": "The original",
+      "year": "2014",
+      "street": "420 S Carroll Blvd, Ste 105",
+      "city": "Denton, TX 76201",
+      "phone": "(940) 381-1010",
+      "tel": "+19403811010",
+      "hours": "11am\u201311pm",
+      "open": 11,
+      "close": 23,
+      "area": "South Carroll Boulevard",
+      "parking": "Parking is out front.",
+      "intro": "Our first home. On South Carroll Boulevard, Ashes has been part of the Denton neighborhood since 2014.",
+      "getting": "Find the Denton shop at 420 S Carroll Blvd, Suite 105. Use the directions link for a route from your starting point.",
+      "tag": "Near UNT & Denton Square"
+    },
+    {
+      "id": "lewisville",
+      "name": "Lewisville",
+      "label": "Old Town, same spirit",
+      "year": "2023",
+      "street": "190 W Main St, Ste 105",
+      "city": "Lewisville, TX 75057",
+      "phone": "(469) 968-8008",
+      "tel": "+14699688008",
+      "hours": "10am\u201310pm",
+      "open": 10,
+      "close": 22,
+      "area": "Old Town Lewisville",
+      "parking": "Street parking and the Old Town lots are nearby.",
+      "intro": "A second home in the heart of Old Town. We opened on West Main Street in 2023, bringing the Ashes approach to Old Town Lewisville.",
+      "getting": "Find the Lewisville shop at 190 W Main St, Suite 105, in Old Town Lewisville. Use the directions link for a route from your starting point.",
+      "tag": "In the heart of Old Town"
+    }
+  ],
+  "categories": [
+    [
+      "Hemp & CBD",
+      "Hemp & CBD",
+      "Hemp and CBD products.",
+      "hemp cbd"
+    ],
+    [
+      "Smoke shop",
+      "Vapes & e-liquid",
+      "Vapes, e-liquid and disposables.",
+      "vape vapes e-liquid disposables"
+    ],
+    [
+      "Glass",
+      "Water pipes & rigs",
+      "Water pipes and rigs are part of the glass collection.",
+      "water pipes rigs"
+    ],
+    [
+      "Glass",
+      "Hand pipes & more",
+      "Hand pipes, bubblers and chillums.",
+      "hand pipes bubblers chillums"
+    ],
+    [
+      "Glass",
+      "Local artist glass",
+      "One-of-a-kind pieces alongside name-brand glass.",
+      "local artists handmade unique glass"
+    ],
+    [
+      "Accessories",
+      "Grinders",
+      "Santa Cruz Shredder, Diamond Grind and other grinders.",
+      "grinders santa cruz shredder diamond grind"
+    ],
+    [
+      "Accessories",
+      "Storage & essentials",
+      "Scales, storage and accessories for keeping things organized.",
+      "scales storage accessories"
+    ],
+    [
+      "Accessories",
+      "Detox products",
+      "Detox products and related accessories.",
+      "detox"
+    ],
+    [
+      "Smoke shop",
+      "Hookah",
+      "Hookahs, bowls, charcoal and shisha.",
+      "hookahs bowls charcoal shisha"
+    ],
+    [
+      "Smoke shop",
+      "Cigars & papers",
+      "Cigars, cigarillos and rolling papers.",
+      "cigars cigarillos rolling papers tobacco"
+    ],
+    [
+      "Other categories",
+      "Kratom",
+      "Kratom products.",
+      "kratom"
+    ],
+    [
+      "Lifestyle",
+      "Scents & atmosphere",
+      "Incense, candles and a wide range of scents.",
+      "incense candles scents"
+    ],
+    [
+      "Lifestyle",
+      "Wear Ashes",
+      "Logo apparel, hoodies and Ashes merchandise.",
+      "apparel hoodies merch merchandise clothing"
+    ]
+  ],
+  "lineup": [
+    [
+      "11am",
+      "Gorgeous Hair"
+    ],
+    [
+      "12pm",
+      "We Decree"
+    ],
+    [
+      "1pm",
+      "Obscene Beings"
+    ],
+    [
+      "2pm",
+      "Jake and the Knight Crows"
+    ],
+    [
+      "3pm",
+      "Puddin Taine"
+    ],
+    [
+      "4pm",
+      "Westway"
+    ],
+    [
+      "5pm",
+      "MKNKR"
+    ],
+    [
+      "6pm",
+      "The Last Great American Band"
+    ],
+    [
+      "7pm",
+      "Flintlock Gypsy"
+    ],
+    [
+      "8pm",
+      "Wee Beasties"
+    ],
+    [
+      "9pm",
+      "Noctra"
+    ]
+  ]
+}

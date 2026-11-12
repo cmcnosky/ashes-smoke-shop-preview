@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Ashes spark skull</title>
+  <desc id="desc">An original friendly skull with a star eye and colorful flame-like wisps.</desc>
+  <path d="M38 67 C38 38 57 21 81 21 C109 21 125 41 123 68 C122 88 113 97 105 102 L104 127 C104 139 94 146 81 146 C68 146 57 139 57 127 L56 103 C46 96 38 86 38 67Z" fill="#f8f0d5" stroke="#281b2c" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M51 35 C44 18 50 8 62 5 C57 18 66 22 72 29" fill="#4cbca8" stroke="#281b2c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M72 28 C66 10 78 1 91 8 C80 14 86 23 90 31" fill="#f6cb4e" stroke="#281b2c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M93 30 C93 14 109 10 118 20 C105 21 108 31 107 37" fill="#ed684c" stroke="#281b2c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M49 68 C49 53 59 46 71 48 C82 50 82 60 75 68 C68 76 54 78 49 68Z" fill="#281b2c"/>
+  <path d="M69 54 l3.5 8.5 8.5 3.5-8.5 3.5L69 78l-3.5-8.5L57 66l8.5-3.5z" fill="#c5b4ec"/>
+  <path d="M89 49 C103 45 114 53 113 67 C112 78 95 78 87 69 C81 62 81 52 89 49Z" fill="#281b2c"/>
+  <circle cx="99" cy="62" r="6" fill="#4cbca8"/>
+  <path d="M80 72 C75 81 72 87 73 92 L87 92 C88 87 85 80 80 72Z" fill="#281b2c"/>
+  <path d="M61 105 C71 112 91 113 101 105 L100 126 C92 133 69 133 61 126Z" fill="#f6cb4e" stroke="#281b2c" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M71 110 V130 M81 112 V131 M92 110 V129" fill="none" stroke="#281b2c" stroke-width="4" stroke-linecap="round"/>
+  <path d="M131 76 l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#ed684c" stroke="#281b2c" stroke-width="3" stroke-linejoin="round"/>
+</svg>
