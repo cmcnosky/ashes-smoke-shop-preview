@@ -251,7 +251,7 @@ if "explore.html" in parsed_docs:
     product_links = set(catalog.links)
     for product in products:
         require(f"product-{product['id']}.html" in product_links, "catalog missing static product link", product["id"])
-        require(product["name"] in catalog.text, "catalog missing static product text", product["id"])
+        require(product.get("display_name", product["name"]) in catalog.text, "catalog missing static product text", product["id"])
     require(bool(catalog.aria_live), "catalog lacks live result-status region")
 
 for brand in brands:
@@ -286,7 +286,7 @@ catalog_js = DOCS / "assets" / "catalog.js"
 require(catalog_js.exists(), "missing catalog JavaScript")
 if catalog_js.exists():
     js = catalog_js.read_text()
-    for parameter in ("q", "category", "brand", "evidence", "location", "sort", "saved"):
+    for parameter in ("q", "category", "brand", "collection", "location", "sort", "saved"):
         require(re.search(rf"[\"']{parameter}[\"']", js) is not None, "catalog JS lacks URL parameter", parameter)
     require("URLSearchParams" in js, "catalog JS does not initialize URL parameters")
     require("replaceState" in js, "catalog JS does not persist filter URL")

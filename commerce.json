@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "mode": "demo",
+  "currency": "USD",
+  "storage_key": "ashes.store.cart.v2",
+  "max_quantity_per_item": 10,
+  "shop_url": "merchandise.html",
+  "cart_url": "cart.html",
+  "checkout_url": "checkout.html",
+  "demo": {
+    "shipping_minor": 500,
+    "tax_rate": 0.0825,
+    "receipt_storage_key": "ashes.store.demo-receipt.v1"
+  },
+  "checkout": {"endpoint": null, "allowed_hosts": []},
+  "items": [
+    {
+      "id": "ashes-logo-apparel", "name": "Ashes logo apparel & hoodies", "href": "product-ashes-logo-apparel.html",
+      "cart_enabled": true, "availability_status": "demo",
+      "options": [
+        {"id": "tee-small", "label": "Logo T-shirt · Small", "amount_minor": 2500},
+        {"id": "tee-medium", "label": "Logo T-shirt · Medium", "amount_minor": 2500},
+        {"id": "tee-large", "label": "Logo T-shirt · Large", "amount_minor": 2500},
+        {"id": "tee-xl", "label": "Logo T-shirt · XL", "amount_minor": 2500},
+        {"id": "hoodie-small", "label": "Logo hoodie · Small", "amount_minor": 4500},
+        {"id": "hoodie-medium", "label": "Logo hoodie · Medium", "amount_minor": 4500},
+        {"id": "hoodie-large", "label": "Logo hoodie · Large", "amount_minor": 4500},
+        {"id": "hoodie-xl", "label": "Logo hoodie · XL", "amount_minor": 4500}
+      ]
+    },
+    {
+      "id": "ashes-beanies", "name": "Ashes beanies", "href": "product-ashes-beanies.html",
+      "cart_enabled": true, "availability_status": "demo",
+      "options": [
+        {"id": "black", "label": "Black", "amount_minor": 1800},
+        {"id": "cream", "label": "Cream", "amount_minor": 1800}
+      ]
+    },
+    {
+      "id": "ashes-event-apparel", "name": "Ashes tees, tanks & koozies", "href": "product-ashes-event-apparel.html",
+      "cart_enabled": true, "availability_status": "demo",
+      "options": [
+        {"id": "event-tee-small", "label": "Event T-shirt · Small", "amount_minor": 2000},
+        {"id": "event-tee-medium", "label": "Event T-shirt · Medium", "amount_minor": 2000},
+        {"id": "event-tee-large", "label": "Event T-shirt · Large", "amount_minor": 2000},
+        {"id": "event-tee-xl", "label": "Event T-shirt · XL", "amount_minor": 2000},
+        {"id": "event-tank-small", "label": "Event tank · Small", "amount_minor": 2000},
+        {"id": "event-tank-medium", "label": "Event tank · Medium", "amount_minor": 2000},
+        {"id": "event-tank-large", "label": "Event tank · Large", "amount_minor": 2000},
+        {"id": "event-tank-xl", "label": "Event tank · XL", "amount_minor": 2000},
+        {"id": "can-cooler", "label": "Can cooler", "amount_minor": 500}
+      ]
+    },
+    {
+      "id": "cookies-backpacks-product-family", "name": "Cookies backpacks", "href": "product-cookies-backpacks-product-family.html",
+      "cart_enabled": true, "availability_status": "demo",
+      "options": [{"id": "standard-backpack", "label": "Standard backpack", "amount_minor": 4500}]
+    },
+    {
+      "id": "wildberry-incense-holders", "name": "Wildberry incense holders", "href": "product-wildberry-incense-holders.html",
+      "cart_enabled": true, "availability_status": "demo",
+      "options": [
+        {"id": "stick-holder", "label": "Stick incense holder", "amount_minor": 1200},
+        {"id": "cone-holder", "label": "Cone incense holder", "amount_minor": 1200}
+      ]
+    }
+  ]
+}

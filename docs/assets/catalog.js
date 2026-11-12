@@ -69,7 +69,7 @@
   const activeView = directory.querySelector('[data-active-view]');
   const empty = directory.querySelector('[data-catalog-empty]');
   const savedNote = directory.querySelector('[data-saved-note]');
-  const keys = ['q', 'category', 'brand', 'evidence', 'location', 'sort'];
+  const keys = ['q', 'category', 'brand', 'collection', 'location', 'sort'];
   const defaultSort = brandView ? 'az' : 'featured';
   let savedOnly = false;
   const normalize = value => String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -82,9 +82,9 @@
     for (const key of keys) {
       const input = get(key);
       if (!input) continue;
-      const value = params.get(key) || (key === 'sort' ? defaultSort : '');
+      const value = params.get(key) || (key === 'sort' ? defaultSort : key === 'collection' ? 'browse' : '');
       if (input.tagName === 'SELECT') {
-        input.value = [...input.options].some(o => o.value === value) ? value : (key === 'sort' ? defaultSort : '');
+        input.value = [...input.options].some(o => o.value === value) ? value : (key === 'sort' ? defaultSort : key === 'collection' ? 'browse' : '');
       } else input.value = value.slice(0, 160);
     }
     savedOnly = !brandView && params.get('saved') === '1';
@@ -95,7 +95,7 @@
     const params = new URLSearchParams();
     for (const key of keys) {
       const value = get(key)?.value.trim();
-      if (value && !(key === 'sort' && value === defaultSort)) params.set(key, value);
+      if (value && !(key === 'sort' && value === defaultSort) && !(key === 'collection' && value === 'browse')) params.set(key, value);
     }
     if (savedOnly) params.set('saved', '1');
     const query = params.toString();
@@ -109,7 +109,7 @@
     const words = query.split(/\s+/).filter(Boolean);
     const category = get('category').value;
     const brand = get('brand')?.value || '';
-    const evidence = get('evidence').value;
+    const collection = get('collection').value;
     const store = get('location').value;
     const sort = get('sort').value;
     const sorted = [...cards].sort((a, b) => {
@@ -122,7 +122,7 @@
     sorted.forEach(card => {
       const match = words.every(word => normalize(card.dataset.search).includes(word)) &&
         tokensContain(card.dataset.category, category) && (!brand || card.dataset.brand === brand) &&
-        (!evidence || card.dataset.evidence === evidence) && tokensContain(card.dataset.location, store) &&
+        (savedOnly || collection === 'all' || card.dataset.collection === collection) && tokensContain(card.dataset.location, store) &&
         (!savedOnly || saved.has(card.dataset.id));
       card.hidden = !match;
       if (match) visible++;
@@ -132,11 +132,11 @@
     const labels = [];
     if (savedOnly) labels.push('Saved products');
     if (query) labels.push(`“${get('q').value.trim()}”`);
-    for (const key of ['category', 'brand', 'evidence', 'location']) {
+    for (const key of ['category', 'brand', 'collection', 'location']) {
       const control = get(key);
-      if (control?.value) labels.push(control.selectedOptions[0].textContent);
+      if (control?.value && !(key === 'collection' && control.value === 'browse')) labels.push(control.selectedOptions[0].textContent);
     }
-    activeView.textContent = labels.length ? labels.join(' · ') : 'All entries';
+    activeView.textContent = labels.length ? labels.join(' · ') : 'Browse products';
     empty.hidden = visible !== 0;
     grid.hidden = visible === 0;
     savedNote.hidden = !savedOnly;

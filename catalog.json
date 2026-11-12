@@ -171,6 +171,8 @@
     {
       "id": "santa-cruz-shredder",
       "name": "Santa Cruz Shredder",
+      "display_name": "Santa Cruz Shredder",
+      "customer_summary": "Grinders from Santa Cruz Shredder.",
       "category_ids": [
         "grinders"
       ],
@@ -192,6 +194,8 @@
     {
       "id": "diamond-grind",
       "name": "Diamond Grind",
+      "display_name": "Diamond Grind",
+      "customer_summary": "Diamond Grind grinders.",
       "category_ids": [
         "grinders"
       ],
@@ -212,6 +216,8 @@
     {
       "id": "cali-crusher",
       "name": "Cali Crusher",
+      "display_name": "Cali Crusher",
+      "customer_summary": "Grinders from Cali Crusher.",
       "category_ids": [
         "grinders"
       ],
@@ -230,6 +236,8 @@
     {
       "id": "ryot",
       "name": "RYOT",
+      "display_name": "RYOT",
+      "customer_summary": "Bags, storage and accessories from RYOT.",
       "category_ids": [
         "bags-storage",
         "accessories-care"
@@ -249,6 +257,8 @@
     {
       "id": "cookies-backpacks",
       "name": "Cookies Backpacks",
+      "display_name": "Cookies Backpacks",
+      "customer_summary": "Cookies-branded backpacks.",
       "category_ids": [
         "bags-storage"
       ],
@@ -267,6 +277,8 @@
     {
       "id": "dime-bags",
       "name": "Dime Bags",
+      "display_name": "Dime Bags",
+      "customer_summary": "Dime Bags storage and accessories.",
       "category_ids": [
         "bags-storage",
         "accessories-care"
@@ -287,6 +299,8 @@
     {
       "id": "roor",
       "name": "ROOR",
+      "display_name": "ROOR",
+      "customer_summary": "ROOR glass from the Ashes archive.",
       "category_ids": [
         "glass"
       ],
@@ -308,6 +322,8 @@
     {
       "id": "grav",
       "name": "GRAV",
+      "display_name": "GRAV",
+      "customer_summary": "GRAV hand pipes and glass from the Ashes archive.",
       "category_ids": [
         "glass"
       ],
@@ -328,6 +344,8 @@
     {
       "id": "berning-glass",
       "name": "Berning Glass",
+      "display_name": "Berning Glass",
+      "customer_summary": "Featured glasswork from Berning Glass.",
       "category_ids": [
         "glass"
       ],
@@ -346,6 +364,8 @@
     {
       "id": "dynavap",
       "name": "DynaVap",
+      "display_name": "DynaVap",
+      "customer_summary": "DynaVap devices.",
       "category_ids": [
         "devices"
       ],
@@ -371,6 +391,8 @@
     {
       "id": "flytlab",
       "name": "FLYTLAB",
+      "display_name": "FLYTLAB",
+      "customer_summary": "FLYTLAB and Get Lifted accessories.",
       "category_ids": [
         "accessories-care"
       ],
@@ -396,6 +418,8 @@
     {
       "id": "puffco",
       "name": "Puffco",
+      "display_name": "Puffco",
+      "customer_summary": "Explore Puffco in devices and preparation.",
       "category_ids": [
         "devices"
       ],
@@ -415,6 +439,8 @@
     {
       "id": "volcano",
       "name": "Volcano",
+      "display_name": "Volcano",
+      "customer_summary": "Explore Volcano in devices and preparation.",
       "category_ids": [
         "devices"
       ],
@@ -433,6 +459,8 @@
     {
       "id": "magical-butter",
       "name": "Magical Butter",
+      "display_name": "Magical Butter",
+      "customer_summary": "Magical Butter preparation devices.",
       "category_ids": [
         "devices"
       ],
@@ -451,6 +479,8 @@
     {
       "id": "raw",
       "name": "RAW",
+      "display_name": "RAW",
+      "customer_summary": "Explore RAW in papers, cones and rolls.",
       "category_ids": [
         "papers-rolls"
       ],
@@ -470,6 +500,8 @@
     {
       "id": "elements",
       "name": "Elements",
+      "display_name": "Elements",
+      "customer_summary": "Explore Elements in papers, cones and rolls.",
       "category_ids": [
         "papers-rolls"
       ],
@@ -488,6 +520,8 @@
     {
       "id": "vibe",
       "name": "Vibe",
+      "display_name": "Vibe",
+      "customer_summary": "Explore Vibe in papers, cones and rolls.",
       "category_ids": [
         "papers-rolls"
       ],
@@ -506,6 +540,8 @@
     {
       "id": "zig-zag",
       "name": "Zig-Zag",
+      "display_name": "Zig-Zag",
+      "customer_summary": "Zig-Zag papers, cones and palm rolls.",
       "category_ids": [
         "papers-rolls"
       ],
@@ -524,6 +560,8 @@
     {
       "id": "ocb",
       "name": "OCB",
+      "display_name": "OCB",
+      "customer_summary": "OCB rolling papers.",
       "category_ids": [
         "papers-rolls"
       ],
@@ -549,6 +587,8 @@
     {
       "id": "job",
       "name": "JOB",
+      "display_name": "JOB",
+      "customer_summary": "JOB rolling papers, including Organic Hemp paper.",
       "category_ids": [
         "papers-rolls"
       ],
@@ -573,6 +613,8 @@
     {
       "id": "wildberry-incense",
       "name": "Wildberry Incense",
+      "display_name": "Wildberry Incense",
+      "customer_summary": "Wildberry incense and holders for the home.",
       "category_ids": [
         "incense-home"
       ],
@@ -593,6 +635,8 @@
     {
       "id": "toker-poker",
       "name": "Toker Poker",
+      "display_name": "Toker Poker",
+      "customer_summary": "Toker Poker shop accessories.",
       "category_ids": [
         "accessories-care"
       ],
@@ -611,6 +655,8 @@
     {
       "id": "pure-hemp",
       "name": "Pure Hemp",
+      "display_name": "Pure Hemp",
+      "customer_summary": "Pure Hemp rolling papers.",
       "category_ids": [
         "papers-rolls"
       ],
@@ -630,6 +676,8 @@
     {
       "id": "ashes",
       "name": "Ashes",
+      "display_name": "Ashes",
+      "customer_summary": "Ashes-branded apparel, hoodies and shop merchandise.",
       "category_ids": [
         "apparel-merch"
       ],
@@ -654,6 +702,8 @@
     {
       "id": "ozium",
       "name": "Ozium",
+      "display_name": "Ozium",
+      "customer_summary": "Explore Ozium in accessories and care.",
       "category_ids": [
         "accessories-care"
       ],
@@ -672,6 +722,8 @@
     {
       "id": "smokebuddy",
       "name": "SmokeBuddy",
+      "display_name": "SmokeBuddy",
+      "customer_summary": "SmokeBuddy accessories.",
       "category_ids": [
         "accessories-care"
       ],
@@ -690,6 +742,8 @@
     {
       "id": "zippo",
       "name": "Zippo",
+      "display_name": "Zippo",
+      "customer_summary": "Explore Zippo in accessories and care.",
       "category_ids": [
         "accessories-care"
       ],
@@ -708,6 +762,8 @@
     {
       "id": "randys",
       "name": "Randy's",
+      "display_name": "Randy's",
+      "customer_summary": "Randy's accessories.",
       "category_ids": [
         "accessories-care"
       ],
@@ -726,6 +782,8 @@
     {
       "id": "ooze",
       "name": "Ooze",
+      "display_name": "Ooze",
+      "customer_summary": "Ooze devices and accessories.",
       "category_ids": [
         "accessories-care",
         "devices"
@@ -747,6 +805,8 @@
     {
       "id": "santa-cruz-shredder-grinders",
       "name": "Santa Cruz Shredder grinders",
+      "display_name": "Santa Cruz Shredder Grinders",
+      "customer_summary": "Santa Cruz Shredder grinders for everyday setups.",
       "brand_id": "santa-cruz-shredder",
       "category_id": "grinders",
       "summary": "Santa Cruz Shredder grinders listed by both Ashes shops.",
@@ -770,6 +830,8 @@
     {
       "id": "diamond-grind-grinders",
       "name": "Diamond Grind grinders",
+      "display_name": "Diamond Grind Grinders",
+      "customer_summary": "Diamond Grind grinders in the Ashes grinder collection.",
       "brand_id": "diamond-grind",
       "category_id": "grinders",
       "summary": "Diamond Grind grinders listed by both Ashes shops.",
@@ -793,6 +855,8 @@
     {
       "id": "cookies-backpacks-product-family",
       "name": "Cookies backpacks",
+      "display_name": "Cookies Backpacks",
+      "customer_summary": "Carry your essentials in a Cookies-branded backpack.",
       "brand_id": "cookies-backpacks",
       "category_id": "bags-storage",
       "summary": "Cookies-branded backpacks named in Ashes's Denton assortment.",
@@ -813,6 +877,8 @@
     {
       "id": "roor-glass",
       "name": "ROOR glass",
+      "display_name": "ROOR Glass",
+      "customer_summary": "Explore ROOR glass featured in the Ashes archive.",
       "brand_id": "roor",
       "category_id": "glass",
       "summary": "ROOR glass represented in Ashes's historical Denton displays and promotions.",
@@ -835,6 +901,8 @@
     {
       "id": "grav-hand-pipes",
       "name": "GRAV-marked hand pipes",
+      "display_name": "GRAV Hand Pipes",
+      "customer_summary": "GRAV hand pipes from the shop archive.",
       "brand_id": "grav",
       "category_id": "glass",
       "summary": "GRAV-marked hand pipes photographed in the Denton display case.",
@@ -856,6 +924,8 @@
     {
       "id": "berning-glass-rig",
       "name": "Ocean-themed Berning Glass rig",
+      "display_name": "Berning Glass Ocean Rig",
+      "customer_summary": "A colorful ocean-themed glass rig by Berning Glass.",
       "brand_id": "berning-glass",
       "category_id": "glass",
       "summary": "An ocean-themed Berning Glass rig featured by Ashes Lewisville.",
@@ -877,6 +947,8 @@
     {
       "id": "dynavap-devices",
       "name": "DynaVap devices",
+      "display_name": "DynaVap Devices",
+      "customer_summary": "Explore DynaVap in the device collection.",
       "brand_id": "dynavap",
       "category_id": "devices",
       "summary": "DynaVap devices associated with the officially listed Denton retailer location.",
@@ -905,6 +977,8 @@
     {
       "id": "flytlab-accessory-display",
       "name": "FLYTLAB / Get Lifted accessories",
+      "display_name": "FLYTLAB Accessories",
+      "customer_summary": "FLYTLAB and Get Lifted trays and accessories.",
       "brand_id": "flytlab",
       "category_id": "accessories-care",
       "summary": "FLYTLAB / Get Lifted trays, a mat or pad, and packaged accessories pictured at Denton.",
@@ -932,6 +1006,8 @@
     {
       "id": "ocb-virgin-paper",
       "name": "OCB Virgin Paper",
+      "display_name": "OCB Virgin Paper",
+      "customer_summary": "OCB Virgin Paper for the rolling-paper shelf.",
       "brand_id": "ocb",
       "category_id": "papers-rolls",
       "summary": "An OCB Virgin Paper display photographed at Ashes Denton.",
@@ -959,6 +1035,8 @@
     {
       "id": "job-organic-hemp-paper",
       "name": "JOB Organic Hemp paper",
+      "display_name": "JOB Organic Hemp Paper",
+      "customer_summary": "JOB Organic Hemp paper for the rolling-paper shelf.",
       "brand_id": "job",
       "category_id": "papers-rolls",
       "summary": "A JOB Organic Hemp paper display photographed at Ashes Denton.",
@@ -986,6 +1064,8 @@
     {
       "id": "zig-zag-rolling-papers",
       "name": "Zig-Zag rolling papers",
+      "display_name": "Zig-Zag Rolling Papers",
+      "customer_summary": "Zig-Zag rolling papers.",
       "brand_id": "zig-zag",
       "category_id": "papers-rolls",
       "summary": "Zig-Zag rolling papers listed for Ashes Denton by the manufacturer.",
@@ -1007,6 +1087,8 @@
     {
       "id": "zig-zag-pre-rolled-cones",
       "name": "Zig-Zag pre-rolled cones",
+      "display_name": "Zig-Zag Pre-Rolled Cones",
+      "customer_summary": "Zig-Zag pre-rolled cones from Zig-Zag.",
       "brand_id": "zig-zag",
       "category_id": "papers-rolls",
       "summary": "Zig-Zag pre-rolled cones listed for Ashes Denton by the manufacturer.",
@@ -1027,6 +1109,8 @@
     {
       "id": "zig-zag-palm-rolls",
       "name": "Zig-Zag palm rolls",
+      "display_name": "Zig-Zag Palm Rolls",
+      "customer_summary": "Zig-Zag palm rolls.",
       "brand_id": "zig-zag",
       "category_id": "papers-rolls",
       "summary": "Zig-Zag palm rolls listed for Ashes Denton by the manufacturer.",
@@ -1047,6 +1131,8 @@
     {
       "id": "raw-paper-merchandising",
       "name": "RAW rolling-paper merchandising",
+      "display_name": "RAW Rolling Papers",
+      "customer_summary": "RAW rolling-paper products from the Ashes archive.",
       "brand_id": "raw",
       "category_id": "papers-rolls",
       "summary": "RAW rolling-paper merchandise photographed in the Denton shop.",
@@ -1068,6 +1154,8 @@
     {
       "id": "wildberry-incense-holders",
       "name": "Wildberry incense holders",
+      "display_name": "Wildberry Incense Holders",
+      "customer_summary": "Incense holders designed for sticks or cones.",
       "brand_id": "wildberry-incense",
       "category_id": "incense-home",
       "summary": "Wildberry holders designed for stick or cone incense.",
@@ -1089,6 +1177,8 @@
     {
       "id": "toker-poker-accessories",
       "name": "Toker Poker accessories",
+      "display_name": "Toker Poker Accessories",
+      "customer_summary": "Toker Poker accessories.",
       "brand_id": "toker-poker",
       "category_id": "accessories-care",
       "summary": "Toker Poker accessory packaging photographed at Ashes Denton.",
@@ -1110,6 +1200,8 @@
     {
       "id": "ashes-logo-apparel",
       "name": "Ashes logo apparel & hoodies",
+      "display_name": "Ashes Logo Apparel & Hoodies",
+      "customer_summary": "Wear the shop with Ashes logo apparel and hoodies.",
       "brand_id": "ashes",
       "category_id": "apparel-merch",
       "summary": "Ashes logo apparel, hoodies, and shop merchandise.",
@@ -1134,6 +1226,8 @@
     {
       "id": "ashes-beanies",
       "name": "Ashes beanies",
+      "display_name": "Ashes Beanies",
+      "customer_summary": "Ashes-branded beanies for cool days and late nights.",
       "brand_id": "ashes",
       "category_id": "apparel-merch",
       "summary": "Ashes-branded beanies documented in a Denton restock post.",
@@ -1155,6 +1249,8 @@
     {
       "id": "ashes-event-apparel",
       "name": "Ashes event tees, tanks & koozies",
+      "display_name": "Ashes Tees, Tanks & Can Coolers",
+      "customer_summary": "Ashes tees, tanks and can coolers from the shop's event collection.",
       "brand_id": "ashes",
       "category_id": "apparel-merch",
       "summary": "Ashes event tees, tanks, and koozies from the Denton archive.",
@@ -1176,6 +1272,8 @@
     {
       "id": "ashes-gift-card",
       "name": "Ashes gift card",
+      "display_name": "Ashes Gift Card",
+      "customer_summary": "An Ashes gift card from a past holiday promotion.",
       "brand_id": "ashes",
       "category_id": "apparel-merch",
       "summary": "An Ashes gift card documented in a historical shop promotion.",
@@ -1195,6 +1293,8 @@
     {
       "id": "ocb-event-giveaways",
       "name": "OCB event giveaways",
+      "display_name": "OCB Event Giveaways",
+      "customer_summary": "OCB giveaways from the 2026 Denton celebration.",
       "brand_id": "ocb",
       "category_id": "papers-rolls",
       "summary": "OCB-supported giveaways for Ashes's November 2026 Denton event.",
