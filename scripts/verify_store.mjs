@@ -183,6 +183,8 @@ assert(source.includes('is already at the demo limit of'));
 assert(source.includes("win.location.assign(config.shop_url)"), 'Starting another demo order must return to the shop');
 assert(source.includes('Enter a value that is not only spaces.'), 'Required checkout text fields must reject whitespace-only values');
 assert(source.includes('if (!focusTarget || focusTarget.disabled)'), 'Cart quantity rerenders must retain a usable keyboard focus target');
+assert(source.includes('Shopping cart, ${itemLabel}'), 'The shopping cart link must expose the current item count in its accessible name');
+assert(source.includes("prefers-reduced-motion: reduce"), 'Checkout completion scrolling must respect reduced-motion preferences');
 
 console.log(JSON.stringify({
   mode: config.mode,

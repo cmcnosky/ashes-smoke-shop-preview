@@ -170,7 +170,13 @@
     }
     function sync() {
       const count = totalQuantity(cart);
-      doc.querySelectorAll('[data-cart-count]').forEach(node => { node.textContent = String(count); node.setAttribute('aria-label', `${count} ${count === 1 ? 'item' : 'items'} in cart`); });
+      doc.querySelectorAll('[data-cart-count]').forEach(node => {
+        const itemLabel = `${count} ${count === 1 ? 'item' : 'items'}`;
+        node.textContent = String(count);
+        node.setAttribute('aria-label', `${itemLabel} in cart`);
+        const link = node.closest('a[href]');
+        if (link) link.setAttribute('aria-label', `Shopping cart, ${itemLabel}`);
+      });
       doc.querySelectorAll('[data-cart-add]').forEach(button => {
         const item = products.get(button.dataset.cartAdd), scope = button.closest('[data-product-purchase], .catalog-card, .catalog-detail-copy') || doc;
         const hasSelector = item && [...scope.querySelectorAll('[data-product-option]')].some(node => node.dataset.productOption === item.id);
@@ -183,8 +189,10 @@
     function lineNode(line, controls) {
       const item = products.get(line.id), option = getOption(config, line.id, line.option_id), row = make('li', 'cart-line'), copy = make('div', 'cart-line-copy');
       if (option.image || item.image) { const photo = make('img', 'cart-line-image'); photo.src=option.image || item.image; photo.alt=item.name; photo.width=75; photo.height=75; row.append(photo); }
+      const unitPrice = money(option.amount_minor, config.currency);
+      const priceText = line.quantity > 1 ? `${unitPrice} each · ${money(option.amount_minor * line.quantity, config.currency)} total` : unitPrice;
       copy.append(makeLink(item.href, 'cart-line-name', item.name), make('span', 'cart-line-option', option.label),
-        make('span', 'cart-line-price', `${money(option.amount_minor, config.currency)}`), make('span', 'cart-line-quantity', `Quantity ${line.quantity}`)); row.append(copy);
+        make('span', 'cart-line-price', priceText), make('span', 'cart-line-quantity', `Quantity ${line.quantity}`)); row.append(copy);
       if (controls) {
         const actions = make('div', 'cart-line-actions');
         for (const [action, text, label] of [['decrease', '−', 'Decrease'], ['increase', '+', 'Increase']]) {
@@ -195,6 +203,17 @@
         const remove = make('button', 'cart-remove', 'Remove'); remove.type = 'button'; remove.dataset.cartAction = 'remove'; remove.dataset.cartId = item.id; remove.dataset.cartOption = option.id; actions.append(remove); row.append(actions);
       }
       return row;
+    }
+    function checkoutSteps(current) {
+      const nav = make('nav', 'checkout-steps'); nav.setAttribute('aria-label', 'Checkout progress');
+      const list = make('ol'), steps = [['cart', 'Cart'], ['details', 'Details'], ['complete', 'Complete']];
+      steps.forEach(([id, label], index) => {
+        const item = make('li', `checkout-step${id === current ? ' current' : ''}`), number = make('span', 'checkout-step-number', String(index + 1)); number.setAttribute('aria-hidden', 'true');
+        const copy = id === 'cart' && current === 'details' ? makeLink(config.cart_url, 'checkout-step-link', label) : make('span', 'checkout-step-label', label);
+        if (id === current) copy.setAttribute('aria-current', 'step');
+        item.append(number, copy); list.append(item);
+      });
+      nav.append(list); return nav;
     }
     function totalsNode(totals, fulfillment) {
       const fulfillmentLabel = fulfillment === 'shipping' ? 'Sample shipping' : fulfillment === 'pickup-lewisville' ? 'Lewisville pickup' : 'Denton pickup';
@@ -207,17 +226,24 @@
     function renderCart() {
       const rootNode = doc.querySelector('[data-cart-root]'); if (!rootNode) return; rootNode.replaceChildren(); if (!cart.length) { rootNode.append(emptyNode('Your cart is empty.')); return; }
       const layout = make('div', 'cart-layout'), list = make('ul', 'cart-lines'), aside = make('section', 'cart-summary'); cart.forEach(line => list.append(lineNode(line, true)));
+      const count = totalQuantity(cart), countLabel = `${count} ${count === 1 ? 'item' : 'items'}`;
+      aside.append(make('p', 'cart-summary-count', countLabel));
       const row = make('p', 'cart-total-row'); row.append(make('strong', '', 'Sample subtotal'), make('strong', '', money(cartSubtotal(cart, config), config.currency))); aside.append(row,
-        make('p', 'cart-price-note', 'Shipping and sample estimated tax are calculated in the checkout preview. No real order or payment will be made.'),
+        make('p', 'cart-price-note', 'Choose pickup or shipping at checkout to see the sample tax and total.'),
         makeLink(config.checkout_url, 'button dark cart-review-link', 'Review demo checkout →'),
-        makeLink(config.shop_url, 'text-link cart-continue-link', '← Continue shopping')); layout.append(list, aside); rootNode.append(layout);
+        makeLink(config.shop_url, 'text-link cart-continue-link', '← Continue shopping')); layout.append(list, aside); rootNode.append(checkoutSteps('cart'), layout);
     }
     function field(labelText, name, type, autocomplete, required = true) { const label = make('label', 'checkout-field', labelText), input = make('input'); input.name = name; input.type = type; input.autocomplete = config.mode === 'demo' ? 'off' : autocomplete; input.required = required; label.append(input); return {label, input}; }
     function renderReceipt(rootNode, receipt) {
-      rootNode.replaceChildren(); const box = make('section', 'demo-confirmation'); box.append(make('span', 'eyebrow', 'STORE PREVIEW COMPLETE'), make('h2', '', 'Demo order complete.'),
-        make('p', '', 'Nothing was sent, reserved, or charged. This confirmation exists only in this browser tab.'), make('p', 'demo-order-id', `Preview reference ${receipt.order_id}`));
+      rootNode.replaceChildren(); const box = make('section', 'demo-confirmation'), fulfillmentLabel = receipt.fulfillment === 'shipping' ? 'Sample shipping' : receipt.fulfillment === 'pickup-lewisville' ? 'Lewisville pickup' : 'Denton pickup';
+      const created = new Intl.DateTimeFormat('en-US', {dateStyle: 'medium', timeStyle: 'short'}).format(new Date(receipt.created_at));
+      const heading = make('h2', '', 'Demo order complete.');
+      heading.tabIndex = -1;
+      box.append(heading,
+        make('p', '', 'Nothing was sent, reserved, or charged. This confirmation exists only in this browser tab.'),
+        make('p', 'demo-order-meta', `${fulfillmentLabel} · ${created}`), make('p', 'demo-order-id', `Preview reference ${receipt.order_id}`));
       const list = make('ul', 'cart-lines checkout-lines'); receipt.items.forEach(line => list.append(lineNode(line, false))); box.append(list, totalsNode(receipt, receipt.fulfillment));
-      const actions = make('div', 'demo-confirmation-actions'); actions.append(makeLink(config.shop_url, 'button dark', 'Keep browsing →')); const restart = make('button', 'button outline', 'Start another demo order'); restart.type = 'button'; restart.dataset.demoRestart = '1'; actions.append(restart); box.append(actions); rootNode.append(box);
+      const actions = make('div', 'demo-confirmation-actions'); actions.append(makeLink(config.shop_url, 'button dark', 'Keep browsing →')); const restart = make('button', 'button outline', 'Start another demo order'); restart.type = 'button'; restart.dataset.demoRestart = '1'; actions.append(restart); box.append(actions); rootNode.append(checkoutSteps('complete'), box);
     }
     function renderCheckout() {
       const rootNode = doc.querySelector('[data-checkout-root]'); if (!rootNode) return; const receipt = readReceipt(); if (receipt) { renderReceipt(rootNode, receipt); return; }
@@ -227,8 +253,8 @@
       const contactGrid = make('div', 'checkout-fields'), name = field('Full name', 'name', 'text', 'name'), email = field('Email', 'email', 'email', 'email'), phone = field('Phone', 'phone', 'tel', 'tel', false); name.input.maxLength = 120; email.input.maxLength = 254; phone.input.maxLength = 30; contactGrid.append(name.label, email.label, phone.label); contact.append(contactGrid);
       const sample = make('button', 'plain-button checkout-sample-button', 'Use fictional sample details'); sample.type = 'button'; contact.append(sample);
       const delivery = make('section', 'checkout-panel'); delivery.append(make('h2', '', 'Delivery method')); const choices = make('fieldset', 'fulfillment-options'), legend = make('legend', 'visually-hidden', 'Choose delivery method'); choices.append(legend);
-      [['pickup-denton', 'Pick up in Denton'], ['pickup-lewisville', 'Pick up in Lewisville'], ['shipping', `Sample shipping · ${money(config.demo.shipping_minor, config.currency)}`]].forEach(([value, text], index) => {
-        const label = make('label', 'fulfillment-option'), input = make('input'); input.type = 'radio'; input.name = 'fulfillment'; input.value = value; input.required = true; input.checked = index === 0; label.append(input, make('span', '', text)); choices.append(label);
+      [['pickup-denton', 'Pick up in Denton', 'No demo delivery fee'], ['pickup-lewisville', 'Pick up in Lewisville', 'No demo delivery fee'], ['shipping', 'Sample shipping', `${money(config.demo.shipping_minor, config.currency)} demo delivery fee`]].forEach(([value, title, detail], index) => {
+        const label = make('label', 'fulfillment-option'), input = make('input'), copy = make('span', 'fulfillment-copy'); input.type = 'radio'; input.name = 'fulfillment'; input.value = value; input.required = true; input.checked = index === 0; copy.append(make('strong', '', title), make('small', '', detail)); label.append(input, copy); choices.append(label);
       }); delivery.append(choices);
       const address = make('div', 'shipping-address'); address.hidden = true; address.append(make('h3', '', 'Shipping address')); const addressGrid = make('div', 'checkout-fields'), street = field('Street address', 'address', 'text', 'street-address', false), city = field('City', 'city', 'text', 'address-level2', false), state = field('State', 'state', 'text', 'address-level1', false), postal = field('ZIP code', 'postal', 'text', 'postal-code', false); postal.input.inputMode = 'numeric'; postal.input.pattern = '[0-9]{5}(?:-[0-9]{4})?';
       street.input.maxLength = 160; city.input.maxLength = 80; state.input.maxLength = 40; postal.input.maxLength = 10;
@@ -236,16 +262,20 @@
       const meaningfulInputs = [name.input, street.input, city.input, state.input];
       meaningfulInputs.forEach(input => input.addEventListener('input', () => input.setCustomValidity('')));
       sample.addEventListener('click', () => { name.input.value = 'Alex Example'; email.input.value = 'alex@example.com'; phone.input.value = '940-555-0100'; const shippingChoice = form.querySelector('input[value=shipping]'); shippingChoice.checked = true; street.input.value = '123 Sample Street'; city.input.value = 'Denton'; state.input.value = 'TX'; postal.input.value = '76201'; meaningfulInputs.forEach(input => input.setCustomValidity('')); updateDelivery(); announce('Fictional sample details filled in.'); });
-      const review = make('aside', 'checkout-payment'); review.append(make('span', 'eyebrow', 'DEMO ORDER'), make('h2', '', 'Order review')); const list = make('ul', 'cart-lines checkout-lines'); cart.forEach(line => list.append(lineNode(line, false))); review.append(list); const totalsSlot = make('div', 'checkout-totals-slot'); review.append(totalsSlot); const submit = make('button', 'button dark checkout-button', 'Place demo order →'); submit.type = 'submit'; review.append(submit, make('p', 'checkout-demo-note', 'Preview only. No payment information is collected, and nothing is sent to Ashes.'), makeLink(config.cart_url, 'text-link', '← Edit cart')); layout.append(details, review); form.append(layout); rootNode.append(form);
+      const review = make('aside', 'checkout-payment'), itemCount = totalQuantity(cart); review.append(make('span', 'eyebrow', 'DEMO ORDER'), make('h2', '', 'Order review'), make('p', 'checkout-item-count', `${itemCount} ${itemCount === 1 ? 'item' : 'items'}`)); const list = make('ul', 'cart-lines checkout-lines'); cart.forEach(line => list.append(lineNode(line, false))); review.append(list); const totalsSlot = make('div', 'checkout-totals-slot'); review.append(totalsSlot); const submit = make('button', 'button dark checkout-button', 'Place demo order →'); submit.type = 'submit'; review.append(submit, make('p', 'checkout-demo-note', 'Preview only. No payment information is collected, and nothing is sent to Ashes.'), makeLink(config.cart_url, 'text-link', '← Edit cart')); layout.append(details, review); form.append(layout); rootNode.append(checkoutSteps('details'), form);
       function updateDelivery() { const method = new FormData(form).get('fulfillment') || 'pickup-denton', shipping = method === 'shipping'; address.hidden = !shipping; addressInputs.forEach(input => { input.disabled = !shipping; input.required = shipping; }); totalsSlot.replaceChildren(totalsNode(calculateDemoTotals(cart, method, config), method)); }
       form.querySelectorAll('input[name=fulfillment]').forEach(input => input.addEventListener('change', updateDelivery)); updateDelivery();
-      form.addEventListener('submit', event => { event.preventDefault(); meaningfulInputs.forEach(input => input.setCustomValidity(!input.disabled && input.required && !input.value.trim() ? 'Enter a value that is not only spaces.' : '')); if (!form.reportValidity()) return; const method = new FormData(form).get('fulfillment'), bytes = new Uint8Array(4); if (win.crypto?.getRandomValues) win.crypto.getRandomValues(bytes); else bytes.set([Date.now() & 255, Date.now() >> 8 & 255, 31, 79]); const token = [...bytes].map(value => value.toString(16).padStart(2, '0')).join('').toUpperCase(), receipt = createDemoReceipt(cart, method, config, Date.now(), token); if (!receipt) { announce('The demo order could not be completed. Your cart is still saved.'); return; } try { win.sessionStorage.setItem(config.demo.receipt_storage_key, JSON.stringify(receipt)); } catch (_) {} cart = []; persist(); sync(); renderReceipt(rootNode, receipt); announce('Demo order complete. Nothing was sent or charged.'); rootNode.scrollIntoView({behavior: 'smooth', block: 'start'}); });
+      form.addEventListener('submit', event => { event.preventDefault(); meaningfulInputs.forEach(input => input.setCustomValidity(!input.disabled && input.required && !input.value.trim() ? 'Enter a value that is not only spaces.' : '')); if (!form.reportValidity()) return; const method = new FormData(form).get('fulfillment'), bytes = new Uint8Array(4); if (win.crypto?.getRandomValues) win.crypto.getRandomValues(bytes); else bytes.set([Date.now() & 255, Date.now() >> 8 & 255, 31, 79]); const token = [...bytes].map(value => value.toString(16).padStart(2, '0')).join('').toUpperCase(), receipt = createDemoReceipt(cart, method, config, Date.now(), token); if (!receipt) { announce('The demo order could not be completed. Your cart is still saved.'); return; } try { win.sessionStorage.setItem(config.demo.receipt_storage_key, JSON.stringify(receipt)); } catch (_) {} cart = []; persist(); sync(); renderReceipt(rootNode, receipt); rootNode.querySelector('.demo-confirmation h2')?.focus({preventScroll: true}); announce('Demo order complete. Nothing was sent or charged.'); const behavior = win.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'; rootNode.scrollIntoView({behavior, block: 'start'}); });
     }
     function render() { sync(); renderCart(); renderCheckout(); }
     doc.addEventListener('change', event => { const select = event.target.closest('[data-product-option]'); if (!select) return; const item = products.get(select.dataset.productOption), option = item?.options.find(value => value.id === select.value), scope = select.closest('[data-product-purchase], .catalog-card, .catalog-detail-copy') || doc, price = [...scope.querySelectorAll('[data-product-price]')].find(node => node.dataset.productPrice === item?.id); if (price && option) price.textContent = `${money(option.amount_minor, config.currency)}`; const photo=doc.querySelector(`[data-detail-image="${item?.id}"]`); if(photo && option?.image) { photo.src=option.image; photo.alt=`${item.name}, ${option.label}`; } });
     doc.addEventListener('click', event => {
       const restart = event.target.closest('[data-demo-restart]'); if (restart) { clearReceipt(); win.location.assign(config.shop_url); return; }
-      const add = event.target.closest('[data-cart-add]'); if (add) { const item = products.get(add.dataset.cartAdd); if (!item) return; if (add.dataset.cartChoose === '1') { win.location.assign(item.href); return; } const option = selectedOption(add, item), existing = cart.find(line => line.id === item.id && line.option_id === option.id); if (existing?.quantity >= config.max_quantity_per_item) { announce(`${item.name}, ${option.label}, is already at the demo limit of ${config.max_quantity_per_item}.`); return; } cart = addItem(cart, item.id, option.id, config); persist(); clearReceipt(); render(); announce(`${item.name}, ${option.label}, added to your cart.${storageWorks ? '' : ' Browser storage is unavailable, so this cart lasts only on this page.'}`); return; }
+      const add = event.target.closest('[data-cart-add]'); if (add) { const item = products.get(add.dataset.cartAdd); if (!item) return; if (add.dataset.cartChoose === '1') {
+        const detailLink = add.closest('[data-retail-item]')?.querySelector('[data-retail-product-link]');
+        win.location.assign(detailLink?.href || item.href);
+        return;
+      } const option = selectedOption(add, item), existing = cart.find(line => line.id === item.id && line.option_id === option.id); if (existing?.quantity >= config.max_quantity_per_item) { announce(`${item.name}, ${option.label}, is already at the demo limit of ${config.max_quantity_per_item}.`); return; } cart = addItem(cart, item.id, option.id, config); persist(); clearReceipt(); render(); announce(`${item.name}, ${option.label}, added to your cart.${storageWorks ? '' : ' Browser storage is unavailable, so this cart lasts only on this page.'}`); return; }
       const button = event.target.closest('[data-cart-action]'); if (!button) return; const item = products.get(button.dataset.cartId), option = getOption(config, button.dataset.cartId, button.dataset.cartOption), line = cart.find(value => value.id === item?.id && value.option_id === option?.id); if (!line) return;
       const actionName = button.dataset.cartAction;
       if (actionName === 'increase') cart = updateQuantity(cart, item.id, option.id, line.quantity + 1, config); if (actionName === 'decrease') cart = updateQuantity(cart, item.id, option.id, line.quantity - 1, config); if (actionName === 'remove') cart = updateQuantity(cart, item.id, option.id, 0, config); persist(); clearReceipt(); render();

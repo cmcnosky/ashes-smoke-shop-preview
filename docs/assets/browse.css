@@ -1,0 +1,89 @@
+/* Catalog state and navigation refinements. Loaded after the main retail theme. */
+.retail-applied {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -2px 0 18px;
+  padding: 11px 13px;
+  background: #e5d2ea;
+  border: 1px solid #8d7180;
+  border-radius: 7px;
+}
+
+.retail-applied[hidden] {
+  display: none;
+}
+
+.retail-applied > span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.retail-applied [data-retail-applied-items] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.retail-applied button {
+  min-height: 38px;
+  padding: 7px 10px;
+  border: 1px solid #725a67;
+  border-radius: 999px;
+  background: #fff7e6;
+  color: #281b2c;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.retail-applied > [data-retail-reset] {
+  margin-left: auto;
+  border-color: transparent;
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.retail-card .retail-brand {
+  align-self: flex-start;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.retail-breadcrumb [data-retail-return] {
+  font-weight: 700;
+}
+
+@media (max-width: 550px) {
+  .retail-applied {
+    align-items: flex-start;
+    margin-bottom: 14px;
+    padding: 10px;
+  }
+
+  .retail-applied > span {
+    width: 100%;
+  }
+
+  .retail-applied [data-retail-applied-items] {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+
+  .retail-applied [data-retail-remove] {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .retail-applied > [data-retail-reset] {
+    margin-left: 0;
+  }
+
+  .retail-breadcrumb {
+    gap: 8px;
+  }
+}
